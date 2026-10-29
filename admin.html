@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head><style>
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة تحكم - Zack Wallpapers</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
+body{background:#0a0a0a;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.card{background:#151515;border:1px solid #222;border-radius:24px;padding:32px;width:100%;max-width:420px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.logo{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.logo .z{width:48px;height:48px;background:#D4FF32;color:#000;font-weight:800;font-size:24px;border-radius:14px;display:flex;align-items:center;justify-content:center}
+h1{font-size:22px;font-weight:800;margin-bottom:6px}
+.sub{color:#888;font-size:13px;margin-bottom:24px;line-height:1.6}
+input,select{width:100%;background:#0f0f0f;border:1px solid #2a2a2a;border-radius:12px;padding:14px 16px;color:#fff;font-size:14px;margin-bottom:12px;outline:none}
+input:focus,select:focus{border-color:#D4FF32}
+button{width:100%;background:#D4FF32;color:#000;border:none;border-radius:12px;padding:14px;font-weight:700;font-size:15px;cursor:pointer;transition:.2s}
+button:hover{background:#c2eb2e}
+button:disabled{opacity:.5}
+.error{background:#2a1212;border:1px solid #5a1a1a;color:#ff6b6b;padding:10px;border-radius:10px;font-size:13px;margin-bottom:12px;display:none}
+.dashboard{display:none;width:100%;max-width:700px}
+.dashboard.active{display:block}
+.login.active{display:none}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.badge{background:#1e1e1e;border:1px solid #333;padding:6px 12px;border-radius:20px;font-size:12px;color:#aaa}
+.grid{display:grid;gap:16px}
+.panel{background:#151515;border:1px solid #222;border-radius:18px;padding:20px}
+.panel h3{font-size:15px;margin-bottom:12px;color:#D4FF32}
+.code{background:#0a0a0a;border:1px dashed #333;border-radius:12px;padding:12px;font-family:monospace;font-size:11px;color:#aaa;white-space:pre-wrap;word-break:break-all;max-height:200px;overflow:auto;margin-top:10px}
+.copy{margin-top:8px;background:#222;color:#fff}
+.list{margin-top:12px}
+.item{background:#0f0f0f;border:1px solid #222;border-radius:10px;padding:10px;display:flex;gap:10px;align-items:center;font-size:12px}
+.item img{width:40px;height:40px;border-radius:8px;object-fit:cover}
+a{color:#D4FF32;text-decoration:none;font-size:13px}
+</style>
+</head>
+<body>
+<div class="card login" id="loginCard">
+  <div class="logo"><div class="z">Z</div><div><div style="font-weight:700">ZACK WALLPAPERS</div><div style="font-size:11px;color:#666">لوحة التحكم الخاصة</div></div></div>
+  <h1>تسجيل دخول الإدارة</h1>
+  <p class="sub">سجل دخولك للوصول إلى إعدادات الموقع وإدارة الخلفيات. هذه الصفحة خاصة وغير مرتبطة بالموقع الرئيسي.</p>
+  <div class="error" id="err">اسم المستخدم أو كلمة السر خاطئة</div>
+  <input id="user" placeholder="اسم المستخدم - ZakariaZG27">
+  <input id="pass" type="password" placeholder="كلمة السر - Zack2026">
+  <button onclick="login()">دخول إلى لوحة التحكم</button>
+  <p style="margin-top:16px;text-align:center"><a href="index.html">← العودة للموقع الرئيسي</a></p>
+  <p style="margin-top:12px;font-size:11px;color:#555;text-align:center">غير كلمة السر داخل الكود قبل النشر: ابحث عن Zack2026</p>
+</div>
+
+<div class="dashboard" id="dash">
+  <div class="top">
+    <div><h2>مرحبا Zakaria 👋</h2><p style="color:#888;font-size:13px">لوحة إدارة الخلفيات</p></div>
+    <div><span class="badge" id="count">0 خلفية</span> <button onclick="logout()" style="width:auto;padding:8px 14px;background:#222;color:#fff;font-size:12px;margin-right:8px">خروج</button></div>
+  </div>
+  <div class="grid">
+    <div class="panel">
+      <h3>➕ إضافة خلفية جديدة</h3>
+      <input id="wUrl" placeholder="رابط الصورة المباشر - مثال: https://...jpg">
+      <select id="wCat"><option>طبيعة</option><option>سيارات</option><option>أنمي</option><option>فضاء</option><option>تجريدي</option><option>مدن</option><option>حيوانات</option><option>ألعاب</option></select>
+      <select id="wType"><option value="حاسوب">حاسوب - أفقي</option><option value="هاتف">هاتف - عمودي</option><option value="الكل">الكل</option></select>
+      <input id="wTitle" placeholder="عنوان الخلفية - مثال: جبال الأطلس">
+      <button onclick="addWall()">إضافة للمعاينة</button>
+      <div class="list" id="list"></div>
+      <div class="code" id="codeBox" style="display:none"></div>
+      <button class="copy" id="copyBtn" style="display:none" onclick="copyCode()">نسخ الكود لإضافته في index.html</button>
+      <p style="font-size:11px;color:#666;margin-top:10px">انسخ الكود أعلاه والصقه داخل مصفوفة wallpapers في ملف index.html ثم Commit</p>
+    </div>
+    <div class="panel">
+      <h3>📋 تعليمات سريعة</h3>
+      <p style="font-size:12px;color:#aaa;line-height:1.8">
+        1- ارفع صورك على postimages.org وخذ الرابط المباشر<br>
+        2- أضفها هنا واضغط إضافة<br>
+        3- انسخ الكود الناتج<br>
+        4- اذهب لـ github.com/ZakariaZG27/my-website > index.html > Edit > الصق الكود داخل [] الخاصة بـ wallpapers > Commit<br>
+        5- موقعك سيتحدث بعد دقيقة<br><br>
+        <a href="index.html">فتح الموقع الرئيسي</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+// غير هنا بيانات الدخول الخاصة بك
+const USERNAME = "ZakariaZG27";
+const PASSWORD = "Zack2026";
+
+let walls = [];
+function login(){
+  const u = document.getElementById('user').value.trim();
+  const p = document.getElementById('pass').value;
+  if(u===USERNAME && p===PASSWORD){
+    document.getElementById('loginCard').classList.add('active');
+    document.getElementById('dash').classList.add('active');
+    sessionStorage.setItem('zack_admin','1');
+    document.getElementById('err').style.display='none';
+  }else{
+    const e=document.getElementById('err');
+    e.style.display='block';
+    e.animate([{transform:'translateX(0)'},{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(0)'}],{duration:300});
+  }
+}
+function logout(){sessionStorage.removeItem('zack_admin');location.reload();}
+if(sessionStorage.getItem('zack_admin')){document.getElementById('loginCard').classList.add('active');document.getElementById('dash').classList.add('active');}
+
+function addWall(){
+  const url=document.getElementById('wUrl').value.trim();
+  const cat=document.getElementById('wCat').value;
+  const type=document.getElementById('wType').value;
+  const title=document.getElementById('wTitle').value.trim()||'خلفية جديدة';
+  if(!url){alert('ضع رابط الصورة');return;}
+  const id=Date.now();
+  walls.push({id,url,category:cat,type,title});
+  render();
+  document.getElementById('wUrl').value='';
+  document.getElementById('wTitle').value='';
+}
+
+function render(){
+  const list=document.getElementById('list');
+  list.innerHTML=walls.map(w=>`<div class="item"><img src="${w.url}"><div><div>${w.title}</div><div style="color:#666">${w.category} - ${w.type}</div></div></div>`).join('');
+  const code=walls.map(w=>`  { id: ${w.id}, url: "${w.url}", category: "${w.category}", type: "${w.type}", title: "${w.title}" },`).join('\n');
+  const box=document.getElementById('codeBox');
+  box.textContent=code;
+  box.style.display=code?'block':'none';
+  document.getElementById('copyBtn').style.display=code?'block':'none';
+  document.getElementById('count').textContent=walls.length+' خلفية جديدة';
+}
+
+function copyCode(){
+  const txt=document.getElementById('codeBox').textContent;
+  navigator.clipboard.writeText(txt).then(()=>alert('تم نسخ الكود! الصقه الآن في index.html'));
+}
+</script>
+<script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body>
+</html>
