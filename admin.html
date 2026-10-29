@@ -24,189 +24,147 @@
 </style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>لوحة تحكم تلقائية - Zack</title>
+<title>لوحة تحكم كاملة - ZG 4K</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
-body{background:#0a0a0a;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px}
-.card{background:#151515;border:1px solid #222;border-radius:20px;padding:24px;width:100%;max-width:440px}
-input,select{width:100%;background:#0f0f0f;border:1px solid #2a2a2a;border-radius:12px;padding:12px;color:#fff;margin-bottom:10px;outline:none}
+body{background:#0a0a0a;color:#fff;min-height:100vh;padding:16px}
+.card{background:#151515;border:1px solid #222;border-radius:20px;padding:20px;width:100%;max-width:440px;margin:0 auto}
+input,select,textarea{width:100%;background:#0f0f0f;border:1px solid #2a2a2a;border-radius:12px;padding:12px;color:#fff;margin-bottom:10px;outline:none;font-size:13px}
+textarea{min-height:80px;resize:vertical}
 button{width:100%;background:#D4FF32;color:#000;border:none;border-radius:12px;padding:12px;font-weight:700;cursor:pointer;margin-bottom:8px}
 .ghost{background:#1e1e1e;color:#fff;border:1px solid #333}
 .danger{background:#2a1212;color:#ff6b6b;border:1px solid #5a1a1a}
-.dashboard{display:none;width:100%;max-width:900px}
+.dashboard{display:none;width:100%;max-width:1000px;margin:0 auto}
 .dashboard.active{display:block}
 .login.active{display:none}
-.badge{background:#1e1e1e;border:1px solid #333;padding:6px 12px;border-radius:20px;font-size:12px;color:#aaa}
+.badge{background:#1e1e1e;border:1px solid #333;padding:6px 12px;border-radius:20px;font-size:11px;color:#aaa}
 .panel{background:#151515;border:1px solid #222;border-radius:16px;padding:16px;margin-bottom:12px}
-.list{display:grid;gap:8px;max-height:300px;overflow:auto;margin-top:10px}
-.item{background:#0f0f0f;border:1px solid #222;border-radius:10px;padding:8px;display:flex;gap:8px;align-items:center}
-.item img{width:48px;height:48px;border-radius:8px;object-fit:cover}
+.list{display:grid;gap:8px;max-height:350px;overflow:auto;margin-top:10px}
+.item{background:#0f0f0f;border:1px solid #222;border-radius:10px;padding:10px;display:flex;gap:10px;align-items:center}
+.item img{width:52px;height:52px;border-radius:10px;object-fit:cover}
 .row{display:flex;gap:8px}
+.tabs{display:flex;gap:8px;margin-bottom:16px;overflow:auto}
+.tabs button{width:auto;padding:10px 18px;white-space:nowrap}
+.tabs button.active{background:#D4FF32;color:#000}
+.tab{display:none}
+.tab.active{display:block}
+.color-row{display:flex;gap:10px;align-items:center;margin-bottom:10px}
+.color-row input[type="color"]{width:60px;height:44px;padding:2px}
 </style>
 </head>
 <body>
 <div class="card login" id="loginCard">
-  <h2>دخول الإدارة</h2>
-  <p style="color:#888;font-size:12px;margin:8px 0 16px">ZakariaZG27</p>
-  <input id="user" placeholder="ZakariaZG27">
-  <input id="pass" type="password" placeholder="Zack2026">
-  <button onclick="login()">دخول</button>
-  <a href="index.html" style="color:#666;font-size:12px;display:block;text-align:center;margin-top:10px">← الموقع</a>
+<h2>دخول الإدارة - ZG 4K Full CMS</h2>
+<input id="user" placeholder="ZakariaZG27">
+<input id="pass" type="password" placeholder="ZakariaZG27">
+<button onclick="login()">دخول</button>
+<a href="index.html" style="color:#666;font-size:12px;display:block;text-align:center;margin-top:10px">← الموقع</a>
 </div>
-
 <div class="dashboard" id="dash">
-  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><h2>🚀 نشر تلقائي</h2><span class="badge" id="count">0</span></div>
-
-  <div class="panel" style="border-color:#D4FF32;background:#1a1a0e">
-    <h3 style="color:#D4FF32">🔑 توكن GitHub (مرة واحدة)</h3>
-    <input id="ghToken" placeholder="ghp_xxxxxxxxxx - الصقه هنا" type="password">
-    <p style="font-size:11px;color:#888;margin-bottom:8px">هذا التوكن يسمح للزر بنشر الصور تلقائيا بدون نسخ. يحفظ في هاتفك فقط ولا يراه أحد.</p>
-    <button class="ghost" onclick="saveToken()">حفظ التوكن</button>
-    <p id="tokenStatus" style="font-size:11px;color:#D4FF32;margin-top:6px"></p>
-  </div>
-
-  <div class="panel">
-    <h3>➕ إضافة خلفية</h3>
-    <div class="row"><button class="ghost" onclick="document.getElementById('filePick').click()" style="flex:1;border-style:dashed">📁 من الهاتف</button><input type="file" id="filePick" accept="image/*" style="display:none"></div>
-    <input id="wUrl" placeholder="رابط الصورة أو اتركه فارغ بعد اختيار من الهاتف">
-    <div id="imgPreview" style="display:none"><img id="previewImg" style="width:100%;max-height:160px;object-fit:cover;border-radius:12px;margin-bottom:10px"></div>
-    <div class="row"><select id="wCat"><option>طبيعة</option><option>سيارات</option><option>أنمي</option><option>فضاء</option><option>مدن</option><option>ألعاب</option></select><select id="wType"><option>حاسوب</option><option>هاتف</option><option>الكل</option></select></div>
-    <input id="wTitle" placeholder="عنوان الصورة">
-    <button onclick="addWall()">إضافة للقائمة المحلية</button>
-  </div>
-
-  <div class="panel">
-    <h3>📋 خلفياتك (<span id="count2">0</span>)</h3>
-    <input id="search" placeholder="بحث..." oninput="render()">
-    <div class="list" id="list"></div>
-    <button onclick="publish()" style="background:#D4FF32;margin-top:12px;font-size:16px">🚀 نشر مباشر في الموقع الآن</button>
-    <p style="font-size:11px;color:#888;margin-top:6px">بعد الضغط، انتظر دقيقة ثم افتح موقعك الرئيسي، ستظهر الصور تلقائيا بدون نسخ!</p>
-    <div id="publishStatus" style="font-size:12px;margin-top:8px"></div>
-  </div>
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:10px">
+<h2>⚙️ لوحة تحكم كاملة - ZG 4K</h2>
+<div><span class="badge" id="count">0</span> <button class="ghost" style="width:auto;padding:6px 12px" onclick="logout()">خروج</button></div>
+</div>
+<div class="tabs">
+<button class="active" onclick="showTab('walls',event)">🖼️ الخلفيات</button>
+<button onclick="showTab('design',event)">🎨 الألوان</button>
+<button onclick="showTab('content',event)">📝 الوصف</button>
+<button onclick="showTab('contact',event)">📞 التواصل</button>
+</div>
+<div class="panel" style="border-color:#D4FF32;background:#1a1a0e">
+<h3 style="color:#D4FF32">🔑 توكن GitHub (مرة واحدة)</h3>
+<input id="ghToken" placeholder="ghp_xxxxxxxxxx" type="password">
+<button class="ghost" onclick="saveToken()">حفظ التوكن</button>
+<p id="tokenStatus" style="font-size:11px;color:#D4FF32;margin-top:6px"></p>
 </div>
 
+<div class="tab active" id="tab-walls">
+<div class="panel">
+<h3>➕ إضافة خلفية بعنوانين (عربي + إنجليزي)</h3>
+<div class="row"><button class="ghost" onclick="document.getElementById('filePick').click()" style="flex:1;border-style:dashed">📁 من الهاتف</button><input type="file" id="filePick" accept="image/*" style="display:none"></div>
+<input id="wUrl" placeholder="رابط الصورة">
+<div id="imgPreview" style="display:none"><img id="previewImg" style="width:100%;max-height:160px;object-fit:cover;border-radius:12px;margin-bottom:10px"></div>
+<div class="row"><select id="wCat"><option>طبيعة</option><option>سيارات</option><option>أنمي</option><option>فضاء</option><option>مدن</option><option>ألعاب</option><option>حيوانات</option></select><select id="wType"><option>حاسوب</option><option>هاتف</option><option>الكل</option></select></div>
+<input id="wTitleAr" placeholder="عنوان عربي - مثال: جبال الأطلس الفاخرة">
+<input id="wTitleEn" placeholder="English Title - e.g: Luxury Atlas Mountains">
+<p style="font-size:11px;color:#888;margin-bottom:8px">💡 اكتب عنوانين، زر اللغة في الموقع سيبدل بينهم تلقائياً</p>
+<button onclick="addWall()">إضافة للقائمة المحلية</button>
+</div>
+<div class="panel">
+<h3>📋 خلفياتك (<span id="count2">0</span>) - مع تعديل</h3>
+<input id="search" placeholder="بحث..." oninput="renderWalls()">
+<div class="list" id="list"></div>
+<button onclick="publishWalls()" style="background:#D4FF32;margin-top:12px">🚀 نشر الخلفيات الآن</button>
+<div id="publishWallsStatus" style="font-size:12px;margin-top:8px"></div>
+</div>
+</div>
+
+<div class="tab" id="tab-design">
+<div class="panel">
+<h3>🎨 ألوان الموقع</h3>
+<div class="color-row"><label style="flex:1;font-size:12px">لون الخلفية</label><input type="color" id="bgColor" value="#0a0a0a"><input id="bgColorText" placeholder="#0a0a0a"></div>
+<div class="color-row"><label style="flex:1;font-size:12px">لون الكتابة</label><input type="color" id="textColor" value="#ffffff"><input id="textColorText" placeholder="#ffffff"></div>
+<div class="color-row"><label style="flex:1;font-size:12px">لون الأزرار (النيون)</label><input type="color" id="accentColor" value="#D4FF32"><input id="accentColorText" placeholder="#D4FF32"></div>
+<button onclick="previewColors()">👁️ معاينة الألوان</button>
+<div id="colorPreview" style="height:60px;border-radius:12px;margin-top:10px;border:1px solid #333;display:flex;align-items:center;justify-content:center">معاينة</div>
+</div>
+<div class="panel">
+<button onclick="publishSettings()" style="background:#D4FF32">💾 حفظ ونشر الألوان</button>
+<div id="publishDesignStatus" style="font-size:12px;margin-top:8px"></div>
+</div>
+</div>
+
+<div class="tab" id="tab-content">
+<div class="panel">
+<h3>📝 اسم ووصف الموقع</h3>
+<input id="siteName" placeholder="اسم الموقع - ZG 4K Wallpaper">
+<input id="siteName_ar" placeholder="اسم عربي - ZG 4K خلفيات">
+<textarea id="desc_ar" placeholder="وصف عربي احترافي - مثال: مجموعة فاخرة من الخلفيات المتنوعة..."></textarea>
+<textarea id="desc_en" placeholder="English description - Premium collection..."></textarea>
+<input id="footerRights_ar" placeholder="حقوق عربية - © 2026 ZG 4K">
+<input id="footerRights_en" placeholder="Rights English">
+<button onclick="publishSettings()" style="background:#D4FF32">💾 حفظ ونشر المحتوى</button>
+<div id="publishContentStatus" style="font-size:12px;margin-top:8px"></div>
+</div>
+</div>
+
+<div class="tab" id="tab-contact">
+<div class="panel">
+<h3>📞 معلومات التواصل</h3>
+<input id="email" placeholder="البريد - zakariazg27@gmail.com">
+<input id="whatsapp" placeholder="واتساب مع رمز البلد - +212600000000">
+<input id="instagram" placeholder="انستغرام - zack.zg.25">
+<input id="tiktok" placeholder="تيك توك">
+<button onclick="publishSettings()" style="background:#D4FF32">💾 حفظ ونشر التواصل</button>
+<div id="publishContactStatus" style="font-size:12px;margin-top:8px"></div>
+<p style="font-size:11px;color:#888;margin-top:8px">💡 زر واتساب سيظهر عائم في الموقع تلقائياً إذا وضعت رقمك<br>💡 انستغرام سيظهر في الفوتر</p>
+</div>
+</div>
+
+</div>
 <script>
 const USERNAME="ZakariaZG27"; const PASSWORD="ZakariaZG27";
 let walls=JSON.parse(localStorage.getItem('zack_walls')||'[]');
-const REPO="ZakariaZG27/my-website"; const FILE_PATH="wallpapers.json";
-
-function login(){
-  if(document.getElementById('user').value.trim()===USERNAME && document.getElementById('pass').value===PASSWORD){
-    document.getElementById('loginCard').classList.add('active');
-    document.getElementById('dash').classList.add('active');
-    localStorage.setItem('zack_admin','1'); localStorage.setItem('zack_admin_time', Date.now().toString()); sessionStorage.setItem('zack_admin','1');
-    init();
-  }else alert('خطأ');
-}
-function isLoginValid(){
-  const t=localStorage.getItem('zack_admin_time');
-  if(!t) return false;
-  return (Date.now() - parseInt(t)) < 1*60*60*1000;
-}
-if((localStorage.getItem('zack_admin') && isLoginValid()) || sessionStorage.getItem('zack_admin')){
-  document.getElementById('loginCard').classList.add('active');
-  document.getElementById('dash').classList.add('active');
-  setTimeout(init,200);
-} else {
-  localStorage.removeItem('zack_admin');
-  localStorage.removeItem('zack_admin_time');
-}
-
-function init(){
-  document.getElementById('ghToken').value=localStorage.getItem('gh_token')||'';
-  updateTokenStatus();
-  render();
-  document.getElementById('filePick').addEventListener('change',e=>{
-    const f=e.target.files[0]; if(!f)return;
-    if(f.size>2*1024*1024){alert('اختر صورة أقل من 2MB، أو استخدم رابط postimages.org لصور كبيرة'); return;}
-    const r=new FileReader();
-    r.onload=ev=>{
-      // For auto system we must use external link, not base64 big. So we warn but still allow small base64
-      document.getElementById('wUrl').value=ev.target.result;
-      document.getElementById('previewImg').src=ev.target.result;
-      document.getElementById('imgPreview').style.display='block';
-      if(!document.getElementById('wTitle').value) document.getElementById('wTitle').value=f.name.replace(/\.[^/.]+$/,'');
-    };
-    r.readAsDataURL(f);
-  });
-}
-
-function saveToken(){
-  const t=document.getElementById('ghToken').value.trim();
-  if(!t){alert('ضع التوكن');return;}
-  localStorage.setItem('gh_token',t);
-  updateTokenStatus();
-  alert('تم حفظ التوكن');
-}
-function updateTokenStatus(){
-  const t=localStorage.getItem('gh_token');
-  document.getElementById('tokenStatus').textContent=t?'✅ التوكن محفوظ - جاهز للنشر التلقائي':'❌ لم تحفظ التوكن بعد';
-}
-
-function addWall(){
-  const url=document.getElementById('wUrl').value.trim();
-  const cat=document.getElementById('wCat').value;
-  const type=document.getElementById('wType').value;
-  const title=document.getElementById('wTitle').value.trim()||'خلفية';
-  if(!url){alert('ضع رابط أو اختر صورة');return;}
-  walls.unshift({id:Date.now(),url,category:cat,type,title});
-  localStorage.setItem('zack_walls',JSON.stringify(walls));
-  render();
-  document.getElementById('wUrl').value=''; document.getElementById('wTitle').value=''; document.getElementById('imgPreview').style.display='none';
-}
-function deleteWall(id){if(!confirm('حذف؟'))return; walls=walls.filter(w=>w.id!==id); localStorage.setItem('zack_walls',JSON.stringify(walls)); render();}
-function render(){
-  const q=(document.getElementById('search').value||'').toLowerCase();
-  const f=walls.filter(w=>(w.title+w.category).toLowerCase().includes(q));
-  document.getElementById('list').innerHTML=f.length?f.map(w=>`<div class="item"><img src="${w.url}"><div style="flex:1"><div style="font-size:12px;font-weight:600">${w.title}</div><div style="font-size:10px;color:#666">${w.category} - ${w.type}</div></div><div style="display:flex;gap:4px"><button class="ghost" style="width:auto;padding:6px 8px;font-size:11px" onclick="editWall(${w.id})">✏️ تعديل</button><button class="danger" style="width:auto;padding:6px 10px" onclick="deleteWall(${w.id})">🗑️</button></div></div>`).join(''):'<p style="color:#666;text-align:center;padding:20px;font-size:12px">لا توجد خلفيات</p>';
-  document.getElementById('count').textContent=walls.length;
-  document.getElementById('count2').textContent=walls.length;
-}
-
-function editWall(id){
-  const w=walls.find(x=>x.id===id);
-  if(!w) return;
-  const newTitle=prompt('تعديل عنوان الصورة:', w.title);
-  if(newTitle===null) return;
-  const newCat=prompt('تعديل القسم (طبيعة، سيارات، أنمي، فضاء، مدن، ألعاب، حيوانات):', w.category);
-  if(newCat===null) return;
-  if(newTitle.trim()) w.title=newTitle.trim();
-  if(newCat.trim()) w.category=newCat.trim();
-  localStorage.setItem('zack_walls',JSON.stringify(walls));
-  render();
-  alert('تم التعديل محليا - اضغط نشر مباشر ليظهر في الموقع الرئيسي');
-}
-
-
-async function publish(){
-  const token=localStorage.getItem('gh_token');
-  if(!token){alert('احفظ التوكن أولا في الأعلى');return;}
-  if(!walls.length){alert('لا توجد خلفيات');return;}
-  const status=document.getElementById('publishStatus');
-  status.innerHTML='⏳ جاري النشر...';
-  try{
-    // Get current file sha
-    let sha=null;
-    const getRes=await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE_PATH}`,{headers:{Authorization:`token ${token}`}});
-    if(getRes.ok){const j=await getRes.json(); sha=j.sha;}
-    
-    const contentStr=JSON.stringify(walls,null,2);
-    const contentB64=btoa(unescape(encodeURIComponent(contentStr)));
-    
-    const putRes=await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE_PATH}`,{
-      method:'PUT',
-      headers:{Authorization:`token ${token}`,'Content-Type':'application/json'},
-      body:JSON.stringify({message:`تحديث الخلفيات - ${walls.length} صورة`, content:contentB64, sha:sha})
-    });
-    if(!putRes.ok){const err=await putRes.text(); throw new Error(err);}
-    status.innerHTML='✅ تم النشر بنجاح! انتظر دقيقة وافتح موقعك الرئيسي.<br>🔗 zakariazg27.github.io/my-website/';
-    alert('تم النشر! ستظهر صورك في الموقع بعد دقيقة');
-  }catch(e){
-    status.innerHTML='❌ فشل: '+e.message+'<br>تأكد من التوكن وأنه يملك صلاحية repo';
-    console.error(e);
-  }
-}
+let settings=JSON.parse(localStorage.getItem('zack_settings')||'null')||{siteName:"ZG 4K Wallpaper", siteName_ar:"ZG 4K خلفيات", description_ar:"مجموعة فاخرة من الخلفيات المتنوعة بدقة 4K و 8K مصممة للذواقة.", description_en:"Premium collection of diverse 4K & 8K wallpapers.", bgColor:"#0a0a0a", textColor:"#ffffff", accentColor:"#D4FF32", email:"zakariazg27@gmail.com", whatsapp:"+212600000000", instagram:"zack.zg.25", tiktok:"", footerRights_ar:"© 2026 ZG 4K Wallpaper", footerRights_en:"© 2026 ZG 4K Wallpaper", adCode:""};
+const REPO="ZakariaZG27/my-website";
+function login(){if(document.getElementById('user').value.trim()===USERNAME && document.getElementById('pass').value===PASSWORD){document.getElementById('loginCard').classList.add('active'); document.getElementById('dash').classList.add('active'); localStorage.setItem('zack_admin','1'); localStorage.setItem('zack_admin_time', Date.now().toString()); init();}else alert('كلمة السر خاطئة');}
+function logout(){localStorage.removeItem('zack_admin'); localStorage.removeItem('zack_admin_time'); location.reload();}
+function isLoginValid(){const t=localStorage.getItem('zack_admin_time'); return t && (Date.now()-parseInt(t))<3600000;}
+if(localStorage.getItem('zack_admin') && isLoginValid()){document.getElementById('loginCard').classList.add('active'); document.getElementById('dash').classList.add('active'); setTimeout(init,200);}
+function showTab(name,e){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active')); document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active')); document.getElementById('tab-'+name).classList.add('active'); if(e) e.target.classList.add('active'); if(name!=='walls') loadSettingsToForm();}
+function init(){document.getElementById('ghToken').value=localStorage.getItem('gh_token')||''; updateTokenStatus(); renderWalls(); loadSettingsToForm(); document.getElementById('filePick').addEventListener('change',e=>{const f=e.target.files[0]; if(!f)return; if(f.size>2*1024*1024){alert('صورة كبيرة - استخدم رابط');return;} const r=new FileReader(); r.onload=ev=>{document.getElementById('wUrl').value=ev.target.result; document.getElementById('previewImg').src=ev.target.result; document.getElementById('imgPreview').style.display='block';}; r.readAsDataURL(f);}); ['bgColor','textColor','accentColor'].forEach(id=>{const el=document.getElementById(id); const txt=document.getElementById(id+'Text'); if(el&&txt){el.addEventListener('input',e=>{txt.value=e.target.value; previewColors();}); txt.addEventListener('input',e=>{el.value=e.target.value; previewColors();});}});}
+function saveToken(){const t=document.getElementById('ghToken').value.trim(); if(!t){alert('ضع التوكن');return;} localStorage.setItem('gh_token',t); updateTokenStatus(); alert('تم حفظ التوكن');}
+function updateTokenStatus(){const t=localStorage.getItem('gh_token'); const el=document.getElementById('tokenStatus'); if(el) el.textContent=t?'✅ التوكن محفوظ - جاهز':'❌ لم تحفظ التوكن بعد';}
+function loadSettingsToForm(){document.getElementById('siteName').value=settings.siteName||''; const elAr=document.getElementById('siteName_ar'); if(elAr) elAr.value=settings.siteName_ar||''; document.getElementById('desc_ar').value=settings.description_ar||''; document.getElementById('desc_en').value=settings.description_en||''; document.getElementById('footerRights_ar').value=settings.footerRights_ar||''; document.getElementById('footerRights_en').value=settings.footerRights_en||''; document.getElementById('bgColor').value=settings.bgColor||'#0a0a0a'; document.getElementById('bgColorText').value=settings.bgColor||'#0a0a0a'; document.getElementById('textColor').value=settings.textColor||'#ffffff'; document.getElementById('textColorText').value=settings.textColor||'#ffffff'; document.getElementById('accentColor').value=settings.accentColor||'#D4FF32'; document.getElementById('accentColorText').value=settings.accentColor||'#D4FF32'; document.getElementById('email').value=settings.email||''; document.getElementById('whatsapp').value=settings.whatsapp||''; document.getElementById('instagram').value=settings.instagram||''; const tik=document.getElementById('tiktok'); if(tik) tik.value=settings.tiktok||''; previewColors();}
+function previewColors(){const bg=document.getElementById('bgColor').value; const txt=document.getElementById('textColor').value; const acc=document.getElementById('accentColor').value; const p=document.getElementById('colorPreview'); if(p){p.style.background=bg; p.style.color=txt; p.style.borderColor=acc; p.innerHTML=`<span style="background:${acc};color:#000;padding:4px 12px;border-radius:20px;font-size:12px">معاينة ${acc}</span>`;} settings.bgColor=document.getElementById('bgColorText').value||bg; settings.textColor=document.getElementById('textColorText').value||txt; settings.accentColor=document.getElementById('accentColorText').value||acc;}
+function collectSettings(){previewColors(); settings.siteName=document.getElementById('siteName').value||settings.siteName; const arName=document.getElementById('siteName_ar'); if(arName) settings.siteName_ar=arName.value||settings.siteName_ar; settings.description_ar=document.getElementById('desc_ar').value||settings.description_ar; settings.description_en=document.getElementById('desc_en').value||settings.description_en; settings.footerRights_ar=document.getElementById('footerRights_ar').value||settings.footerRights_ar; settings.footerRights_en=document.getElementById('footerRights_en').value||settings.footerRights_en; settings.email=document.getElementById('email').value||settings.email; settings.whatsapp=document.getElementById('whatsapp').value||settings.whatsapp; settings.instagram=document.getElementById('instagram').value||settings.instagram; const tik=document.getElementById('tiktok'); if(tik) settings.tiktok=tik.value||''; localStorage.setItem('zack_settings',JSON.stringify(settings)); return settings;}
+function addWall(){const url=document.getElementById('wUrl').value.trim(); const cat=document.getElementById('wCat').value; const type=document.getElementById('wType').value; const titleAr=document.getElementById('wTitleAr').value.trim()||'خلفية'; const titleEn=document.getElementById('wTitleEn').value.trim()||titleAr; if(!url){alert('ضع رابط أو اختر صورة');return;} walls.unshift({id:Date.now(),url,category:cat,type,title:titleAr,title_ar:titleAr,title_en:titleEn}); localStorage.setItem('zack_walls',JSON.stringify(walls)); renderWalls(); document.getElementById('wUrl').value=''; document.getElementById('wTitleAr').value=''; document.getElementById('wTitleEn').value=''; document.getElementById('imgPreview').style.display='none';}
+function deleteWall(id){if(!confirm('حذف هذه الخلفية؟'))return; walls=walls.filter(w=>w.id!==id); localStorage.setItem('zack_walls',JSON.stringify(walls)); renderWalls();}
+function editWall(id){const w=walls.find(x=>x.id===id); if(!w)return; const newAr=prompt('تعديل عنوان عربي:', w.title_ar||w.title); if(newAr===null) return; const newEn=prompt('تعديل عنوان إنجليزي:', w.title_en||w.title); if(newEn===null) return; const newCat=prompt('تعديل القسم:', w.category); if(newAr.trim()){w.title=newAr.trim(); w.title_ar=newAr.trim();} if(newEn.trim()) w.title_en=newEn.trim(); if(newCat && newCat.trim()) w.category=newCat.trim(); localStorage.setItem('zack_walls',JSON.stringify(walls)); renderWalls(); alert('تم التعديل محليا - اضغط نشر مباشر');}
+function renderWalls(){const q=(document.getElementById('search').value||'').toLowerCase(); const f=walls.filter(w=>((w.title_ar||w.title||'')+(w.title_en||'')+w.category).toLowerCase().includes(q)); document.getElementById('list').innerHTML=f.length?f.map(w=>`<div class="item"><img src="${w.url}"><div style="flex:1"><div style="font-size:12px;font-weight:600">${w.title_ar||w.title}</div><div style="font-size:10px;color:#D4FF32">${w.title_en||''}</div><div style="font-size:10px;color:#666">${w.category} - ${w.type}</div></div><div style="display:flex;flex-direction:column;gap:4px"><button class="ghost" style="width:auto;padding:4px 8px;font-size:10px" onclick="editWall(${w.id})">✏️ تعديل</button><button class="danger" style="width:auto;padding:4px 8px" onclick="deleteWall(${w.id})">🗑️ حذف</button></div></div>`).join(''):'<p style="color:#666;text-align:center;padding:20px;font-size:12px">لا توجد خلفيات</p>'; document.getElementById('count').textContent=walls.length; document.getElementById('count2').textContent=walls.length;}
+async function publishWalls(){const token=localStorage.getItem('gh_token'); if(!token){alert('احفظ التوكن أولا في الأعلى');return;} if(!walls.length){alert('لا توجد خلفيات');return;} const status=document.getElementById('publishWallsStatus'); status.innerHTML='⏳ جاري نشر الخلفيات...'; try{let sha=null; const getRes=await fetch(`https://api.github.com/repos/${REPO}/contents/wallpapers.json`,{headers:{Authorization:`token ${token}`}}); if(getRes.ok){const j=await getRes.json(); sha=j.sha;} const contentB64=btoa(unescape(encodeURIComponent(JSON.stringify(walls,null,2)))); const putRes=await fetch(`https://api.github.com/repos/${REPO}/contents/wallpapers.json`,{method:'PUT',headers:{Authorization:`token ${token}`,'Content-Type':'application/json'},body:JSON.stringify({message:`ZG - Update ${walls.length} wallpapers`, content:contentB64, sha})}); if(!putRes.ok){const err=await putRes.text(); throw new Error(err);} status.innerHTML='✅ تم نشر الخلفيات! انتظر دقيقة وافتح موقعك';}catch(e){status.innerHTML='❌ فشل: '+e.message.substring(0,200);}}
+async function publishSettings(){const token=localStorage.getItem('gh_token'); if(!token){alert('احفظ التوكن أولا');return;} const s=collectSettings(); const activeTab=document.querySelector('.tab.active'); let statusEl=document.getElementById('publishDesignStatus'); if(activeTab){statusEl=activeTab.querySelector('[id^=publish]')||statusEl;} statusEl.textContent='⏳ جاري نشر الإعدادات...'; try{let sha=null; const getRes=await fetch(`https://api.github.com/repos/${REPO}/contents/settings.json`,{headers:{Authorization:`token ${token}`}}); if(getRes.ok){const j=await getRes.json(); sha=j.sha;} const contentB64=btoa(unescape(encodeURIComponent(JSON.stringify(s,null,2)))); const putRes=await fetch(`https://api.github.com/repos/${REPO}/contents/settings.json`,{method:'PUT',headers:{Authorization:`token ${token}`,'Content-Type':'application/json'},body:JSON.stringify({message:`Update settings - ${s.siteName}`, content:contentB64, sha})}); if(!putRes.ok){const err=await putRes.text(); throw new Error(err);} statusEl.textContent='✅ تم نشر الإعدادات! افتح موقعك بعد دقيقة لترى التغييرات'; alert('تم حفظ ونشر الإعدادات بنجاح!');}catch(e){statusEl.textContent='❌ فشل: '+e.message.substring(0,200);}}
 </script>
 <script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body>
 </html>
