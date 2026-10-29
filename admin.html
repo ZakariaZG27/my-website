@@ -24,151 +24,112 @@
 </style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>لوحة تحكم - Zack Wallpapers</title>
+<title>لوحة تحكم تلقائية - Zack</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
-body{background:#0a0a0a;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
-.card{background:#151515;border:1px solid #222;border-radius:24px;padding:32px;width:100%;max-width:440px}
-.logo{display:flex;align-items:center;gap:12px;margin-bottom:24px}
-.logo .z{width:48px;height:48px;background:#D4FF32;color:#000;font-weight:800;font-size:24px;border-radius:14px;display:flex;align-items:center;justify-content:center}
-h1{font-size:22px;font-weight:800;margin-bottom:6px}
-.sub{color:#888;font-size:13px;margin-bottom:20px;line-height:1.6}
-input,select{width:100%;background:#0f0f0f;border:1px solid #2a2a2a;border-radius:12px;padding:13px 14px;color:#fff;font-size:14px;margin-bottom:10px;outline:none}
-input:focus,select:focus{border-color:#D4FF32}
-button{width:100%;background:#D4FF32;color:#000;border:none;border-radius:12px;padding:13px;font-weight:700;font-size:14px;cursor:pointer}
-button:hover{background:#c2eb2e}
-.small{width:auto;padding:8px 12px;font-size:12px}
+body{background:#0a0a0a;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px}
+.card{background:#151515;border:1px solid #222;border-radius:20px;padding:24px;width:100%;max-width:440px}
+input,select{width:100%;background:#0f0f0f;border:1px solid #2a2a2a;border-radius:12px;padding:12px;color:#fff;margin-bottom:10px;outline:none}
+button{width:100%;background:#D4FF32;color:#000;border:none;border-radius:12px;padding:12px;font-weight:700;cursor:pointer;margin-bottom:8px}
 .ghost{background:#1e1e1e;color:#fff;border:1px solid #333}
 .danger{background:#2a1212;color:#ff6b6b;border:1px solid #5a1a1a}
-.error{background:#2a1212;border:1px solid #5a1a1a;color:#ff6b6b;padding:10px;border-radius:10px;font-size:13px;margin-bottom:10px;display:none}
 .dashboard{display:none;width:100%;max-width:900px}
 .dashboard.active{display:block}
 .login.active{display:none}
-.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px}
 .badge{background:#1e1e1e;border:1px solid #333;padding:6px 12px;border-radius:20px;font-size:12px;color:#aaa}
-.grid{display:grid;grid-template-columns:1fr;gap:16px}
-@media(min-width:800px){.grid{grid-template-columns:1fr 1fr}}
-.panel{background:#151515;border:1px solid #222;border-radius:18px;padding:18px}
-.panel h3{font-size:14px;margin-bottom:12px;color:#D4FF32}
-.code{background:#0a0a0a;border:1px dashed #333;border-radius:12px;padding:12px;font-family:monospace;font-size:11px;color:#aaa;white-space:pre-wrap;word-break:break-all;max-height:240px;overflow:auto;margin-top:10px}
-.list{margin-top:12px;display:grid;gap:8px;max-height:380px;overflow:auto}
-.item{background:#0f0f0f;border:1px solid #222;border-radius:12px;padding:10px;display:flex;gap:10px;align-items:center}
-.item img{width:52px;height:52px;border-radius:10px;object-fit:cover;flex-shrink:0}
-.item .info{flex:1;min-width:0}
-.item .title{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.item .meta{font-size:11px;color:#666}
-.item .acts{display:flex;gap:6px}
-.cat-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-.cat-chip{background:#0f0f0f;border:1px solid #2a2a2a;border-radius:20px;padding:5px 10px;font-size:11px;display:flex;gap:6px;align-items:center}
-.cat-chip button{width:auto;padding:0 6px;background:transparent;color:#ff6b6b;font-size:14px}
-a{color:#D4FF32;text-decoration:none;font-size:12px}
+.panel{background:#151515;border:1px solid #222;border-radius:16px;padding:16px;margin-bottom:12px}
+.list{display:grid;gap:8px;max-height:300px;overflow:auto;margin-top:10px}
+.item{background:#0f0f0f;border:1px solid #222;border-radius:10px;padding:8px;display:flex;gap:8px;align-items:center}
+.item img{width:48px;height:48px;border-radius:8px;object-fit:cover}
 .row{display:flex;gap:8px}
-.row input{flex:1}
 </style>
 </head>
 <body>
 <div class="card login" id="loginCard">
-  <div class="logo"><div class="z">Z</div><div><div style="font-weight:700">ZACK WALLPAPERS</div><div style="font-size:11px;color:#666">لوحة التحكم الخاصة</div></div></div>
-  <h1>تسجيل دخول الإدارة</h1>
-  <p class="sub">هذه الصفحة خاصة بك، لن يراها الزوار. سجل دخولك لإدارة كل الخلفيات والأقسام.</p>
-  <div class="error" id="err">بيانات خاطئة</div>
-  <input id="user" placeholder="اسم المستخدم - ZakariaZG27">
-  <input id="pass" type="password" placeholder="كلمة السر - Zack2026">
+  <h2>دخول الإدارة</h2>
+  <p style="color:#888;font-size:12px;margin:8px 0 16px">ZakariaZG27</p>
+  <input id="user" placeholder="ZakariaZG27">
+  <input id="pass" type="password" placeholder="Zack2026">
   <button onclick="login()">دخول</button>
-  <p style="margin-top:14px;text-align:center"><a href="index.html">← العودة للموقع</a></p>
+  <a href="index.html" style="color:#666;font-size:12px;display:block;text-align:center;margin-top:10px">← الموقع</a>
 </div>
 
 <div class="dashboard" id="dash">
-  <div class="top">
-    <div><h2>مرحبا Zakaria 👋</h2><p style="color:#888;font-size:13px">إدارة كاملة للموقع</p></div>
-    <div style="display:flex;gap:8px;align-items:center"><span class="badge" id="count">0 خلفية</span><button class="small ghost" onclick="logout()">خروج</button></div>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><h2>🚀 نشر تلقائي</h2><span class="badge" id="count">0</span></div>
+
+  <div class="panel" style="border-color:#D4FF32;background:#1a1a0e">
+    <h3 style="color:#D4FF32">🔑 توكن GitHub (مرة واحدة)</h3>
+    <input id="ghToken" placeholder="ghp_xxxxxxxxxx - الصقه هنا" type="password">
+    <p style="font-size:11px;color:#888;margin-bottom:8px">هذا التوكن يسمح للزر بنشر الصور تلقائيا بدون نسخ. يحفظ في هاتفك فقط ولا يراه أحد.</p>
+    <button class="ghost" onclick="saveToken()">حفظ التوكن</button>
+    <p id="tokenStatus" style="font-size:11px;color:#D4FF32;margin-top:6px"></p>
   </div>
 
-  <div class="grid">
-    <div class="panel">
-      <h3>➕ إضافة خلفية</h3>
-      <div class="row" style="margin-bottom:10px">
-        <button class="ghost" onclick="document.getElementById('filePick').click()" style="flex:1;border-style:dashed;border-color:#D4FF32;color:#D4FF32">📁 اختيار من الهاتف</button>
-        <input type="file" id="filePick" accept="image/*" style="display:none">
-      </div>
-      <input id="wUrl" placeholder="رابط الصورة أو اتركه بعد اختيار من الهاتف">
-      <div id="imgPreview" style="display:none;margin-bottom:10px"><img id="previewImg" style="width:100%;max-height:180px;object-fit:cover;border-radius:12px;border:1px solid #222"></div>
-      <div class="row"><select id="wCat"></select><select id="wType"><option value="حاسوب">حاسوب</option><option value="هاتف">هاتف</option><option value="الكل">الكل</option></select></div>
-      <input id="wTitle" placeholder="عنوان - مثال: جبال الأطلس">
-      <button onclick="addWall()">إضافة للقائمة</button>
-    </div>
+  <div class="panel">
+    <h3>➕ إضافة خلفية</h3>
+    <div class="row"><button class="ghost" onclick="document.getElementById('filePick').click()" style="flex:1;border-style:dashed">📁 من الهاتف</button><input type="file" id="filePick" accept="image/*" style="display:none"></div>
+    <input id="wUrl" placeholder="رابط الصورة أو اتركه فارغ بعد اختيار من الهاتف">
+    <div id="imgPreview" style="display:none"><img id="previewImg" style="width:100%;max-height:160px;object-fit:cover;border-radius:12px;margin-bottom:10px"></div>
+    <div class="row"><select id="wCat"><option>طبيعة</option><option>سيارات</option><option>أنمي</option><option>فضاء</option><option>مدن</option><option>ألعاب</option></select><select id="wType"><option>حاسوب</option><option>هاتف</option><option>الكل</option></select></div>
+    <input id="wTitle" placeholder="عنوان الصورة">
+    <button onclick="addWall()">إضافة للقائمة المحلية</button>
+  </div>
 
-    <div class="panel">
-      <h3>📂 إدارة الأقسام</h3>
-      <div class="row"><input id="newCat" placeholder="اسم قسم جديد - مثال: رمضان"><button class="small ghost" onclick="addCat()" style="width:100px">إضافة قسم</button></div>
-      <div class="cat-list" id="catList"></div>
-      <p style="font-size:11px;color:#666;margin-top:8px">الأقسام تحفظ تلقائيا وتظهر في موقعك بعد نسخ الكود الجديد</p>
-    </div>
-
-    <div class="panel" style="grid-column:1 / -1">
-      <h3>🖼️ جميع الخلفيات المضافة (<span id="count2">0</span>) - يمكنك الحذف</h3>
-      <div class="row" style="margin-bottom:10px"><input id="search" placeholder="بحث في الخلفيات..." oninput="render()"></div>
-      <div class="list" id="list"></div>
-      <div class="code" id="codeBox" style="display:none"></div>
-      <div class="row" style="margin-top:10px"><button class="ghost" id="copyBtn" style="display:none" onclick="copyCode()">📋 نسخ كود جميع الخلفيات لـ index.html</button><button class="danger small" onclick="clearAll()" style="display:none" id="clearBtn">🗑️ حذف الكل</button></div>
-      <p style="font-size:11px;color:#666;margin-top:8px">بعد الحذف أو الإضافة، انسخ الكود والصقه في ملف index.html داخل مصفوفة wallpapers ثم Commit</p>
-    </div>
+  <div class="panel">
+    <h3>📋 خلفياتك (<span id="count2">0</span>)</h3>
+    <input id="search" placeholder="بحث..." oninput="render()">
+    <div class="list" id="list"></div>
+    <button onclick="publish()" style="background:#D4FF32;margin-top:12px;font-size:16px">🚀 نشر مباشر في الموقع الآن</button>
+    <p style="font-size:11px;color:#888;margin-top:6px">بعد الضغط، انتظر دقيقة ثم افتح موقعك الرئيسي، ستظهر الصور تلقائيا بدون نسخ!</p>
+    <div id="publishStatus" style="font-size:12px;margin-top:8px"></div>
   </div>
 </div>
 
 <script>
 const USERNAME="ZakariaZG27"; const PASSWORD="Zack2026";
-const DEFAULT_CATS=["طبيعة","سيارات","أنمي","فضاء","تجريدي","مدن","حيوانات","ألعاب"];
-let cats=JSON.parse(localStorage.getItem('zack_cats')||'null')||DEFAULT_CATS.slice();
 let walls=JSON.parse(localStorage.getItem('zack_walls')||'[]');
+const REPO="ZakariaZG27/my-website"; const FILE_PATH="wallpapers.json";
 
 function login(){
-  const u=document.getElementById('user').value.trim();
-  const p=document.getElementById('pass').value;
-  if(u===USERNAME && p===PASSWORD){
+  if(document.getElementById('user').value.trim()===USERNAME && document.getElementById('pass').value===PASSWORD){
     document.getElementById('loginCard').classList.add('active');
     document.getElementById('dash').classList.add('active');
     sessionStorage.setItem('zack_admin','1');
     init();
-  }else{document.getElementById('err').style.display='block';}
+  }else alert('خطأ');
 }
-function logout(){sessionStorage.removeItem('zack_admin');location.reload();}
-if(sessionStorage.getItem('zack_admin')){document.getElementById('loginCard').classList.add('active');document.getElementById('dash').classList.add('active');setTimeout(init,100);}
+if(sessionStorage.getItem('zack_admin')){document.getElementById('loginCard').classList.add('active');document.getElementById('dash').classList.add('active'); setTimeout(init,200);}
 
-function init(){renderCats();render();setupFile();}
-
-function setupFile(){
-  const fp=document.getElementById('filePick');
-  if(!fp)return;
-  fp.addEventListener('change',e=>{
-    const file=e.target.files[0]; if(!file)return;
-    if(file.size>5*1024*1024){alert('الصورة أكبر من 5MB');return;}
+function init(){
+  document.getElementById('ghToken').value=localStorage.getItem('gh_token')||'';
+  updateTokenStatus();
+  render();
+  document.getElementById('filePick').addEventListener('change',e=>{
+    const f=e.target.files[0]; if(!f)return;
+    if(f.size>2*1024*1024){alert('اختر صورة أقل من 2MB، أو استخدم رابط postimages.org لصور كبيرة'); return;}
     const r=new FileReader();
     r.onload=ev=>{
+      // For auto system we must use external link, not base64 big. So we warn but still allow small base64
       document.getElementById('wUrl').value=ev.target.result;
       document.getElementById('previewImg').src=ev.target.result;
       document.getElementById('imgPreview').style.display='block';
-      if(!document.getElementById('wTitle').value) document.getElementById('wTitle').value=file.name.replace(/\.[^/.]+$/,'');
+      if(!document.getElementById('wTitle').value) document.getElementById('wTitle').value=f.name.replace(/\.[^/.]+$/,'');
     };
-    r.readAsDataURL(file);
+    r.readAsDataURL(f);
   });
 }
 
-function renderCats(){
-  const sel=document.getElementById('wCat'); sel.innerHTML=cats.map(c=>`<option>${c}</option>`).join('');
-  const list=document.getElementById('catList');
-  list.innerHTML=cats.map(c=>`<div class="cat-chip">${c} <button onclick="delCat('${c}')">×</button></div>`).join('');
-  localStorage.setItem('zack_cats',JSON.stringify(cats));
+function saveToken(){
+  const t=document.getElementById('ghToken').value.trim();
+  if(!t){alert('ضع التوكن');return;}
+  localStorage.setItem('gh_token',t);
+  updateTokenStatus();
+  alert('تم حفظ التوكن');
 }
-function addCat(){
-  const v=document.getElementById('newCat').value.trim();
-  if(!v)return; if(cats.includes(v)){alert('القسم موجود');return;}
-  cats.push(v); document.getElementById('newCat').value=''; renderCats();
-}
-function delCat(name){
-  if(!confirm('حذف قسم '+name+' ؟'))return;
-  cats=cats.filter(c=>c!==name); renderCats();
+function updateTokenStatus(){
+  const t=localStorage.getItem('gh_token');
+  document.getElementById('tokenStatus').textContent=t?'✅ التوكن محفوظ - جاهز للنشر التلقائي':'❌ لم تحفظ التوكن بعد';
 }
 
 function addWall(){
@@ -178,33 +139,46 @@ function addWall(){
   const title=document.getElementById('wTitle').value.trim()||'خلفية';
   if(!url){alert('ضع رابط أو اختر صورة');return;}
   walls.unshift({id:Date.now(),url,category:cat,type,title});
-  save(); render();
+  localStorage.setItem('zack_walls',JSON.stringify(walls));
+  render();
   document.getElementById('wUrl').value=''; document.getElementById('wTitle').value=''; document.getElementById('imgPreview').style.display='none';
 }
-
-function deleteWall(id){
-  if(!confirm('حذف هذه الخلفية؟'))return;
-  walls=walls.filter(w=>w.id!==id); save(); render();
-}
-function clearAll(){if(!confirm('حذف جميع الخلفيات؟'))return; walls=[]; save(); render();}
-function save(){localStorage.setItem('zack_walls',JSON.stringify(walls));}
-
+function deleteWall(id){if(!confirm('حذف؟'))return; walls=walls.filter(w=>w.id!==id); localStorage.setItem('zack_walls',JSON.stringify(walls)); render();}
 function render(){
-  const q=(document.getElementById('search')?.value||'').toLowerCase();
-  const filtered=walls.filter(w=>(w.title+w.category+w.type).toLowerCase().includes(q));
-  const list=document.getElementById('list');
-  list.innerHTML=filtered.length?filtered.map(w=>`<div class="item"><img src="${w.url}"><div class="info"><div class="title">${w.title}</div><div class="meta">${w.category} - ${w.type}</div></div><div class="acts"><button class="small danger" onclick="deleteWall(${w.id})">حذف</button></div></div>`).join(''):'<p style="color:#666;font-size:12px;text-align:center;padding:20px">لا توجد خلفيات بعد - أضف أول خلفية</p>';
-  const code=walls.map(w=>`  { id: ${w.id}, url: "${w.url.replace(/"/g,'')}", category: "${w.category}", type: "${w.type}", title: "${w.title.replace(/"/g,'')}" },`).join('\n');
-  const box=document.getElementById('codeBox'); box.textContent=code; box.style.display=code?'block':'none';
-  document.getElementById('copyBtn').style.display=code?'block':'none';
-  document.getElementById('clearBtn').style.display=code?'block':'none';
-  document.getElementById('count').textContent=walls.length+' خلفية';
-  document.getElementById('count2').textContent=walls.length+'';
+  const q=(document.getElementById('search').value||'').toLowerCase();
+  const f=walls.filter(w=>(w.title+w.category).toLowerCase().includes(q));
+  document.getElementById('list').innerHTML=f.length?f.map(w=>`<div class="item"><img src="${w.url}"><div style="flex:1"><div style="font-size:12px">${w.title}</div><div style="font-size:10px;color:#666">${w.category}</div></div><button class="danger" style="width:auto;padding:6px 10px" onclick="deleteWall(${w.id})">×</button></div>`).join(''):'<p style="color:#666;text-align:center;padding:20px;font-size:12px">لا توجد خلفيات</p>';
+  document.getElementById('count').textContent=walls.length;
+  document.getElementById('count2').textContent=walls.length;
 }
 
-function copyCode(){
-  const txt=document.getElementById('codeBox').textContent;
-  navigator.clipboard.writeText(txt).then(()=>alert('تم نسخ كود '+walls.length+' خلفية! الصقه الآن في index.html'));
+async function publish(){
+  const token=localStorage.getItem('gh_token');
+  if(!token){alert('احفظ التوكن أولا في الأعلى');return;}
+  if(!walls.length){alert('لا توجد خلفيات');return;}
+  const status=document.getElementById('publishStatus');
+  status.innerHTML='⏳ جاري النشر...';
+  try{
+    // Get current file sha
+    let sha=null;
+    const getRes=await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE_PATH}`,{headers:{Authorization:`token ${token}`}});
+    if(getRes.ok){const j=await getRes.json(); sha=j.sha;}
+    
+    const contentStr=JSON.stringify(walls,null,2);
+    const contentB64=btoa(unescape(encodeURIComponent(contentStr)));
+    
+    const putRes=await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE_PATH}`,{
+      method:'PUT',
+      headers:{Authorization:`token ${token}`,'Content-Type':'application/json'},
+      body:JSON.stringify({message:`تحديث الخلفيات - ${walls.length} صورة`, content:contentB64, sha:sha})
+    });
+    if(!putRes.ok){const err=await putRes.text(); throw new Error(err);}
+    status.innerHTML='✅ تم النشر بنجاح! انتظر دقيقة وافتح موقعك الرئيسي.<br>🔗 zakariazg27.github.io/my-website/';
+    alert('تم النشر! ستظهر صورك في الموقع بعد دقيقة');
+  }catch(e){
+    status.innerHTML='❌ فشل: '+e.message+'<br>تأكد من التوكن وأنه يملك صلاحية repo';
+    console.error(e);
+  }
 }
 </script>
 <script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body>
