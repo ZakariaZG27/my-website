@@ -87,7 +87,7 @@ button{width:100%;background:#D4FF32;color:#000;border:none;border-radius:12px;p
 </div>
 
 <script>
-const USERNAME="ZakariaZG27"; const PASSWORD="Zack2026";
+const USERNAME="ZakariaZG27"; const PASSWORD="ZakariaZG27";
 let walls=JSON.parse(localStorage.getItem('zack_walls')||'[]');
 const REPO="ZakariaZG27/my-website"; const FILE_PATH="wallpapers.json";
 
@@ -95,11 +95,23 @@ function login(){
   if(document.getElementById('user').value.trim()===USERNAME && document.getElementById('pass').value===PASSWORD){
     document.getElementById('loginCard').classList.add('active');
     document.getElementById('dash').classList.add('active');
-    sessionStorage.setItem('zack_admin','1');
+    localStorage.setItem('zack_admin','1'); localStorage.setItem('zack_admin_time', Date.now().toString()); sessionStorage.setItem('zack_admin','1');
     init();
   }else alert('خطأ');
 }
-if(sessionStorage.getItem('zack_admin')){document.getElementById('loginCard').classList.add('active');document.getElementById('dash').classList.add('active'); setTimeout(init,200);}
+function isLoginValid(){
+  const t=localStorage.getItem('zack_admin_time');
+  if(!t) return false;
+  return (Date.now() - parseInt(t)) < 1*60*60*1000;
+}
+if((localStorage.getItem('zack_admin') && isLoginValid()) || sessionStorage.getItem('zack_admin')){
+  document.getElementById('loginCard').classList.add('active');
+  document.getElementById('dash').classList.add('active');
+  setTimeout(init,200);
+} else {
+  localStorage.removeItem('zack_admin');
+  localStorage.removeItem('zack_admin_time');
+}
 
 function init(){
   document.getElementById('ghToken').value=localStorage.getItem('gh_token')||'';
@@ -147,10 +159,25 @@ function deleteWall(id){if(!confirm('حذف؟'))return; walls=walls.filter(w=>w.
 function render(){
   const q=(document.getElementById('search').value||'').toLowerCase();
   const f=walls.filter(w=>(w.title+w.category).toLowerCase().includes(q));
-  document.getElementById('list').innerHTML=f.length?f.map(w=>`<div class="item"><img src="${w.url}"><div style="flex:1"><div style="font-size:12px">${w.title}</div><div style="font-size:10px;color:#666">${w.category}</div></div><button class="danger" style="width:auto;padding:6px 10px" onclick="deleteWall(${w.id})">×</button></div>`).join(''):'<p style="color:#666;text-align:center;padding:20px;font-size:12px">لا توجد خلفيات</p>';
+  document.getElementById('list').innerHTML=f.length?f.map(w=>`<div class="item"><img src="${w.url}"><div style="flex:1"><div style="font-size:12px;font-weight:600">${w.title}</div><div style="font-size:10px;color:#666">${w.category} - ${w.type}</div></div><div style="display:flex;gap:4px"><button class="ghost" style="width:auto;padding:6px 8px;font-size:11px" onclick="editWall(${w.id})">✏️ تعديل</button><button class="danger" style="width:auto;padding:6px 10px" onclick="deleteWall(${w.id})">🗑️</button></div></div>`).join(''):'<p style="color:#666;text-align:center;padding:20px;font-size:12px">لا توجد خلفيات</p>';
   document.getElementById('count').textContent=walls.length;
   document.getElementById('count2').textContent=walls.length;
 }
+
+function editWall(id){
+  const w=walls.find(x=>x.id===id);
+  if(!w) return;
+  const newTitle=prompt('تعديل عنوان الصورة:', w.title);
+  if(newTitle===null) return;
+  const newCat=prompt('تعديل القسم (طبيعة، سيارات، أنمي، فضاء، مدن، ألعاب، حيوانات):', w.category);
+  if(newCat===null) return;
+  if(newTitle.trim()) w.title=newTitle.trim();
+  if(newCat.trim()) w.category=newCat.trim();
+  localStorage.setItem('zack_walls',JSON.stringify(walls));
+  render();
+  alert('تم التعديل محليا - اضغط نشر مباشر ليظهر في الموقع الرئيسي');
+}
+
 
 async function publish(){
   const token=localStorage.getItem('gh_token');
