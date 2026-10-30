@@ -29,25 +29,19 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
 body{background:#000;color:#fff;min-height:100vh}
-
-/* HEADER - EXACT AS SCREENSHOT RED CIRCLE 1 */
 .header{position:sticky;top:0;z-index:99;background:#0a0a0a;border-bottom:1px solid #1a1a1a;height:74px;display:flex;align-items:center;justify-content:space-between;padding:0 14px}
 .header-left .z-logo{width:56px;height:56px;background:#1e3a00;color:#fff;font-weight:900;font-size:28px;border-radius:16px;display:flex;align-items:center;justify-content:center;border:1px solid #2a4a00}
 .header-center{flex:1;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px}
-.header-center b{font-size:18px;font-weight:900;letter-spacing:-0.2px;line-height:1.2}
+.header-center b{font-size:18px;font-weight:900;line-height:1.2}
 .header-center span{font-size:11px;color:#888;font-weight:600;white-space:nowrap}
 .lang-switch{display:flex;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:28px;padding:3px;gap:2px}
 .lang-switch button{border:none;background:transparent;color:#888;padding:8px 18px;border-radius:22px;font-size:13px;font-weight:900;cursor:pointer;min-width:52px}
 .lang-switch button.active{background:#1e3a00;color:#fff}
-
-/* HERO */
 .hero{padding:28px 16px 12px;text-align:center}
 .hero h1{font-size:42px;font-weight:900;line-height:1.15}
 .hero h1 .lime{color:#D4FF32;position:relative;display:inline-block}
 .hero h1 .lime::after{content:'';position:absolute;left:0;right:0;bottom:2px;height:3px;background:#D4FF32;border-radius:2px}
 .hero-desc{color:#666;font-size:13.5px;line-height:1.9;max-width:520px;margin:14px auto 0;padding:0 10px}
-
-/* SEARCH */
 .search-section{padding:22px 16px 10px}
 .search-box{position:relative;width:100%;max-width:760px;margin:0 auto}
 .search-box input{width:100%;background:#0f0f0f;border:1px solid #2a2a2a;border-radius:30px;padding:18px 20px;color:#fff;outline:none;font-size:15px;text-align:right}
@@ -55,8 +49,6 @@ body{background:#000;color:#fff;min-height:100vh}
 .search-box .icon{position:absolute;left:4px;bottom:-10px;width:32px;height:32px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px}
 .search-hint{max-width:760px;margin:18px auto 0;color:#aaa;font-size:12.5px;line-height:1.8;text-align:right;padding:0 6px}
 .search-hint.ltr{text-align:left}
-
-/* STATS */
 .stats-outer{padding:14px 12px}
 .stats-box{max-width:760px;margin:0 auto;background:#0f0f0f;border:1px solid #2a2a2a;border-radius:22px;display:grid;grid-template-columns:repeat(4,1fr);overflow:hidden}
 .stat{padding:14px 6px;text-align:center;background:#0f0f0f;display:flex;flex-direction:column;gap:8px;align-items:center;justify-content:center;border-left:1px solid #1e1e1e}
@@ -64,20 +56,14 @@ body{background:#000;color:#fff;min-height:100vh}
 .stat .lbl{font-size:11.5px;color:#aaa;font-weight:600}
 .stat .val{font-size:17px;font-weight:900;color:#fff}
 .stat .val.lime{color:#D4FF32}
-
-/* ACTIONS */
 .actions-row{display:flex;gap:10px;justify-content:center;align-items:center;padding:18px 14px;flex-wrap:wrap}
 .btn-all{background:#1e3a00;color:#fff;border:none;padding:12px 32px;border-radius:28px;font-size:15px;font-weight:900;cursor:pointer;min-width:88px}
 .btn-cats{background:#121212;border:1px solid #2a2a2a;color:#ccc;padding:12px 22px;border-radius:28px;font-size:14px;font-weight:700;cursor:pointer}
-
-/* CATS */
 .cats-row{padding:8px 14px 0;overflow:hidden}
 .cats-scroll{display:flex;gap:10px;overflow-x:auto;white-space:nowrap;padding:6px 2px 14px;scrollbar-width:none}
 .cats-scroll::-webkit-scrollbar{display:none}
 .cat-chip{flex-shrink:0;background:#121212;border:1px solid #2a2a2a;color:#999;padding:12px 22px;border-radius:28px;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap}
 .cat-chip.active{background:#1e3a00;color:#fff;border-color:#1e3a00;font-weight:900}
-
-/* GRID */
 .grid{max-width:1440px;margin:10px auto;display:block;columns:1;column-gap:12px;padding:10px 14px 20px}
 @media(min-width:640px){.grid{columns:2}}
 @media(min-width:1024px){.grid{columns:3}}
@@ -89,8 +75,6 @@ body{background:#000;color:#fff;min-height:100vh}
 .card .info{padding:12px 14px;display:flex;justify-content:space-between;align-items:center;background:#111}
 .card .title{font-size:13px;font-weight:600;max-width:210px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .no-results{text-align:center;color:#aaa;padding:80px 20px;font-size:18px;font-weight:600}
-
-/* FOOTER - EXACT AS SCREENSHOT RED CIRCLE 2 */
 .footer{margin-top:30px;background:#070707;border-top:1px solid #1a1a1a;padding:32px 16px 24px}
 .footer-top{display:flex;align-items:center;gap:12px;margin-bottom:16px;justify-content:flex-start}
 .footer-top .z-logo{width:44px;height:44px;background:#1e3a00;color:#fff;font-weight:900;font-size:22px;border-radius:12px;display:flex;align-items:center;justify-content:center;border:1px solid #2a4a00;flex-shrink:0}
@@ -102,7 +86,7 @@ body{background:#000;color:#fff;min-height:100vh}
 .footer-contact{margin-bottom:24px;display:flex;justify-content:flex-start}
 .btn-contact{background:#1e3a00;color:#fff;border:none;padding:14px 32px;border-radius:30px;font-size:15px;font-weight:900;cursor:pointer;display:inline-block;text-decoration:none;min-width:140px;text-align:center}
 .social-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:26px;justify-content:flex-start}
-.social-icon{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all .2s;border:1px solid #1e1e1e;overflow:hidden;flex-shrink:0}
+.social-icon{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;border:1px solid #1e1e1e;overflow:hidden;flex-shrink:0}
 .social-icon svg{width:22px;height:22px}
 .icon-ig{background:radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);}
 .icon-fb{background:#1877F2}
@@ -112,8 +96,6 @@ body{background:#000;color:#fff;min-height:100vh}
 .footer-bottom{border-top:1px solid #1a1a1a;padding-top:18px}
 .footer-copy{color:#666;font-size:12.5px;text-align:right;line-height:1.8}
 .footer-copy.ltr{text-align:left}
-
-/* MODALS */
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:200;padding:14px}
 .modal.active{display:flex}
 .modal-box{background:#111;border:1px solid #222;border-radius:20px;overflow:hidden;max-width:860px;width:100%}
@@ -125,8 +107,10 @@ body{background:#000;color:#fff;min-height:100vh}
 .cats-modal.active{display:flex}
 .cats-modal-head{padding:16px;border-bottom:1px solid #1a1a1a;display:flex;justify-content:space-between;align-items:center;background:#0a0a0a}
 .cats-grid{padding:16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;overflow-y:auto;flex:1;align-content:start}
-.cat-square{background:#131313;border:1px solid #1e1e1e;border-radius:16px;padding:18px 10px;text-align:center;cursor:pointer;min-height:92px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.cat-square{background:#131313;border:1px solid #1e1e1e;border-radius:16px;padding:18px 10px;text-align:center;cursor:pointer;min-height:92px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
 .cat-square.active{background:#1e3a00;border-color:#2a4a00;color:#fff}
+.cat-square .ic{font-size:28px;line-height:1}
+.cat-square .name{font-size:13px;font-weight:600;text-align:center;line-height:1.4}
 </style>
 </head>
 <body>
@@ -175,32 +159,21 @@ body{background:#000;color:#fff;min-height:100vh}
 <div class="cats-row"><div class="cats-scroll" id="catsScroll"></div></div>
 <div class="grid" id="grid"></div>
 
-<!-- FOOTER EXACT AS SCREENSHOT -->
 <footer class="footer">
   <div class="footer-top"><div class="z-logo">Z</div><b id="footerBrand">ZG 4K Wallpaper</b></div>
   <p class="footer-desc" id="footerDesc">مجموعة فاخرة من الخلفيات المتنوعة بدقة 4K و 8K مصممة للذواقة.</p>
-  <div class="footer-badges" id="footerBadges">
+  <div class="footer-badges">
     <span id="badge1">تحديث يومي</span>
     <span id="badge2">تحميل مجاني</span>
     <span id="badge3">4K • 8K • UHD</span>
   </div>
-  <div class="footer-contact"><a class="btn-contact" id="btnContact" href="#social">تواصل معنا</a></div>
+  <div class="footer-contact"><a class="btn-contact" id="btnContact">تواصل معنا</a></div>
   <div class="social-row" id="social">
-    <a class="social-icon icon-tg" href="https://t.me" target="_blank" title="Telegram">
-      <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c.54 0 1.07-.05 1.59-.14v-4.49l-1.09-.42-1.54 1.28c-.2.17-.49.2-.73.08l-.55-.27-2.3-1.45 8.3-4.9c.18-.11.28-.31.26-.52-.02-.21-.16-.39-.35-.46L6.2 8.2c-.24-.09-.5.02-.6.25-.1.23 0 .5.23.6l2.2.86-1.1 3.5c-.08.26.08.53.34.6.26.07.53-.08.6-.34l1.1-3.5 6.5 2.5c.2.08.43-.02.51-.22.08-.2-.02-.43-.22-.51L7.5 7.5c-.24-.09-.5.02-.6.25-.1.23 0 .5.23.6l9.5 3.7-8.3 4.9 2.3 1.45.55.27c.24.12.53.09.73-.08l1.54-1.28 1.09.42v4.49c.52-.09 1.05-.14 1.59-.14 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
-    </a>
-    <a class="social-icon icon-x" href="https://x.com" target="_blank" title="X">
-      <svg viewBox="0 0 24 24" fill="white"><path d="M18.9 2H22l-6.9 7.9L23 22h-5.9l-4.6-6-5.3 6H4l7.4-8.5L4 2h6l4.2 5.5L18.9 2zm-1 18h1.7L7.4 4H5.5l12.4 16z"/></svg>
-    </a>
-    <a class="social-icon icon-tt" href="https://tiktok.com/@zack.zg.25" target="_blank" title="TikTok">
-      <svg viewBox="0 0 24 24" fill="white"><path d="M12.5 3.5v9.8c0 1.7-1.4 3.1-3.1 3.1-1.7 0-3.1-1.4-3.1-3.1 0-1.7 1.4-3.1 3.1-3.1.3 0 .6 0 .9.1V7.2c-.3 0-.6-.1-.9-.1-3.4 0-6.2 2.8-6.2 6.2 0 3.4 2.8 6.2 6.2 6.2 3.4 0 6.2-2.8 6.2-6.2V8.2c1.2.9 2.7 1.4 4.3 1.4V6.4c-1.8 0-3.4-.9-4.3-2.2-.2-.3-.4-.6-.5-1h-2.6z"/></svg>
-    </a>
-    <a class="social-icon icon-fb" href="https://facebook.com" target="_blank" title="Facebook">
-      <svg viewBox="0 0 24 24" fill="white"><path d="M14 8h-2.5A1.5 1.5 0 0 0 10 9.5V12h2.5l.5 3H10v5h-3v-5H5v-3h2V9.5A3.5 3.5 0 0 1 10.5 6H14v2z"/></svg>
-    </a>
-    <a class="social-icon icon-ig" href="https://instagram.com/zack.zg.25" target="_blank" title="Instagram">
-      <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="white" stroke-width="2"/><circle cx="12" cy="12" r="5" stroke="white" stroke-width="2"/><circle cx="18" cy="5.5" r="1.5" fill="white"/></svg>
-    </a>
+    <a class="social-icon icon-tg" href="https://t.me" target="_blank"><svg viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c.54 0 1.07-.05 1.59-.14v-4.49l-1.09-.42-1.54 1.28c-.2.17-.49.2-.73.08l-.55-.27-2.3-1.45 8.3-4.9c.18-.11.28-.31.26-.52-.02-.21-.16-.39-.35-.46L6.2 8.2c-.24-.09-.5.02-.6.25-.1.23 0 .5.23.6l2.2.86-1.1 3.5c-.08.26.08.53.34.6.26.07.53-.08.6-.34l1.1-3.5 6.5 2.5c.2.08.43-.02.51-.22.08-.2-.02-.43-.22-.51L7.5 7.5c-.24-.09-.5.02-.6.25-.1.23 0 .5.23.6l9.5 3.7-8.3 4.9 2.3 1.45.55.27c.24.12.53.09.73-.08l1.54-1.28 1.09.42v4.49c.52-.09 1.05-.14 1.59-.14 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg></a>
+    <a class="social-icon icon-x" href="https://x.com" target="_blank"><svg viewBox="0 0 24 24" fill="white"><path d="M18.9 2H22l-6.9 7.9L23 22h-5.9l-4.6-6-5.3 6H4l7.4-8.5L4 2h6l4.2 5.5L18.9 2zm-1 18h1.7L7.4 4H5.5l12.4 16z"/></svg></a>
+    <a class="social-icon icon-tt" href="https://tiktok.com/@zack.zg.25" target="_blank"><svg viewBox="0 0 24 24" fill="white"><path d="M12.5 3.5v9.8c0 1.7-1.4 3.1-3.1 3.1-1.7 0-3.1-1.4-3.1-3.1 0-1.7 1.4-3.1 3.1-3.1.3 0 .6 0 .9.1V7.2c-.3 0-.6-.1-.9-.1-3.4 0-6.2 2.8-6.2 6.2 0 3.4 2.8 6.2 6.2 6.2 3.4 0 6.2-2.8 6.2-6.2V8.2c1.2.9 2.7 1.4 4.3 1.4V6.4c-1.8 0-3.4-.9-4.3-2.2-.2-.3-.4-.6-.5-1h-2.6z"/></svg></a>
+    <a class="social-icon icon-fb" href="https://facebook.com" target="_blank"><svg viewBox="0 0 24 24" fill="white"><path d="M14 8h-2.5A1.5 1.5 0 0 0 10 9.5V12h2.5l.5 3H10v5h-3v-5H5v-3h2V9.5A3.5 3.5 0 0 1 10.5 6H14v2z"/></svg></a>
+    <a class="social-icon icon-ig" href="https://instagram.com/zack.zg.25" target="_blank"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="white" stroke-width="2"/><circle cx="12" cy="12" r="5" stroke="white" stroke-width="2"/><circle cx="18" cy="5.5" r="1.5" fill="white"/></svg></a>
   </div>
   <div class="footer-bottom"><div class="footer-copy" id="footerCopy">© ZG 4K Wallpaper 2026 — جميع الخلفيات فاخرة ومجانية.</div></div>
 </footer>
@@ -209,7 +182,6 @@ body{background:#000;color:#fff;min-height:100vh}
 <div class="cats-modal" id="catsModal"><div class="cats-modal-head"><b id="catsModalTitle">جميع أقسام الخلفيات</b><button onclick="closeCatsModal()" style="background:#1a1a1a;border:1px solid #222;color:#fff;width:36px;height:36px;border-radius:50%;cursor:pointer">✕</button></div><div class="cats-grid" id="catsGrid"></div></div>
 
 <script>
-// LANGUAGE - ISOLATED & PROTECTED
 window.currentLang = localStorage.getItem('zg_lang') || 'ar';
 const LANG_TEXT = {
   ar: {
@@ -294,7 +266,55 @@ const CATS_MAP = {
   "المضاف حديثاً":{ar:"المضاف حديثاً",en:"Recently Added"}
 };
 
+// ORIGINAL EMOJIS - RESTORED FROM FIRST CODE
+const CAT_EMOJIS = {
+  "الكل":"⭐",
+  "الطبيعة والمناظر الطبيعية":"🏞️",
+  "الشواطئ والمحيطات":"🏖️",
+  "الفضاء وعلم الفلك":"🌌",
+  "الغابات والأشجار":"🌲",
+  "الشلالات والأنهار":"💧",
+  "الزهور والنباتات":"🌸",
+  "الفن التجريدي":"🎨",
+  "التدرجات اللونية":"🌈",
+  "الفن الرقمي":"💻",
+  "النيون والإضاءة":"💡",
+  "الأشكال الهندسية والأنماط":"🔷",
+  "البساطة المطلقة":"◻️",
+  "المظهر الداكن وشاشات أولييد":"🌙",
+  "أفق المدن":"🌃",
+  "الهندسة المعمارية":"🏛️",
+  "الشوارع والأزقة":"🛣️",
+  "الأنمي والمانغا":"🎌",
+  "الأفلام والمسلسلات":"🎬",
+  "ألعاب الفيديو":"🎮",
+  "الأبطال الخارقون":"🦸",
+  "المشاهير والشخصيات العامة":"⭐",
+  "الكيبوب والفرق الكورية":"🎤",
+  "السيارات الرياضية والفارهة":"🏎️",
+  "السيارات الكلاسيكية":"🚗",
+  "الدراجات النارية":"🏍️",
+  "الطائرات والطيران":"✈️",
+  "الحيوانات البرية":"🦁",
+  "الطيور":"🦅",
+  "الحيوانات الأليفة":"🐱",
+  "الحياة البحرية":"🐋",
+  "الموضة والأناقة":"👗",
+  "القهوة والمشروبات":"☕",
+  "الأطعمة والحلويات":"🍰",
+  "السفر والمغامرة":"🧭",
+  "عبارات تحفيزية":"💪",
+  "حكم وأقوال":"📜",
+  "الأعياد والمناسبات":"🎉",
+  "خلفيات إسلامية ودينية":"🕌",
+  "فصول السنة":"🍂",
+  "الخلفيات المتحركة":"✨",
+  "الأكثر شعبية":"🔥",
+  "المضاف حديثاً":"🆕"
+};
+
 function tCat(k){ const o=CATS_MAP[k]; return o ? (window.currentLang==='ar'?o.ar:o.en) : k; }
+function getEmoji(k){ return CAT_EMOJIS[k] || '🖼️'; }
 
 window.setLang = function(lang){
   window.currentLang = lang;
@@ -328,12 +348,12 @@ window.setLang = function(lang){
   document.getElementById('footerDesc').classList.toggle('ltr', lang!=='ar');
   document.getElementById('footerCopy').classList.toggle('ltr', lang!=='ar');
   document.getElementById('searchHint').classList.toggle('ltr', lang!=='ar');
-  renderCats(); renderGrid();
+  renderCats(); renderCatsGrid(); renderGrid();
 };
 
 window.setCat = function(cat){ window.currentCat=cat; renderCats(); renderGrid(); renderCatsGrid(); };
 window.onSearch = function(){ renderGrid(); };
-window.openCatsModal = function(){ document.getElementById('catsModal').classList.add('active'); };
+window.openCatsModal = function(){ renderCatsGrid(); document.getElementById('catsModal').classList.add('active'); };
 window.closeCatsModal = function(){ document.getElementById('catsModal').classList.remove('active'); };
 window.closeModal = function(){ document.getElementById('modal').classList.remove('active'); };
 
@@ -344,11 +364,13 @@ function renderCats(){
   const keys=Object.keys(CATS_MAP);
   el.innerHTML=keys.map(k=>`<button class="cat-chip ${k===window.currentCat?'active':''}" onclick="setCat('${k.replace(/'/g,"\\'")}')">${tCat(k)}</button>`).join('');
 }
+
 function renderCatsGrid(){
   const grid=document.getElementById('catsGrid');
   const keys=Object.keys(CATS_MAP);
-  grid.innerHTML=keys.map(k=>`<div class="cat-square ${k===window.currentCat?'active':''}" onclick="setCat('${k.replace(/'/g,"\\'")}'); closeCatsModal();"><div>${k==='الكل'?'⭐':'🖼️'}</div><div style="font-size:13px;font-weight:600;text-align:center">${tCat(k)}</div></div>`).join('');
+  grid.innerHTML=keys.map(k=>`<div class="cat-square ${k===window.currentCat?'active':''}" onclick="setCat('${k.replace(/'/g,"\\'")}'); closeCatsModal();"><div class="ic">${getEmoji(k)}</div><div class="name">${tCat(k)}</div></div>`).join('');
 }
+
 function renderGrid(){
   const T=LANG_TEXT[window.currentLang];
   const q=(document.getElementById('searchInput').value||'').toLowerCase();
