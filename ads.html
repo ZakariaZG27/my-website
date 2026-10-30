@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head><style>
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
+</style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>خدمة الإعلانات - ZG 4K Wallpaper</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}body{background:#080808;color:#fff;padding:16px} .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px} .lang{display:flex;background:#1a1a1a;border:1px solid #222;border-radius:24px;padding:3px} .lang button{border:none;background:transparent;color:#888;padding:6px 16px;border-radius:20px;font-weight:800;cursor:pointer} .lang button.active{background:#1e3a00;color:#fff} .header{text-align:center;padding:20px 10px;border-bottom:1px solid #1a1a1a;margin-bottom:20px} .header h1{color:#D4FF32;font-size:26px;font-weight:900} .header p{color:#888;margin-top:8px;font-size:13px;line-height:1.8} .service{background:#121212;border:1px solid #1e1e1e;border-radius:20px;padding:18px;margin-bottom:16px} .service h2{font-size:16px;margin-bottom:14px} .plans{display:grid;grid-template-columns:repeat(auto-fill,minmax(125px,1fr));gap:10px} .plan{background:#0f0f0f;border:1px solid #222;border-radius:14px;padding:12px;text-align:center} .plan .label{font-size:10px;color:#888;background:#1a1a1a;padding:3px 8px;border-radius:20px;display:inline-block} .plan .days{font-size:13px;font-weight:800;margin:6px 0;color:#fff} .plan .price{font-size:22px;color:#D4FF32;font-weight:900} .plan button{width:100%;margin-top:10px;background:#D4FF32;color:#000;border:none;padding:9px;border-radius:20px;font-weight:900;cursor:pointer;font-size:12px} .plan.vip{border-color:#D4FF32} a.back{display:inline-block;background:#1a1a1a;padding:10px 18px;border-radius:24px;color:#fff;text-decoration:none;font-size:13px;border:1px solid #222}</style>
+</head>
+<body>
+<div class="top">
+<a class="back" href="index.html" id="backBtn">← العودة للموقع</a>
+<div class="lang"><button id="btnAr" class="active" onclick="setLang('ar')">AR</button><button id="btnEn" onclick="setLang('en')">EN</button></div>
+</div>
+<div class="header"><h1 id="hTitle">💰 خدمة الإعلانات في ZG 4K Wallpaper</h1><p id="hDesc">اختر نوع إعلانك ومدة بقائه - أسعار مناسبة لجميع الفئات<br>موقعنا به مشاهدات عالية يوميا - إعلانك سيظهر في الصفحة الرئيسية</p></div>
+<div id="services"></div>
+<div style="text-align:center;padding:30px 10px;color:#555;font-size:11px;line-height:1.8" id="footerNote">© ZG 4K Wallpaper 2026 - جميع الإعلانات تظهر في الصفحة الرئيسية</div>
+<script>
+let currentLang=localStorage.getItem('zg_lang')||'ar';
+const T={
+ar:{back:"← العودة للموقع",title:"💰 خدمة الإعلانات في ZG 4K Wallpaper",desc:"اختر نوع إعلانك ومدة بقائه - أسعار مناسبة لجميع الفئات<br>موقعنا به مشاهدات عالية يوميا - إعلانك سيظهر في الصفحة الرئيسية",footer:"© ZG 4K Wallpaper 2026 - جميع الإعلانات تظهر في الصفحة الرئيسية",order:"طلب الآن"},
+en:{back:"← Back to Website",title:"💰 Advertising Service on ZG 4K Wallpaper",desc:"Choose your ad type and duration - affordable prices for all categories<br>Our site has high daily views - your ad will appear on homepage",footer:"© ZG 4K Wallpaper 2026 - All ads appear on homepage",order:"Order Now"}
+};
+function setLang(lang){
+currentLang=lang;
+localStorage.setItem('zg_lang',lang);
+document.getElementById('btnAr').classList.toggle('active',lang==='ar');
+document.getElementById('btnEn').classList.toggle('active',lang==='en');
+document.documentElement.lang=lang;
+document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+document.getElementById('backBtn').textContent=T[lang].back;
+document.getElementById('hTitle').textContent=T[lang].title;
+document.getElementById('hDesc').innerHTML=T[lang].desc;
+document.getElementById('footerNote').textContent=T[lang].footer;
+loadPricing();
+}
+async function loadPricing(){
+ let data=null;
+ try{ const r=await fetch('ad-pricing.json?v='+Date.now()); if(r.ok) data=await r.json(); }catch(e){}
+ if(!data||!data.services){
+   data={whatsapp:"",services:[
+{id:"company",name_ar:"إعلان شركة في موقع ZG 4K",name_en:"Company Ad on ZG 4K",icon:"🏢",prices:[{days:3,price:5,label:"تجربة"},{days:6,price:10,label:"أساسي"},{days:15,price:20,label:"مميز"},{days:30,price:35,label:"VIP"}]},
+{id:"youtube",name_ar:"إعلان قناة يوتيوب",name_en:"YouTube Channel Ad",icon:"▶️",prices:[{days:3,price:3,label:"تجربة"},{days:7,price:6,label:"أساسي"},{days:14,price:10,label:"مميز"},{days:30,price:18,label:"VIP"}]},
+{id:"tiktok",name_ar:"إعلان حساب تيك توك",name_en:"TikTok Account Ad",icon:"🎵",prices:[{days:3,price:3,label:"تجربة"},{days:7,price:5,label:"أساسي"},{days:14,price:9,label:"مميز"},{days:30,price:15,label:"VIP"}]},
+{id:"facebook",name_ar:"إعلان صفحة فيسبوك",name_en:"Facebook Page Ad",icon:"📘",prices:[{days:3,price:4,label:"تجربة"},{days:7,price:7,label:"أساسي"},{days:14,price:12,label:"مميز"},{days:30,price:20,label:"VIP"}]},
+{id:"twitter",name_ar:"إعلان حساب تويتر / X",name_en:"Twitter / X Ad",icon:"𝕏",prices:[{days:3,price:3,label:"تجربة"},{days:7,price:6,label:"أساسي"},{days:14,price:10,label:"مميز"},{days:30,price:18,label:"VIP"}]},
+{id:"telegram",name_ar:"إعلان قناة تلجرام",name_en:"Telegram Channel Ad",icon:"✈️",prices:[{days:3,price:2,label:"تجربة"},{days:7,price:4,label:"أساسي"},{days:14,price:7,label:"مميز"},{days:30,price:12,label:"VIP"}]},
+{id:"whatsapp",name_ar:"إعلان رقم واتساب / قناة",name_en:"WhatsApp Ad",icon:"💬",prices:[{days:3,price:2,label:"تجربة"},{days:7,price:4,label:"أساسي"},{days:14,price:7,label:"مميز"},{days:30,price:12,label:"VIP"}]},
+{id:"website",name_ar:"إعلان موقع إلكتروني",name_en:"Website Ad",icon:"🌐",prices:[{days:3,price:5,label:"تجربة"},{days:7,price:9,label:"أساسي"},{days:14,price:16,label:"مميز"},{days:30,price:28,label:"VIP"}]},
+{id:"eshop",name_ar:"إعلان متجر إلكتروني",name_en:"E-Shop Ad",icon:"🛒",prices:[{days:3,price:6,label:"تجربة"},{days:7,price:11,label:"أساسي"},{days:14,price:19,label:"مميز"},{days:30,price:33,label:"VIP"}]},
+{id:"blog",name_ar:"إعلان مدونة",name_en:"Blog Ad",icon:"📝",prices:[{days:3,price:3,label:"تجربة"},{days:7,price:5,label:"أساسي"},{days:14,price:9,label:"مميز"},{days:30,price:15,label:"VIP"}]},
+{id:"music",name_ar:"إعلان موقع موسيقى / أغاني",name_en:"Music Site Ad",icon:"🎧",prices:[{days:3,price:4,label:"تجربة"},{days:7,price:7,label:"أساسي"},{days:14,price:12,label:"مميز"},{days:30,price:20,label:"VIP"}]}
+   ]};
+ }
+ const wa=data.whatsapp||'';
+ const container=document.getElementById('services');
+ container.innerHTML=data.services.map(s=>{
+ const name = currentLang==='ar' ? s.name_ar : (s.name_en||s.name_ar);
+ return `<div class="service"><h2>${s.icon} ${name}</h2><div class="plans">
+${s.prices.map((p,i)=>`<div class="plan ${i===3?'vip':''}"><div class="label">${p.label||''}</div><div class="days">${p.days} ${currentLang==='ar'?'أيام':'days'}</div><div class="price">$${p.price}</div><button onclick="window.open('${wa?wa:'https://wa.me/'}?text=${encodeURIComponent((currentLang==='ar'?'مرحبا، اريد حجز اعلان ':'Hello, I want to book ad ')+name+' لمدة '+p.days+' ايام بسعر $'+p.price)}','_blank')">${T[currentLang].order}</button></div>`).join('')}
+</div></div>`;
+ }).join('');
+}
+setLang(currentLang);
+</script>
+<script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body>
+</html>
