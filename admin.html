@@ -71,6 +71,20 @@ input[type=range]{padding:0;background:transparent;border:none}
 .login-wrap{max-width:400px;margin:60px auto;background:#111;border:1px solid #222;border-radius:20px;padding:24px;text-align:center}
 .login-wrap input{margin-top:12px}
 .login-wrap button{width:100%;margin-top:12px}
+/* NEW STYLES FOR ADS */
+.phone-btn{width:100%;background:#0f0f0f;border:2px dashed #2a2a2a;color:#fff;padding:14px;border-radius:16px;font-size:13px;font-weight:800;cursor:pointer;margin-bottom:10px;transition:.2s}
+.phone-btn:hover{border-color:var(--lime);color:var(--lime)}
+.phone-preview{width:100%;max-height:180px;object-fit:cover;border-radius:14px;margin-bottom:10px;display:none;border:1px solid #222}
+.ad-card{background:#0f0f0f;border:1px solid #222;border-radius:14px;padding:12px;margin-bottom:10px}
+.ad-card img{width:100%;height:90px;object-fit:cover;border-radius:10px;margin-bottom:8px}
+.price-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px}
+.price-item{background:#0f0f0f;border:1px solid #222;border-radius:12px;padding:10px;text-align:center}
+.price-item .days{font-size:11px;color:#888}
+.price-item .price{font-size:16px;font-weight:900;color:var(--lime);margin:4px 0}
+.service-table{width:100%;border-collapse:collapse;margin-top:10px}
+.service-table th,.service-table td{border:1px solid #222;padding:10px;font-size:12px;text-align:center}
+.service-table th{background:#0f0f0f;color:var(--lime)}
+.service-table td{background:#121212}
 </style>
 </head>
 <body>
@@ -97,14 +111,20 @@ input[type=range]{padding:0;background:transparent;border:none}
 <button class="tab" data-tab="colors" onclick="switchTab('colors')">🎨 الألوان</button>
 <button class="tab" data-tab="sizes" onclick="switchTab('sizes')">📏 الأحجام</button>
 <button class="tab" data-tab="contact" onclick="switchTab('contact')">📞 التواصل</button>
+<button class="tab" data-tab="ads" onclick="switchTab('ads')">📢 الإعلانات</button>
+<button class="tab" data-tab="adservice" onclick="switchTab('adservice')">💰 خدمة الإعلانات</button>
 <button class="tab" data-tab="token" onclick="switchTab('token')">🔑 GitHub</button>
 </div>
 
 <div class="panel active" id="panel-walls">
 <div class="box">
 <h3>➕ إضافة خلفية جديدة</h3>
+<!-- ✅ ADDED: زر إضافة من الهاتف -->
+<button class="phone-btn" onclick="document.getElementById('w_file').click()">📁 إضافة صورة من هاتفي - اضغط هنا</button>
+<input type="file" id="w_file" accept="image/*" style="display:none">
+<img id="phonePreview" class="phone-preview">
 <div class="grid2">
-<div><label>رابط الصورة</label><input id="w_url" placeholder="https://..."></div>
+<div><label>رابط الصورة (يمتلئ تلقائيا عند اختيار من الهاتف)</label><input id="w_url" placeholder="https://..."></div>
 <div><label>القسم</label><select id="w_cat"></select></div>
 </div>
 <div class="grid2">
@@ -116,6 +136,7 @@ input[type=range]{padding:0;background:transparent;border:none}
 <div><label>معاينة</label><input id="w_preview" disabled></div>
 </div>
 <button class="save-btn" onclick="addWall()">➕ إضافة ونشر</button>
+<div class="note">💡 يمكنك الآن إما اختيار صورة من هاتفك مباشرة، أو لصق رابط. الصورة من الهاتف ستتحول لرابط base64 وتنشر مباشرة.</div>
 </div>
 <div class="box">
 <h3>🖼️ الحالية (<span id="wallCount">0</span>)</h3>
@@ -127,7 +148,6 @@ input[type=range]{padding:0;background:transparent;border:none}
 <div class="box">
 <h3>📝 التحكم الكامل بكل نصوص الصفحة</h3>
 <div class="note">يمكنك ترك أي حقل فارغ لإخفائه. الحفظ الفارغ الآن يعمل ✅</div>
-
 <h4>الشعار</h4>
 <div class="grid2">
 <div><label>حرف الشعار Z</label><input id="c_logoChar" placeholder="Z"></div>
@@ -137,7 +157,6 @@ input[type=range]{padding:0;background:transparent;border:none}
 <div><label>الوصف تحت الاسم عربي</label><input id="c_siteSub_ar"></div>
 <div><label>Sub English</label><input id="c_siteSub_en"></div>
 </div>
-
 <h4>Hero</h4>
 <div class="grid2">
 <div><label>عنوان عربي</label><textarea id="c_heroTitle_ar"></textarea></div>
@@ -147,7 +166,6 @@ input[type=range]{padding:0;background:transparent;border:none}
 <div><label>وصف عربي</label><textarea id="c_heroDesc_ar"></textarea></div>
 <div><label>Desc English</label><textarea id="c_heroDesc_en"></textarea></div>
 </div>
-
 <h4>البحث والإحصائيات</h4>
 <div class="grid2">
 <div><label>Placeholder بحث عربي</label><input id="c_search_ar"></div>
@@ -174,7 +192,6 @@ input[type=range]{padding:0;background:transparent;border:none}
 <div><label>قيمة التحديث عربي</label><input id="c_statUpdateValue_ar"></div>
 <div><label>Update Value EN</label><input id="c_statUpdateValue_en"></div>
 </div>
-
 <h4>الأزرار والفوتر</h4>
 <div class="grid2">
 <div><label>زر الكل عربي</label><input id="c_btnAll_ar"></div>
@@ -205,7 +222,6 @@ input[type=range]{padding:0;background:transparent;border:none}
 <div><label>Badge2 EN</label><input id="c_badge2_en"></div>
 </div>
 <div><label>شارة 3</label><input id="c_badge3"></div>
-
 <button class="preview-btn" onclick="previewChanges()">👁️ معاينة قبل الحفظ</button>
 <button class="save-btn" onclick="saveContent()">💾 حفظ ونشر المحتوى</button>
 </div>
@@ -291,12 +307,117 @@ input[type=range]{padding:0;background:transparent;border:none}
 </div>
 </div>
 
+<!-- ✅ NEW PANEL: ADS MANAGEMENT -->
+<div class="panel" id="panel-ads">
+<div class="box">
+<h3>💰 الإعلانات الربحية (Google AdSense / PropellerAds)</h3>
+<div class="note">ضع كود AdSense أو أي شبكة إعلانية هنا. سيظهر تلقائيا في الصفحة الرئيسية.</div>
+<label>كود AdSense أو أي إعلان ربحي (Header / Auto Ads)</label>
+<textarea id="adsense_code" style="min-height:120px;font-family:monospace;font-size:11px" placeholder="<!-- ضع كود <script> الخاص بـ AdSense هنا -->
+<script async src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>
+<ins class='adsbygoogle' ...></ins>"></textarea>
+
+<h4>أماكن الإعلانات في الموقع</h4>
+<div class="grid2">
+<div><label>إعلان أعلى الصفحة (فارغ = إخفاء)</label><textarea id="ad_top" placeholder="كود إعلان أعلى"></textarea></div>
+<div><label>إعلان وسط الخلفيات (فارغ = إخفاء)</label><textarea id="ad_middle" placeholder="كود إعلان وسط"></textarea></div>
+</div>
+<div class="grid2">
+<div><label>إعلان أسفل الصفحة (فارغ = إخفاء)</label><textarea id="ad_bottom" placeholder="كود إعلان أسفل"></textarea></div>
+<div><label>إعلان جانبي / منبثق (فارغ = إخفاء)</label><textarea id="ad_sidebar" placeholder="كود إعلان جانبي"></textarea></div>
+</div>
+<button class="save-btn" onclick="saveAds()">💾 حفظ أكواد الإعلانات الربحية</button>
+</div>
+
+<div class="box">
+<h3>📢 إعلانات العملاء اليدوية (مدفوعة)</h3>
+<div class="note">هنا تضيف إعلان لأي شخص دفع لك. حدد السعر والمدة وسيختفي تلقائيا بعد انتهاء المدة.</div>
+
+<div class="grid2">
+<div><label>عنوان الإعلان</label><input id="client_ad_title" placeholder="مثال: إعلان لشركة XYZ"></div>
+<div><label>رابط الإعلان (موقع العميل)</label><input id="client_ad_link" placeholder="https://client.com"></div>
+</div>
+
+<button class="phone-btn" onclick="document.getElementById('client_ad_file').click()">📁 صورة الإعلان من الهاتف</button>
+<input type="file" id="client_ad_file" accept="image/*" style="display:none">
+<img id="clientAdPreview" class="phone-preview">
+
+<div class="grid2">
+<div><label>رابط صورة الإعلان</label><input id="client_ad_image" placeholder="https://... أو من الهاتف"></div>
+<div><label>نوع الإعلان</label>
+<select id="client_ad_category">
+<option value="company">🏢 شركة - Company</option>
+<option value="youtube">▶️ يوتيوب - YouTube</option>
+<option value="tiktok">🎵 تيك توك - TikTok</option>
+<option value="facebook">📘 فيسبوك - Facebook</option>
+<option value="twitter">𝕏 تويتر / X - Twitter</option>
+<option value="telegram">✈️ تلجرام - Telegram</option>
+<option value="whatsapp">💬 واتساب - WhatsApp</option>
+<option value="website">🌐 موقع إلكتروني - Website</option>
+<option value="eshop">🛒 متجر إلكتروني - E-Shop</option>
+<option value="blog">📝 مدونة - Blog</option>
+<option value="music">🎧 موقع موسيقى - Music Site</option>
+</select>
+</div>
+</div>
+
+<div class="grid2">
+<div><label>السعر المدفوع $</label><input id="client_ad_price" type="number" placeholder="5"></div>
+<div><label>المدة بالأيام</label><input id="client_ad_days" type="number" placeholder="3"></div>
+</div>
+
+<button class="save-btn" style="background:#fff;color:#000" onclick="addClientAd()">➕ إضافة إعلان العميل ونشره</button>
+
+<div style="margin-top:16px">
+<h4>📋 الإعلانات الحالية للعملاء (<span id="clientAdCount">0</span>)</h4>
+<div id="clientAdList"></div>
+</div>
+</div>
+</div>
+
+<!-- ✅ NEW PANEL: ADS SERVICE PRICING PAGE -->
+<div class="panel" id="panel-adservice">
+<div class="box">
+<h3>💰 إعداد صفحة خدمة الإعلانات (الأسعار)</h3>
+<div class="note">هذه هي صفحة الأسعار التي سيظهر زرها في أسفل موقعك "خدمة الإعلانات". يمكنك تعديل الأسعار لكل تصنيف. الزر في الفوتر سيفتح صفحة ads.html تلقائيا.</div>
+
+<h4>أسعار الإعلانات لكل صنف</h4>
+<div class="note">عدّل السعر والمدة. مثال: 5$ = 3 أيام، 10$ = 6 أيام. يمكنك وضع أسعارك الخاصة.</div>
+
+<table class="service-table">
+<thead><tr><th>الصنف</th><th>Icon</th><th>باقة 1 (أيام/سعر)</th><th>باقة 2</th><th>باقة 3</th><th>باقة 4 VIP</th></tr></thead>
+<tbody id="pricingTable"></tbody>
+</table>
+
+<button class="preview-btn" onclick="previewAdsPage()">👁️ معاينة صفحة خدمة الإعلانات</button>
+<button class="save-btn" onclick="saveAdPricing()">💾 حفظ أسعار خدمة الإعلانات ونشر الصفحة</button>
+
+<div class="note" style="margin-top:12px">
+📌 <b>ماذا سيحدث بعد الحفظ؟</b><br>
+1- سيتم إنشاء ملف ads.html يحتوي قائمة الأسعار بتصميم احترافي<br>
+2- زر "خدمة الإعلانات" سيظهر تلقائيا في أسفل موقعك (الفوتر)<br>
+3- عند الضغط عليه، تنتقل لصفحة بها كل الأسعار وزر تواصل لطلب الإعلان
+</div>
+</div>
+
+<div class="box">
+<h3>⚙️ إعدادات زر خدمة الإعلانات في الفوتر</h3>
+<div class="grid2">
+<div><label>نص زر الفوتر عربي</label><input id="c_adsServiceBtn_ar" placeholder="💰 خدمة الإعلانات"></div>
+<div><label>Button EN</label><input id="c_adsServiceBtn_en" placeholder="💰 Advertising Service"></div>
+</div>
+<div><label>رابط واتساب لطلب الإعلانات</label><input id="ads_whatsapp" placeholder="https://wa.me/2126..."></div>
+<button class="save-btn" onclick="saveAdPricing()">💾 حفظ إعدادات الزر</button>
+</div>
+</div>
+
 <div class="panel" id="panel-token">
 <div class="box">
 <h3>🔑 توكن GitHub</h3>
 <input type="password" id="gh_token" placeholder="ghp_...">
 <button class="save-btn" onclick="saveToken()">حفظ التوكن</button>
 <div id="tokenStatus" style="font-size:12px;color:#666;margin-top:10px"></div>
+<div class="note">طريقة الحصول على التوكن: GitHub > Settings > Developer settings > Personal access tokens > Generate token > حدد repo</div>
 </div>
 </div>
 
@@ -306,19 +427,42 @@ input[type=range]{padding:0;background:transparent;border:none}
 const REPO="ZakariaZG27/my-website";
 const FILE_WALLS="wallpapers.json";
 const FILE_SETTINGS="settings.json";
+const FILE_ADS="ads.json";
+const FILE_AD_PRICING="ad-pricing.json";
 const PASS="ZakariaZG27";
 const USER="ZakariaZG27";
-let allWalls=[]; let settings={};
+let allWalls=[]; let settings={}; let allAds={adsense_code:"", ad_top:"", ad_middle:"", ad_bottom:"", ad_sidebar:"", manualAds:[]}; let adPricing={services:[], whatsapp:"", btn_ar:"💰 خدمة الإعلانات", btn_en:"💰 Advertising Service"};
 
 function doLogin(){const p=document.getElementById('pass').value; const u=document.getElementById('user').value; if(p===PASS&&u===USER){localStorage.setItem('zg_admin_login','1'); localStorage.setItem('zg_admin_exp',Date.now()+3600000); document.getElementById('loginBox').style.display='none'; document.getElementById('app').style.display='block'; init();} else document.getElementById('loginMsg').textContent='❌ خطأ';}
 function checkLogin(){const l=localStorage.getItem('zg_admin_login'); const e=localStorage.getItem('zg_admin_exp'); if(l&&e&&Date.now()<parseInt(e)){document.getElementById('loginBox').style.display='none'; document.getElementById('app').style.display='block'; init();}}
 function logout(){localStorage.removeItem('zg_admin_login'); location.reload();}
 function switchTab(t){document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===t)); document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id==='panel-'+t));}
 
-async function init(){await loadSettings(); await loadWalls(); fillForms(); setupRanges(); const token=localStorage.getItem('gh_token'); if(token) document.getElementById('tokenStatus').textContent='✅ التوكن محفوظ';}
+async function init(){await loadSettings(); await loadWalls(); await loadAds(); await loadAdPricing(); fillForms(); setupRanges(); setupFileInputs(); const token=localStorage.getItem('gh_token'); if(token) document.getElementById('tokenStatus').textContent='✅ التوكن محفوظ';}
 async function loadSettings(){try{const r=await fetch(FILE_SETTINGS+'?v='+Date.now()); if(r.ok) settings=await r.json();}catch(e){} if(!settings.siteName) settings.siteName="ZG 4K Wallpaper";}
 async function loadWalls(){try{const r=await fetch(FILE_WALLS+'?v='+Date.now()); if(r.ok) allWalls=await r.json(); else allWalls=[];}catch(e){allWalls=[];} document.getElementById('wallCount').textContent=allWalls.length; const cats=["الطبيعة والمناظر الطبيعية","الشواطئ والمحيطات","الفضاء وعلم الفلك","الغابات والأشجار","الشلالات والأنهار","الزهور والنباتات","الفن التجريدي","التدرجات اللونية","الفن الرقمي","النيون والإضاءة","الأشكال الهندسية والأنماط","البساطة المطلقة","المظهر الداكن وشاشات أولييد","أفق المدن","الهندسة المعمارية","الشوارع والأزقة","الأنمي والمانغا","الأفلام والمسلسلات","ألعاب الفيديو","الأبطال الخارقون","المشاهير والشخصيات العامة","الكيبوب والفرق الكورية","السيارات الرياضية والفارهة","السيارات الكلاسيكية","الدراجات النارية","الطائرات والطيران","الحيوانات البرية","الطيور","الحيوانات الأليفة","الحياة البحرية","الموضة والأناقة","القهوة والمشروبات","الأطعمة والحلويات","السفر والمغامرة","عبارات تحفيزية","حكم وأقوال","الأعياد والمناسبات","خلفيات إسلامية ودينية","فصول السنة","الخلفيات المتحركة","الأكثر شعبية","المضاف حديثاً"]; const sel=document.getElementById('w_cat'); sel.innerHTML=cats.map(c=>`<option value="${c}">${c}</option>`).join(''); renderWalls();}
 function renderWalls(){const list=document.getElementById('wallList'); list.innerHTML=allWalls.slice().reverse().map(w=>`<div class="w-card"><img src="${w.url}"><div class="info"><div class="t">${w.title_ar||w.title}</div><div class="btns"><button style="background:#1a1a1a;color:#fff" onclick="editWall(${w.id})">تعديل</button><button style="background:#ff2a2a;color:#fff" onclick="delWall(${w.id})">حذف</button></div></div></div>`).join('');}
+
+async function loadAds(){try{const r=await fetch(FILE_ADS+'?v='+Date.now()); if(r.ok) allAds=await r.json();}catch(e){} if(!allAds.manualAds) allAds.manualAds=[]; renderClientAds();}
+async function loadAdPricing(){try{const r=await fetch(FILE_AD_PRICING+'?v='+Date.now()); if(r.ok) adPricing=await r.json();}catch(e){}
+if(!adPricing.services || !adPricing.services.length){
+adPricing.services=[
+{id:"company",name_ar:"إعلان شركة في موقع ZG 4K",name_en:"Company Ad on ZG 4K",icon:"🏢",prices:[{days:3,price:5,label:"تجربة"},{days:6,price:10,label:"أساسي"},{days:15,price:20,label:"مميز"},{days:30,price:35,label:"VIP"}]},
+{id:"youtube",name_ar:"إعلان قناة يوتيوب",name_en:"YouTube Channel Ad",icon:"▶️",prices:[{days:3,price:3,label:"تجربة"},{days:7,price:6,label:"أساسي"},{days:14,price:10,label:"مميز"},{days:30,price:18,label:"VIP"}]},
+{id:"tiktok",name_ar:"إعلان حساب تيك توك",name_en:"TikTok Account Ad",icon:"🎵",prices:[{days:3,price:3,label:"تجربة"},{days:7,price:5,label:"أساسي"},{days:14,price:9,label:"مميز"},{days:30,price:15,label:"VIP"}]},
+{id:"facebook",name_ar:"إعلان صفحة فيسبوك",name_en:"Facebook Page Ad",icon:"📘",prices:[{days:3,price:4,label:"تجربة"},{days:7,price:7,label:"أساسي"},{days:14,price:12,label:"مميز"},{days:30,price:20,label:"VIP"}]},
+{id:"twitter",name_ar:"إعلان حساب تويتر / X",name_en:"Twitter / X Ad",icon:"𝕏",prices:[{days:3,price:3,label:"تجربة"},{days:7,price:6,label:"أساسي"},{days:14,price:10,label:"مميز"},{days:30,price:18,label:"VIP"}]},
+{id:"telegram",name_ar:"إعلان قناة تلجرام",name_en:"Telegram Channel Ad",icon:"✈️",prices:[{days:3,price:2,label:"تجربة"},{days:7,price:4,label:"أساسي"},{days:14,price:7,label:"مميز"},{days:30,price:12,label:"VIP"}]},
+{id:"whatsapp",name_ar:"إعلان رقم واتساب / قناة",name_en:"WhatsApp Ad",icon:"💬",prices:[{days:3,price:2,label:"تجربة"},{days:7,price:4,label:"أساسي"},{days:14,price:7,label:"مميز"},{days:30,price:12,label:"VIP"}]},
+{id:"website",name_ar:"إعلان موقع إلكتروني",name_en:"Website Ad",icon:"🌐",prices:[{days:3,price:5,label:"تجربة"},{days:7,price:9,label:"أساسي"},{days:14,price:16,label:"مميز"},{days:30,price:28,label:"VIP"}]},
+{id:"eshop",name_ar:"إعلان متجر إلكتروني",name_en:"E-Shop Ad",icon:"🛒",prices:[{days:3,price:6,label:"تجربة"},{days:7,price:11,label:"أساسي"},{days:14,price:19,label:"مميز"},{days:30,price:33,label:"VIP"}]},
+{id:"blog",name_ar:"إعلان مدونة",name_en:"Blog Ad",icon:"📝",prices:[{days:3,price:3,label:"تجربة"},{days:7,price:5,label:"أساسي"},{days:14,price:9,label:"مميز"},{days:30,price:15,label:"VIP"}]},
+{id:"music",name_ar:"إعلان موقع موسيقى / أغاني",name_en:"Music Site Ad",icon:"🎧",prices:[{days:3,price:4,label:"تجربة"},{days:7,price:7,label:"أساسي"},{days:14,price:12,label:"مميز"},{days:30,price:20,label:"VIP"}]}
+];
+}
+renderPricingTable();
+}
+
 function fillForms(){
 document.getElementById('c_logoChar').value=settings.logoChar||'Z';
 document.getElementById('c_siteName').value=settings.siteName||'';
@@ -392,8 +536,81 @@ document.getElementById('contact_facebook').value=settings.facebook||'';
 document.getElementById('contact_tiktok').value=settings.tiktok||'';
 document.getElementById('contact_twitter').value=settings.twitter||'';
 document.getElementById('contact_telegram').value=settings.telegram||'';
+document.getElementById('adsense_code').value=allAds.adsense_code||settings.adsense_code||'';
+document.getElementById('ad_top').value=allAds.ad_top||'';
+document.getElementById('ad_middle').value=allAds.ad_middle||'';
+document.getElementById('ad_bottom').value=allAds.ad_bottom||'';
+document.getElementById('ad_sidebar').value=allAds.ad_sidebar||'';
+document.getElementById('c_adsServiceBtn_ar').value=adPricing.btn_ar||'💰 خدمة الإعلانات';
+document.getElementById('c_adsServiceBtn_en').value=adPricing.btn_en||'💰 Advertising Service';
+document.getElementById('ads_whatsapp').value=adPricing.whatsapp||settings.whatsapp||'';
 }
+
 function setupRanges(){['heroTitle','heroDesc','siteName','siteSub','search','statLabel','statValue','cardTitle','footerDesc','contactBtn'].forEach(id=>{const el=document.getElementById('size_'+id); if(el) el.addEventListener('input',()=>{document.getElementById('val_'+id).textContent=el.value+'px'});});}
+
+function setupFileInputs(){
+// خلفية من الهاتف
+document.getElementById('w_file').addEventListener('change',e=>{
+const f=e.target.files[0]; if(!f) return;
+if(f.size>5*1024*1024){alert('الصورة كبيرة، اختر أقل من 5MB'); return;}
+const r=new FileReader();
+r.onload=ev=>{
+document.getElementById('w_url').value=ev.target.result;
+document.getElementById('w_preview').value='✅ تم اختيار من الهاتف';
+const img=document.getElementById('phonePreview');
+img.src=ev.target.result;
+img.style.display='block';
+};
+r.readAsDataURL(f);
+});
+// إعلان عميل من الهاتف
+document.getElementById('client_ad_file').addEventListener('change',e=>{
+const f=e.target.files[0]; if(!f) return;
+const r=new FileReader();
+r.onload=ev=>{
+document.getElementById('client_ad_image').value=ev.target.result;
+const img=document.getElementById('clientAdPreview');
+img.src=ev.target.result;
+img.style.display='block';
+};
+r.readAsDataURL(f);
+});
+}
+
+function renderPricingTable(){
+const tbody=document.getElementById('pricingTable');
+tbody.innerHTML=adPricing.services.map((s,i)=>`
+<tr>
+<td>${s.icon} ${s.name_ar}</td>
+<td>${s.icon}</td>
+<td><input style="width:60px;display:inline" type="number" value="${s.prices[0]?.days||3}" onchange="updatePrice(${i},0,'days',this.value)"> يوم / <input style="width:60px;display:inline" type="number" value="${s.prices[0]?.price||5}" onchange="updatePrice(${i},0,'price',this.value)"> $</td>
+<td><input style="width:60px;display:inline" type="number" value="${s.prices[1]?.days||7}" onchange="updatePrice(${i},1,'days',this.value)"> يوم / <input style="width:60px;display:inline" type="number" value="${s.prices[1]?.price||10}" onchange="updatePrice(${i},1,'price',this.value)"> $</td>
+<td><input style="width:60px;display:inline" type="number" value="${s.prices[2]?.days||14}" onchange="updatePrice(${i},2,'days',this.value)"> يوم / <input style="width:60px;display:inline" type="number" value="${s.prices[2]?.price||20}" onchange="updatePrice(${i},2,'price',this.value)"> $</td>
+<td><input style="width:60px;display:inline" type="number" value="${s.prices[3]?.days||30}" onchange="updatePrice(${i},3,'days',this.value)"> يوم / <input style="width:60px;display:inline" type="number" value="${s.prices[3]?.price||35}" onchange="updatePrice(${i},3,'price',this.value)"> $</td>
+</tr>
+`).join('');
+}
+function updatePrice(sIdx,pIdx,field,val){adPricing.services[sIdx].prices[pIdx][field]=parseInt(val)||0;}
+
+function renderClientAds(){
+const list=document.getElementById('clientAdList');
+const count=document.getElementById('clientAdCount');
+if(!allAds.manualAds) allAds.manualAds=[];
+count.textContent=allAds.manualAds.length;
+const now=Date.now();
+list.innerHTML=allAds.manualAds.map(ad=>{
+const expired = ad.expiresAt && now > ad.expiresAt;
+const daysLeft = ad.expiresAt ? Math.max(0, Math.ceil((ad.expiresAt-now)/(1000*60*60*24))) : '∞';
+return `<div class="ad-card" style="${expired?'opacity:.5;border-color:#ff2a2a':''}">
+${ad.image?`<img src="${ad.image}">`:''}
+<div style="font-size:13px;font-weight:700">${ad.title} - ${ad.category} - $${ad.price} - ${ad.days} يوم</div>
+<div style="font-size:11px;color:#888">متبقي: ${daysLeft} يوم ${expired?'<span style="color:#ff2a2a">⛔ منتهي</span>':''}</div>
+<div style="font-size:11px;color:#666;word-break:break-all">${ad.link}</div>
+<div style="display:flex;gap:6px;margin-top:8px"><button class="btn-sm" style="background:#ff2a2a;color:#fff" onclick="delClientAd(${ad.id})">حذف</button><button class="btn-sm" onclick="extendAd(${ad.id})">تمديد</button></div>
+</div>`;
+}).join('') || '<p style="color:#666;font-size:12px;text-align:center;padding:20px">لا توجد إعلانات حاليا</p>';
+}
+
 function collectAllSettings(){
 const newSettings={...settings};
 newSettings.logoChar=document.getElementById('c_logoChar').value;
@@ -436,7 +653,6 @@ newSettings.description_ar=newSettings.heroDesc_ar;
 newSettings.description_en=newSettings.heroDesc_en;
 newSettings.colors={bg:document.getElementById('col_bg').value,text:document.getElementById('col_text').value,accent:document.getElementById('col_accent').value,headerBg:document.getElementById('col_headerBg').value,heroTitle:document.getElementById('col_heroTitle').value,heroAccent:document.getElementById('col_heroAccent').value,heroDesc:document.getElementById('col_heroDesc').value,logoBg:document.getElementById('col_logoBg').value,logoChar:document.getElementById('col_logoChar').value,searchBg:document.getElementById('col_searchBg').value,statBg:document.getElementById('col_statBg').value,statLabel:document.getElementById('col_statLabel').value,statValue:document.getElementById('col_statValue').value,statAccent:document.getElementById('col_statAccent').value,cardBg:document.getElementById('col_cardBg').value,catBg:document.getElementById('col_catBg').value,footerBg:document.getElementById('col_footerBg').value,footerText:document.getElementById('col_footerText').value};
 newSettings.fontSizes={heroTitle:parseInt(document.getElementById('size_heroTitle').value),heroDesc:parseInt(document.getElementById('size_heroDesc').value),siteName:parseInt(document.getElementById('size_siteName').value),siteSub:parseInt(document.getElementById('size_siteSub').value),search:parseInt(document.getElementById('size_search').value),statLabel:parseInt(document.getElementById('size_statLabel').value),statValue:parseInt(document.getElementById('size_statValue').value),cardTitle:parseInt(document.getElementById('size_cardTitle').value),footerDesc:parseInt(document.getElementById('size_footerDesc').value),contactBtn:parseInt(document.getElementById('size_contactBtn').value)};
-// CONTACT FIX - trim but allow empty
 newSettings.email=document.getElementById('contact_email').value.trim();
 newSettings.whatsapp=document.getElementById('contact_whatsapp').value.trim();
 newSettings.instagram=document.getElementById('contact_instagram').value.trim();
@@ -444,18 +660,93 @@ newSettings.facebook=document.getElementById('contact_facebook').value.trim();
 newSettings.tiktok=document.getElementById('contact_tiktok').value.trim();
 newSettings.twitter=document.getElementById('contact_twitter').value.trim();
 newSettings.telegram=document.getElementById('contact_telegram').value.trim();
+newSettings.adsServiceBtn_ar=document.getElementById('c_adsServiceBtn_ar').value;
+newSettings.adsServiceBtn_en=document.getElementById('c_adsServiceBtn_en').value;
 return newSettings;
 }
 function previewChanges(){const preview=collectAllSettings(); localStorage.setItem('zg_preview',JSON.stringify(preview)); window.open('index.html?preview=1','_blank');}
+function previewAdsPage(){const preview=adPricing; localStorage.setItem('zg_ad_pricing_preview',JSON.stringify(preview)); window.open('ads.html?preview=1','_blank');}
 async function pushToGitHub(file,content,msg){const token=localStorage.getItem('gh_token'); if(!token){alert('ضع توكن GitHub'); switchTab('token'); return false;} try{const getUrl=`https://api.github.com/repos/${REPO}/contents/${file}`; const getRes=await fetch(getUrl,{headers:{Authorization:`token ${token}`}}); let sha=null; if(getRes.ok){const j=await getRes.json(); sha=j.sha;} const putRes=await fetch(getUrl,{method:'PUT',headers:{Authorization:`token ${token}`,'Content-Type':'application/json'},body:JSON.stringify({message:msg,content:btoa(unescape(encodeURIComponent(content))),sha})}); if(!putRes.ok){const e=await putRes.text(); alert('خطأ GitHub: '+e); return false;} return true;}catch(e){alert('خطأ: '+e.message); return false;}}
 async function saveContent(){const s=collectAllSettings(); const ok=await pushToGitHub(FILE_SETTINGS,JSON.stringify(s,null,2),'Update content CMS'); if(ok){alert('✅ تم حفظ المحتوى'); settings=s;}}
 async function saveColors(){const s=collectAllSettings(); const ok=await pushToGitHub(FILE_SETTINGS,JSON.stringify(s,null,2),'Update colors'); if(ok){alert('✅ تم حفظ الألوان'); settings=s;}}
 async function saveSizes(){const s=collectAllSettings(); const ok=await pushToGitHub(FILE_SETTINGS,JSON.stringify(s,null,2),'Update sizes'); if(ok){alert('✅ تم حفظ الأحجام'); settings=s;}}
-async function saveContact(){const s=collectAllSettings(); console.log('Contact save - empty allowed:', s.email, s.whatsapp, s.instagram, s.facebook, s.tiktok, s.twitter, s.telegram); const ok=await pushToGitHub(FILE_SETTINGS,JSON.stringify(s,null,2),'Update contact - allow empty + 5 socials'); if(ok){alert('✅ تم حفظ التواصل - الفارغ سيبقى فارغاً ✅\nتمت إضافة: Facebook, Instagram, TikTok, Twitter, Telegram'); settings=s; fillForms();}}
+async function saveContact(){const s=collectAllSettings(); const ok=await pushToGitHub(FILE_SETTINGS,JSON.stringify(s,null,2),'Update contact - allow empty + 5 socials'); if(ok){alert('✅ تم حفظ التواصل'); settings=s; fillForms();}}
 function saveToken(){const t=document.getElementById('gh_token').value.trim(); if(!t){alert('ضع التوكن'); return;} localStorage.setItem('gh_token',t); document.getElementById('tokenStatus').textContent='✅ تم حفظ التوكن'; alert('✅ تم حفظ التوكن');}
-async function addWall(){const url=document.getElementById('w_url').value.trim(); const cat=document.getElementById('w_cat').value; const ta=document.getElementById('w_title_ar').value.trim(); const te=document.getElementById('w_title_en').value.trim(); const type=document.getElementById('w_type').value; if(!url){alert('ضع رابط الصورة'); return;} const newId=allWalls.length>0?Math.max(...allWalls.map(w=>w.id))+1:1; const newWall={id:newId,url,category:cat,title:ta,title_ar:ta,title_en:te,type}; allWalls.push(newWall); const ok=await pushToGitHub(FILE_WALLS,JSON.stringify(allWalls,null,2),'Add wallpaper '+newId); if(ok){alert('✅ تمت الإضافة'); renderWalls(); document.getElementById('w_url').value='';} else allWalls.pop();}
+async function addWall(){const url=document.getElementById('w_url').value.trim(); const cat=document.getElementById('w_cat').value; const ta=document.getElementById('w_title_ar').value.trim(); const te=document.getElementById('w_title_en').value.trim(); const type=document.getElementById('w_type').value; if(!url){alert('ضع رابط الصورة أو اختر من الهاتف'); return;} const newId=allWalls.length>0?Math.max(...allWalls.map(w=>w.id))+1:1; const newWall={id:newId,url,category:cat,title:ta,title_ar:ta,title_en:te,type}; allWalls.push(newWall); const ok=await pushToGitHub(FILE_WALLS,JSON.stringify(allWalls,null,2),'Add wallpaper '+newId); if(ok){alert('✅ تمت الإضافة'); renderWalls(); document.getElementById('w_url').value=''; document.getElementById('phonePreview').style.display='none';} else allWalls.pop();}
 async function delWall(id){if(!confirm('حذف؟')) return; const old=[...allWalls]; allWalls=allWalls.filter(w=>w.id!==id); const ok=await pushToGitHub(FILE_WALLS,JSON.stringify(allWalls,null,2),'Delete '+id); if(ok) renderWalls(); else allWalls=old;}
 function editWall(id){const w=allWalls.find(x=>x.id===id); if(!w) return; const na=prompt('عنوان عربي:',w.title_ar||w.title); if(na===null) return; const ne=prompt('English:',w.title_en||''); if(ne===null) return; w.title_ar=na; w.title=na; w.title_en=ne; pushToGitHub(FILE_WALLS,JSON.stringify(allWalls,null,2),'Edit '+id).then(ok=>{if(ok) renderWalls();});}
+
+// ✅ NEW FUNCTIONS FOR ADS
+async function saveAds(){
+allAds.adsense_code=document.getElementById('adsense_code').value;
+allAds.ad_top=document.getElementById('ad_top').value;
+allAds.ad_middle=document.getElementById('ad_middle').value;
+allAds.ad_bottom=document.getElementById('ad_bottom').value;
+allAds.ad_sidebar=document.getElementById('ad_sidebar').value;
+const ok=await pushToGitHub(FILE_ADS,JSON.stringify(allAds,null,2),'Update adsense + positions');
+if(ok){alert('✅ تم حفظ الإعلانات الربحية'); 
+// also update settings for compatibility
+const s=collectAllSettings(); s.adsense_code=allAds.adsense_code; await pushToGitHub(FILE_SETTINGS,JSON.stringify(s,null,2),'Update settings adsense');}
+}
+
+async function addClientAd(){
+const title=document.getElementById('client_ad_title').value.trim();
+const image=document.getElementById('client_ad_image').value.trim();
+const link=document.getElementById('client_ad_link').value.trim();
+const category=document.getElementById('client_ad_category').value;
+const price=parseFloat(document.getElementById('client_ad_price').value)||0;
+const days=parseInt(document.getElementById('client_ad_days').value)||3;
+if(!title || !image || !link){alert('املأ عنوان + صورة + رابط'); return;}
+const newAd={id:Date.now(),title,image,link,category,price,days,createdAt:Date.now(),expiresAt:Date.now()+days*24*60*60*1000,active:true};
+allAds.manualAds.push(newAd);
+const ok=await pushToGitHub(FILE_ADS,JSON.stringify(allAds,null,2),'Add client ad '+newAd.id);
+if(ok){alert('✅ تم نشر إعلان العميل'); renderClientAds(); document.getElementById('client_ad_title').value=''; document.getElementById('client_ad_image').value=''; document.getElementById('client_ad_link').value=''; document.getElementById('clientAdPreview').style.display='none';} else allAds.manualAds.pop();
+}
+async function delClientAd(id){if(!confirm('حذف إعلان العميل؟')) return; allAds.manualAds=allAds.manualAds.filter(a=>a.id!==id); const ok=await pushToGitHub(FILE_ADS,JSON.stringify(allAds,null,2),'Delete client ad '+id); if(ok) renderClientAds();}
+async function extendAd(id){const days=parseInt(prompt('كم يوم تريد تمديد الإعلان؟ مثال 3','3')); if(!days) return; const ad=allAds.manualAds.find(a=>a.id===id); if(!ad) return; ad.expiresAt=(ad.expiresAt||Date.now())+days*24*60*60*1000; ad.days+=days; const ok=await pushToGitHub(FILE_ADS,JSON.stringify(allAds,null,2),'Extend ad '+id); if(ok) renderClientAds();}
+
+async function saveAdPricing(){
+adPricing.btn_ar=document.getElementById('c_adsServiceBtn_ar').value;
+adPricing.btn_en=document.getElementById('c_adsServiceBtn_en').value;
+adPricing.whatsapp=document.getElementById('ads_whatsapp').value.trim();
+// also save to settings for footer button
+const s=collectAllSettings();
+s.adsServiceBtn_ar=adPricing.btn_ar;
+s.adsServiceBtn_en=adPricing.btn_en;
+s.adPricing=adPricing;
+// create ads.html content
+const adsHtmlContent = generateAdsHtmlPage(adPricing);
+let ok1=await pushToGitHub(FILE_AD_PRICING,JSON.stringify(adPricing,null,2),'Update ad pricing');
+let ok2=await pushToGitHub('ads.html',adsHtmlContent,'Update ads service page');
+let ok3=await pushToGitHub(FILE_SETTINGS,JSON.stringify(s,null,2),'Update settings + ads button');
+if(ok1&&ok2&&ok3){alert('✅ تم حفظ أسعار الإعلانات ونشر صفحة خدمة الإعلانات ads.html\nالآن زر "خدمة الإعلانات" سيظهر في موقعك'); settings=s;}
+}
+
+function generateAdsHtmlPage(pricing){
+const wa=pricing.whatsapp||'';
+return `<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>خدمة الإعلانات - ZG 4K Wallpaper</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}body{background:#080808;color:#fff;padding:16px} .header{text-align:center;padding:24px 0;border-bottom:1px solid #1a1a1a;margin-bottom:20px} .header h1{color:#D4FF32;font-size:28px} .header p{color:#888;margin-top:8px} .service{background:#121212;border:1px solid #1e1e1e;border-radius:20px;padding:18px;margin-bottom:14px} .service h2{font-size:18px;margin-bottom:12px} .plans{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px} .plan{background:#0f0f0f;border:1px solid #222;border-radius:14px;padding:12px;text-align:center} .plan .label{font-size:11px;color:#888} .plan .days{font-size:13px;font-weight:800;margin:4px 0} .plan .price{font-size:20px;color:#D4FF32;font-weight:900} .plan button{width:100%;margin-top:8px;background:#D4FF32;color:#000;border:none;padding:8px;border-radius:20px;font-weight:800;cursor:pointer} a.back{display:inline-block;margin-bottom:16px;background:#1a1a1a;padding:8px 16px;border-radius:20px;color:#fff;text-decoration:none;font-size:13px}</style>
+</head>
+<body>
+<a class="back" href="index.html">← العودة للموقع</a>
+<div class="header"><h1>💰 خدمة الإعلانات في ZG 4K Wallpaper</h1><p>اختر نوع إعلانك ومدة بقائه - أسعار مناسبة لجميع الفئات</p><p style="color:#D4FF32;font-size:12px;margin-top:6px">تواصل عبر واتساب بعد اختيار الباقة</p></div>
+${pricing.services.map(s=>`
+<div class="service"><h2>${s.icon} ${s.name_ar} - ${s.name_en}</h2><div class="plans">
+${s.prices.map(p=>`
+<div class="plan"><div class="label">${p.label||''}</div><div class="days">${p.days} أيام</div><div class="price">$${p.price}</div><button onclick="window.open('${wa?wa:'https://wa.me/'}?text=مرحبا، اريد حجز اعلان ${encodeURIComponent(s.name_ar)} لمدة ${p.days} ايام بسعر $${p.price}','_blank')">طلب الآن</button></div>
+`).join('')}
+</div></div>
+`).join('')}
+<div style="text-align:center;padding:24px;color:#666;font-size:12px">جميع الإعلانات تظهر في الصفحة الرئيسية لموقع ZG 4K Wallpaper - مشاهدات عالية يومية</div>
+</body>
+</html>`;
+}
+
 checkLogin();
 document.getElementById('w_url').addEventListener('input',e=>{document.getElementById('w_preview').value=e.target.value});
 </script>
