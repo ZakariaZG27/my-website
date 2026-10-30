@@ -27,288 +27,373 @@
 <title>ZG 4K Wallpaper</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{--lime:#D4FF32}
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
-body{background:#0a0a0a;color:#fff;min-height:100vh}
-.header{position:sticky;top:0;z-index:40;background:#0a0a0a;border-bottom:1px solid #1a1a1a;padding:12px 14px;display:flex;justify-content:space-between;align-items:center}
-.logo{display:flex;align-items:center;gap:12px}
-.logo .z{width:48px;height:48px;background:#1e3a00;color:#fff;font-weight:900;font-size:24px;border-radius:14px;display:flex;align-items:center;justify-content:center;border:1px solid #2a4a00}
-.lang{display:flex;background:#141414;border:1px solid #222;border-radius:30px;padding:3px;gap:2px}
-.lang button{border:none;background:transparent;color:#666;padding:8px 18px;border-radius:22px;font-size:13px;font-weight:800;cursor:pointer}
-.lang button.active{background:#1e3a00;color:#fff;border:1px solid #2a4a00}
-.h1{font-size:32px;font-weight:800;text-align:center;line-height:1.25;margin:22px 14px 10px}
-.h1 .accent{color:#D4FF32;text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:8px;text-decoration-color:#D4FF32}
-.sub{color:#666;text-align:center;font-size:12.5px;line-height:1.9;max-width:520px;margin:12px auto;padding:0 20px}
-.search-wrap{max-width:720px;margin:18px auto;padding:0 14px;position:relative}
-.search{width:100%;background:#121212;border:1px solid #1e1e1e;border-radius:22px;padding:15px 20px 15px 48px;color:#fff;outline:none;font-size:13.5px}
-.search-icon{position:absolute;left:30px;top:50%;transform:translateY(-50%);color:#555;font-size:18px}
-.hint{color:#888;font-size:11px;text-align:right;margin-top:8px;padding-right:4px;line-height:1.6}
-.hint.ltr{text-align:left;padding-left:4px}
-.stats-grid{max-width:760px;margin:14px auto;padding:0 14px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#1a1a1a;border:1px solid #1e1e1e;border-radius:16px;overflow:hidden}
-.stat{padding:10px 4px;text-align:center;background:#0f0f0f;display:flex;flex-direction:column;gap:4px;align-items:center;justify-content:center;min-height:62px}
-.stat .label{font-size:9.5px;color:#888;font-weight:600;white-space:nowrap}
-.stat .value{font-size:13px;font-weight:900;color:#fff;white-space:nowrap}
-.stat .value.accent{color:#D4FF32}
-.stat .value.small{font-size:11.5px}
-.top-actions{display:flex;gap:8px;justify-content:center;align-items:center;max-width:760px;margin:18px auto;padding:0 14px;flex-wrap:wrap}
-.btn-all{background:#1e3a00;color:#fff;border:1px solid #2a4a00;padding:10px 24px;border-radius:30px;font-size:14px;font-weight:900;cursor:pointer}
-.btn-grid{background:#141414;border:1px solid #1e1e1e;color:#bbb;padding:9px 18px;border-radius:30px;font-size:12.5px;font-weight:700;cursor:pointer}
-.cats-wrap{margin:12px 0 8px;padding:0 14px}
-.cats{display:flex;gap:8px;overflow-x:auto;white-space:nowrap;padding:6px 2px 12px;scrollbar-width:none}
-.cats::-webkit-scrollbar{display:none}
-.cats button{flex-shrink:0;background:#141414;border:1px solid #1e1e1e;color:#999;padding:10px 18px;border-radius:30px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap}
-.cats button.active{background:#1e3a00;color:#fff;border-color:#2a4a00;font-weight:900}
-.grid{max-width:1440px;margin:16px auto;display:block;columns:1;column-gap:12px;padding:0 14px}
+body{background:#000;color:#fff;min-height:100vh}
+
+/* HEADER - EXACT AS SCREENSHOT RED CIRCLE 1 */
+.header{position:sticky;top:0;z-index:99;background:#0a0a0a;border-bottom:1px solid #1a1a1a;height:74px;display:flex;align-items:center;justify-content:space-between;padding:0 14px}
+.header-left .z-logo{width:56px;height:56px;background:#1e3a00;color:#fff;font-weight:900;font-size:28px;border-radius:16px;display:flex;align-items:center;justify-content:center;border:1px solid #2a4a00}
+.header-center{flex:1;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px}
+.header-center b{font-size:18px;font-weight:900;letter-spacing:-0.2px;line-height:1.2}
+.header-center span{font-size:11px;color:#888;font-weight:600;white-space:nowrap}
+.lang-switch{display:flex;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:28px;padding:3px;gap:2px}
+.lang-switch button{border:none;background:transparent;color:#888;padding:8px 18px;border-radius:22px;font-size:13px;font-weight:900;cursor:pointer;min-width:52px}
+.lang-switch button.active{background:#1e3a00;color:#fff}
+
+/* HERO */
+.hero{padding:28px 16px 12px;text-align:center}
+.hero h1{font-size:42px;font-weight:900;line-height:1.15}
+.hero h1 .lime{color:#D4FF32;position:relative;display:inline-block}
+.hero h1 .lime::after{content:'';position:absolute;left:0;right:0;bottom:2px;height:3px;background:#D4FF32;border-radius:2px}
+.hero-desc{color:#666;font-size:13.5px;line-height:1.9;max-width:520px;margin:14px auto 0;padding:0 10px}
+
+/* SEARCH */
+.search-section{padding:22px 16px 10px}
+.search-box{position:relative;width:100%;max-width:760px;margin:0 auto}
+.search-box input{width:100%;background:#0f0f0f;border:1px solid #2a2a2a;border-radius:30px;padding:18px 20px;color:#fff;outline:none;font-size:15px;text-align:right}
+.search-box input::placeholder{color:#777}
+.search-box .icon{position:absolute;left:4px;bottom:-10px;width:32px;height:32px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px}
+.search-hint{max-width:760px;margin:18px auto 0;color:#aaa;font-size:12.5px;line-height:1.8;text-align:right;padding:0 6px}
+.search-hint.ltr{text-align:left}
+
+/* STATS */
+.stats-outer{padding:14px 12px}
+.stats-box{max-width:760px;margin:0 auto;background:#0f0f0f;border:1px solid #2a2a2a;border-radius:22px;display:grid;grid-template-columns:repeat(4,1fr);overflow:hidden}
+.stat{padding:14px 6px;text-align:center;background:#0f0f0f;display:flex;flex-direction:column;gap:8px;align-items:center;justify-content:center;border-left:1px solid #1e1e1e}
+.stat:last-child{border-left:none}
+.stat .lbl{font-size:11.5px;color:#aaa;font-weight:600}
+.stat .val{font-size:17px;font-weight:900;color:#fff}
+.stat .val.lime{color:#D4FF32}
+
+/* ACTIONS */
+.actions-row{display:flex;gap:10px;justify-content:center;align-items:center;padding:18px 14px;flex-wrap:wrap}
+.btn-all{background:#1e3a00;color:#fff;border:none;padding:12px 32px;border-radius:28px;font-size:15px;font-weight:900;cursor:pointer;min-width:88px}
+.btn-cats{background:#121212;border:1px solid #2a2a2a;color:#ccc;padding:12px 22px;border-radius:28px;font-size:14px;font-weight:700;cursor:pointer}
+
+/* CATS */
+.cats-row{padding:8px 14px 0;overflow:hidden}
+.cats-scroll{display:flex;gap:10px;overflow-x:auto;white-space:nowrap;padding:6px 2px 14px;scrollbar-width:none}
+.cats-scroll::-webkit-scrollbar{display:none}
+.cat-chip{flex-shrink:0;background:#121212;border:1px solid #2a2a2a;color:#999;padding:12px 22px;border-radius:28px;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap}
+.cat-chip.active{background:#1e3a00;color:#fff;border-color:#1e3a00;font-weight:900}
+
+/* GRID */
+.grid{max-width:1440px;margin:10px auto;display:block;columns:1;column-gap:12px;padding:10px 14px 20px}
 @media(min-width:640px){.grid{columns:2}}
 @media(min-width:1024px){.grid{columns:3}}
 .card{background:#111;border:1px solid #1e1e1e;border-radius:20px;overflow:hidden;cursor:pointer;break-inside:avoid;margin-bottom:12px}
 .card .img{position:relative;overflow:hidden;background:#0f0f0f}
 .card .img img{width:100%;height:auto;display:block}
-.card .tag{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.7);border:1px solid rgba(255,255,255,.15);color:#fff;padding:5px 12px;border-radius:20px;font-size:11px}
+.card .tag{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.75);border:1px solid rgba(255,255,255,.15);color:#fff;padding:5px 12px;border-radius:20px;font-size:11px}
 .card .dl{position:absolute;top:10px;left:10px;background:#fff;color:#000;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900}
 .card .info{padding:12px 14px;display:flex;justify-content:space-between;align-items:center;background:#111}
 .card .title{font-size:13px;font-weight:600;max-width:210px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.card .meta{font-size:10px;color:#555;margin-top:2px}
-.card .arrow{width:30px;height:30px;background:#1a1a1a;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#666}
-.footer{margin-top:44px;background:#070707;border-top:1px solid #111;padding:44px 16px 30px}
-.footer-top{display:flex;align-items:center;gap:12px;justify-content:flex-end;margin-bottom:20px}
-.footer-top.ltr{justify-content:flex-start}
-.footer-top .z{width:42px;height:42px;background:#1e3a00;color:#fff;font-weight:900;font-size:20px;border-radius:12px;display:flex;align-items:center;justify-content:center;border:1px solid #2a4a00}
-.footer-top b{font-size:20px;font-weight:800}
-.footer-desc{color:#888;font-size:13px;line-height:2;text-align:right;max-width:640px;margin-left:auto;margin-bottom:22px}
-.footer-desc.ltr{text-align:left;margin-left:0;margin-right:auto}
-.footer-badges{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-bottom:22px}
-.footer-badges.ltr{justify-content:flex-start}
-.footer-badges span{background:#121212;border:1px solid #1e1e1e;color:#777;padding:9px 16px;border-radius:30px;font-size:12px}
-.footer-contact{display:flex;justify-content:flex-end;margin-bottom:24px}
-.footer-contact.ltr{justify-content:flex-start}
-.btn-contact{background:#1e3a00;color:#fff;border:1px solid #2a4a00;padding:12px 28px;border-radius:30px;font-size:14px;font-weight:900;cursor:pointer;text-decoration:none}
-.social-row{display:flex;gap:12px;justify-content:flex-end;flex-wrap:wrap;margin-bottom:26px}
-.social-row.ltr{justify-content:flex-start}
-.social-icon{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all .2s;border:1px solid #1e1e1e;overflow:hidden}
-.social-icon:hover{transform:translateY(-3px);border-color:#D4FF32}
+.no-results{text-align:center;color:#aaa;padding:80px 20px;font-size:18px;font-weight:600}
+
+/* FOOTER - EXACT AS SCREENSHOT RED CIRCLE 2 */
+.footer{margin-top:30px;background:#070707;border-top:1px solid #1a1a1a;padding:32px 16px 24px}
+.footer-top{display:flex;align-items:center;gap:12px;margin-bottom:16px;justify-content:flex-start}
+.footer-top .z-logo{width:44px;height:44px;background:#1e3a00;color:#fff;font-weight:900;font-size:22px;border-radius:12px;display:flex;align-items:center;justify-content:center;border:1px solid #2a4a00;flex-shrink:0}
+.footer-top b{font-size:18px;font-weight:900}
+.footer-desc{color:#888;font-size:13px;line-height:1.9;text-align:right;margin-bottom:18px;max-width:600px}
+.footer-desc.ltr{text-align:left}
+.footer-badges{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px;justify-content:flex-start}
+.footer-badges span{background:#121212;border:1px solid #1e1e1e;color:#999;padding:10px 18px;border-radius:30px;font-size:13px;font-weight:600}
+.footer-contact{margin-bottom:24px;display:flex;justify-content:flex-start}
+.btn-contact{background:#1e3a00;color:#fff;border:none;padding:14px 32px;border-radius:30px;font-size:15px;font-weight:900;cursor:pointer;display:inline-block;text-decoration:none;min-width:140px;text-align:center}
+.social-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:26px;justify-content:flex-start}
+.social-icon{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all .2s;border:1px solid #1e1e1e;overflow:hidden;flex-shrink:0}
 .social-icon svg{width:22px;height:22px}
 .icon-ig{background:radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);}
 .icon-fb{background:#1877F2}
 .icon-tt{background:#000}
 .icon-x{background:#000}
-.icon-tg{background:#26A5E4}
-.footer-bottom-wrap{border-top:1px solid #111;padding-top:18px}
-.footer-copy{color:#555;font-size:12px;text-align:right;line-height:1.9}
+.icon-tg{background:#2AABEE}
+.footer-bottom{border-top:1px solid #1a1a1a;padding-top:18px}
+.footer-copy{color:#666;font-size:12.5px;text-align:right;line-height:1.8}
 .footer-copy.ltr{text-align:left}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:100;padding:14px}
+
+/* MODALS */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:200;padding:14px}
 .modal.active{display:flex}
 .modal-box{background:#111;border:1px solid #222;border-radius:20px;overflow:hidden;max-width:860px;width:100%}
 .modal-box img{width:100%;max-height:72vh;object-fit:contain;background:#000}
 .modal-bar{padding:14px;display:flex;justify-content:space-between;align-items:center;gap:10px;background:#111}
 .btn{background:#D4FF32;color:#000;border:none;padding:11px 20px;border-radius:30px;font-weight:800;font-size:13px;cursor:pointer;text-decoration:none}
 .btn-ghost{background:#1a1a1a;color:#fff}
-.cats-modal{position:fixed;inset:0;background:rgba(0,0,0,.94);display:none;z-index:120;flex-direction:column}
+.cats-modal{position:fixed;inset:0;background:rgba(0,0,0,.96);display:none;z-index:300;flex-direction:column}
 .cats-modal.active{display:flex}
 .cats-modal-head{padding:16px;border-bottom:1px solid #1a1a1a;display:flex;justify-content:space-between;align-items:center;background:#0a0a0a}
-.cats-modal-head b{font-size:16px}
-.cats-modal-head button{background:#1a1a1a;border:1px solid #222;color:#fff;width:36px;height:36px;border-radius:50%;font-size:18px;cursor:pointer}
-.cats-grid{padding:16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:10px;overflow-y:auto;flex:1;align-content:start}
-.cat-square{background:#131313;border:1px solid #1e1e1e;border-radius:16px;padding:18px 10px;text-align:center;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;min-height:92px;justify-content:center}
+.cats-grid{padding:16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;overflow-y:auto;flex:1;align-content:start}
+.cat-square{background:#131313;border:1px solid #1e1e1e;border-radius:16px;padding:18px 10px;text-align:center;cursor:pointer;min-height:92px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
 .cat-square.active{background:#1e3a00;border-color:#2a4a00;color:#fff}
-.no-results{text-align:center;color:#555;padding:60px 20px;font-size:14px}
 </style>
-<style id="dynamicOverrides"></style>
 </head>
 <body>
-<header class="header"><div class="lang"><button id="btn-en" onclick="setLang('en')">EN</button><button id="btn-ar" class="active" onclick="setLang('ar')">AR</button></div><div class="logo"><div style="text-align:right" id="logoText"><div id="siteName" style="font-weight:800;font-size:17px">ZG 4K Wallpaper</div><div id="siteSub" style="font-size:10px;color:#888">مجموعة خلفيات فاخرة • 4K • 8K • مصمم</div></div><div class="z" id="logoZ">Z</div></div></header>
-<h1 class="h1" id="heroTitle">خلفيات <span class="accent">فاخرة</span> تعكس<br>ذوقك</h1>
-<p class="sub" id="heroDesc">كل خلفية مصممة بعناية فائقة لتمنح جهازك هوية فاخرة وتجربة بصرية لا تُنسى.</p>
-<div class="search-wrap"><input class="search" id="search" placeholder="ابحث عن خلفية 4K..." oninput="render()"><span class="search-icon">🔍</span><div class="hint" id="hint"></div></div>
-<div class="stats-grid"><div class="stat"><span class="label" id="labelTotal">إجمالي الخلفيات</span><span class="value accent" id="totalCount">0</span></div><div class="stat"><span class="label" id="labelDaily">تحميل اليوم</span><span class="value" id="dailyCount">0</span></div><div class="stat"><span class="label" id="labelRes">دقة قصوى</span><span class="value small" id="resValue">8K • 7680p</span></div><div class="stat"><span class="label" id="labelUpdate">تحديث</span><span class="value accent" id="updateValue">يومي</span></div></div>
-<div class="top-actions"><button class="btn-all" id="btnAllTop" onclick="filterCat('الكل')">الكل</button><button class="btn-grid" id="btnAllCats" onclick="openCatsGrid()">☰ جميع أقسام الخلفيات</button></div>
-<div class="cats-wrap"><div class="cats" id="cats"></div></div>
-<div class="grid" id="grid"></div>
-<footer class="footer">
-<div class="footer-top" id="footerTop"><b id="footerBrand">ZG 4K Wallpaper</b><div class="z" id="footerZ">Z</div></div>
-<p class="footer-desc" id="footerDesc">مجموعة فاخرة من الخلفيات المتنوعة بدقة 4K و 8K مصممة للذواقة.</p>
-<div class="footer-badges" id="footerBadges"><span id="badge1">تحديث يومي</span><span id="badge2">تحميل مجاني</span><span id="badge3">4K • 8K • UHD</span></div>
-<div class="footer-contact" id="footerContact"><a class="btn-contact" id="btnContact" href="#socialIcons">تواصل معنا</a></div>
-<div class="social-row" id="socialIcons">
-<a class="social-icon icon-ig" id="icon-ig" href="https://instagram.com/zack.zg.25" target="_blank"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="white" stroke-width="2"/><circle cx="12" cy="12" r="5" stroke="white" stroke-width="2"/><circle cx="18" cy="5.5" r="1.5" fill="white"/></svg></a>
-<a class="social-icon icon-fb" id="icon-fb" href="https://facebook.com" target="_blank"><svg viewBox="0 0 24 24" fill="white"><path d="M14 8h-2.5A1.5 1.5 0 0 0 10 9.5V12h2.5l.5 3H10v5h-3v-5H5v-3h2V9.5A3.5 3.5 0 0 1 10.5 6H14v2z"/></svg></a>
-<a class="social-icon icon-tt" id="icon-tt" href="https://tiktok.com/@zack.zg.25" target="_blank"><svg viewBox="0 0 24 24" fill="white"><path d="M12.5 2.5v10.2a3.2 3.2 0 1 1-2-3v-2.3a5.5 5.5 0 1 0 5.5 5.5V2.5h-3.5z"/></svg></a>
-<a class="social-icon icon-x" id="icon-x" href="https://twitter.com" target="_blank"><svg viewBox="0 0 24 24" fill="white"><path d="M18.9 2H22l-6.9 7.9L23 22h-5.9l-4.6-6-5.3 6H4l7.4-8.5L4 2h6l4.2 5.5L18.9 2zm-1 18h1.7L7.4 4H5.5l12.4 16z"/></svg></a>
-<a class="social-icon icon-tg" id="icon-tg" href="https://t.me" target="_blank"><svg viewBox="0 0 24 24" fill="white"><path d="M20.5 3.5l-18 7c-.6.2-.6 1 0 1.3l4.6 1.5 1.7 5.3c.1.4.5.6.9.4l2.5-2 4.7 3.4c.4.3 1 .1 1.1-.4l3-15c.1-.5-.3-.9-.8-.8l-.7.3zM8 14.6l8.5-5.3-6 5.4v3l-2.5-3.1z"/></svg></a>
+
+<header class="header">
+  <div class="header-left"><div class="z-logo">Z</div></div>
+  <div class="header-center">
+    <b id="siteTitle">ZG 4K Wallpaper</b>
+    <span id="siteSubtitle">مجموعة خلفيات فاخرة • 4K • 8K • مصمم</span>
+  </div>
+  <div class="header-right">
+    <div class="lang-switch">
+      <button id="btn-ar" class="active" onclick="setLang('ar')">AR</button>
+      <button id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</header>
+
+<div class="hero">
+  <h1 id="heroTitle">خلفيات <span class="lime">فاخرة</span> تعكس<br>ذوقك</h1>
+  <p class="hero-desc" id="heroDesc">كل خلفية مصممة بعناية فائقة لتمنح جهازك هوية فاخرة وتجربة بصرية لا تُنسى.</p>
 </div>
-<div class="footer-bottom-wrap"><div class="footer-copy" id="footerRights">© ZG 4K Wallpaper 2026 — جميع الخلفيات فاخرة ومجانية.</div></div>
+
+<div class="search-section">
+  <div class="search-box">
+    <input id="searchInput" placeholder="ابحث عن خلفية 4K..." oninput="onSearch()">
+    <div class="icon">🔍</div>
+  </div>
+  <div class="search-hint" id="searchHint"></div>
+</div>
+
+<div class="stats-outer">
+  <div class="stats-box">
+    <div class="stat"><span class="lbl" id="lblUpdate">تحديث</span><span class="val lime" id="valUpdate">يومي</span></div>
+    <div class="stat"><span class="lbl" id="lblRes">دقة قصوى</span><span class="val" id="valRes">8K • 7680p</span></div>
+    <div class="stat"><span class="lbl" id="lblToday">تحميل اليوم</span><span class="val" id="valToday">0</span></div>
+    <div class="stat"><span class="lbl" id="lblTotal">إجمالي الخلفيات</span><span class="val lime" id="valTotal">0</span></div>
+  </div>
+</div>
+
+<div class="actions-row">
+  <button class="btn-all" id="btnAll" onclick="setCat('الكل')">الكل</button>
+  <button class="btn-cats" id="btnCats" onclick="openCatsModal()">☰ <span id="btnCatsText">جميع أقسام الخلفيات</span></button>
+</div>
+
+<div class="cats-row"><div class="cats-scroll" id="catsScroll"></div></div>
+<div class="grid" id="grid"></div>
+
+<!-- FOOTER EXACT AS SCREENSHOT -->
+<footer class="footer">
+  <div class="footer-top"><div class="z-logo">Z</div><b id="footerBrand">ZG 4K Wallpaper</b></div>
+  <p class="footer-desc" id="footerDesc">مجموعة فاخرة من الخلفيات المتنوعة بدقة 4K و 8K مصممة للذواقة.</p>
+  <div class="footer-badges" id="footerBadges">
+    <span id="badge1">تحديث يومي</span>
+    <span id="badge2">تحميل مجاني</span>
+    <span id="badge3">4K • 8K • UHD</span>
+  </div>
+  <div class="footer-contact"><a class="btn-contact" id="btnContact" href="#social">تواصل معنا</a></div>
+  <div class="social-row" id="social">
+    <a class="social-icon icon-tg" href="https://t.me" target="_blank" title="Telegram">
+      <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c.54 0 1.07-.05 1.59-.14v-4.49l-1.09-.42-1.54 1.28c-.2.17-.49.2-.73.08l-.55-.27-2.3-1.45 8.3-4.9c.18-.11.28-.31.26-.52-.02-.21-.16-.39-.35-.46L6.2 8.2c-.24-.09-.5.02-.6.25-.1.23 0 .5.23.6l2.2.86-1.1 3.5c-.08.26.08.53.34.6.26.07.53-.08.6-.34l1.1-3.5 6.5 2.5c.2.08.43-.02.51-.22.08-.2-.02-.43-.22-.51L7.5 7.5c-.24-.09-.5.02-.6.25-.1.23 0 .5.23.6l9.5 3.7-8.3 4.9 2.3 1.45.55.27c.24.12.53.09.73-.08l1.54-1.28 1.09.42v4.49c.52-.09 1.05-.14 1.59-.14 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+    </a>
+    <a class="social-icon icon-x" href="https://x.com" target="_blank" title="X">
+      <svg viewBox="0 0 24 24" fill="white"><path d="M18.9 2H22l-6.9 7.9L23 22h-5.9l-4.6-6-5.3 6H4l7.4-8.5L4 2h6l4.2 5.5L18.9 2zm-1 18h1.7L7.4 4H5.5l12.4 16z"/></svg>
+    </a>
+    <a class="social-icon icon-tt" href="https://tiktok.com/@zack.zg.25" target="_blank" title="TikTok">
+      <svg viewBox="0 0 24 24" fill="white"><path d="M12.5 3.5v9.8c0 1.7-1.4 3.1-3.1 3.1-1.7 0-3.1-1.4-3.1-3.1 0-1.7 1.4-3.1 3.1-3.1.3 0 .6 0 .9.1V7.2c-.3 0-.6-.1-.9-.1-3.4 0-6.2 2.8-6.2 6.2 0 3.4 2.8 6.2 6.2 6.2 3.4 0 6.2-2.8 6.2-6.2V8.2c1.2.9 2.7 1.4 4.3 1.4V6.4c-1.8 0-3.4-.9-4.3-2.2-.2-.3-.4-.6-.5-1h-2.6z"/></svg>
+    </a>
+    <a class="social-icon icon-fb" href="https://facebook.com" target="_blank" title="Facebook">
+      <svg viewBox="0 0 24 24" fill="white"><path d="M14 8h-2.5A1.5 1.5 0 0 0 10 9.5V12h2.5l.5 3H10v5h-3v-5H5v-3h2V9.5A3.5 3.5 0 0 1 10.5 6H14v2z"/></svg>
+    </a>
+    <a class="social-icon icon-ig" href="https://instagram.com/zack.zg.25" target="_blank" title="Instagram">
+      <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="white" stroke-width="2"/><circle cx="12" cy="12" r="5" stroke="white" stroke-width="2"/><circle cx="18" cy="5.5" r="1.5" fill="white"/></svg>
+    </a>
+  </div>
+  <div class="footer-bottom"><div class="footer-copy" id="footerCopy">© ZG 4K Wallpaper 2026 — جميع الخلفيات فاخرة ومجانية.</div></div>
 </footer>
-<div class="modal" id="modal" onclick="if(event.target.id==='modal') closeModal()"><div class="modal-box"><img id="modalImg"><div class="modal-bar"><div><div id="modalTitle" style="font-weight:700;font-size:14px"></div><div id="modalMeta" style="font-size:11px;color:#666"></div></div><div style="display:flex;gap:8px"><button class="btn btn-ghost" id="btnClose" onclick="closeModal()">إغلاق</button><a id="modalDl" class="btn" download>تحميل 4K ↓</a></div></div></div></div>
-<div class="cats-modal" id="catsModal" onclick="if(event.target.id==='catsModal') closeCatsGrid()"><div class="cats-modal-head"><b id="catsModalTitle">☰ جميع أقسام الخلفيات</b><button onclick="closeCatsGrid()">✕</button></div><div class="cats-grid" id="catsGrid"></div></div>
+
+<div class="modal" id="modal" onclick="if(event.target.id==='modal') closeModal()"><div class="modal-box"><img id="modalImg"><div class="modal-bar"><div><div id="modalTitle" style="font-weight:700;font-size:14px"></div><div id="modalMeta" style="font-size:11px;color:#666"></div></div><div style="display:flex;gap:8px"><button class="btn btn-ghost" id="btnCloseModal" onclick="closeModal()">إغلاق</button><a id="modalDl" class="btn" download>تحميل 4K ↓</a></div></div></div></div>
+<div class="cats-modal" id="catsModal"><div class="cats-modal-head"><b id="catsModalTitle">جميع أقسام الخلفيات</b><button onclick="closeCatsModal()" style="background:#1a1a1a;border:1px solid #222;color:#fff;width:36px;height:36px;border-radius:50%;cursor:pointer">✕</button></div><div class="cats-grid" id="catsGrid"></div></div>
 
 <script>
-let lang='ar'; let allWalls=[]; let currentCat='الكل'; let settings={};
-const catsMap={"الكل":{ar:"الكل",en:"All"},"الطبيعة والمناظر الطبيعية":{ar:"الطبيعة والمناظر الطبيعية",en:"Nature & Landscapes"},"الشواطئ والمحيطات":{ar:"الشواطئ والمحيطات",en:"Beaches & Oceans"},"الفضاء وعلم الفلك":{ar:"الفضاء وعلم الفلك",en:"Space & Astronomy"},"الغابات والأشجار":{ar:"الغابات والأشجار",en:"Forests & Trees"},"الشلالات والأنهار":{ar:"الشلالات والأنهار",en:"Waterfalls & Rivers"},"الزهور والنباتات":{ar:"الزهور والنباتات",en:"Flowers & Plants"},"الفن التجريدي":{ar:"الفن التجريدي",en:"Abstract Art"},"التدرجات اللونية":{ar:"التدرجات اللونية",en:"Color Gradients"},"الفن الرقمي":{ar:"الفن الرقمي",en:"Digital Art"},"النيون والإضاءة":{ar:"النيون والإضاءة",en:"Neon & Lighting"},"الأشكال الهندسية والأنماط":{ar:"الأشكال الهندسية والأنماط",en:"Geometric Patterns"},"البساطة المطلقة":{ar:"البساطة المطلقة",en:"Minimalism"},"المظهر الداكن وشاشات أولييد":{ar:"المظهر الداكن وشاشات أولييد",en:"Dark & OLED"},"أفق المدن":{ar:"أفق المدن",en:"City Skylines"},"الهندسة المعمارية":{ar:"الهندسة المعمارية",en:"Architecture"},"الشوارع والأزقة":{ar:"الشوارع والأزقة",en:"Streets & Alleys"},"الأنمي والمانغا":{ar:"الأنمي والمانغا",en:"Anime & Manga"},"الأفلام والمسلسلات":{ar:"الأفلام والمسلسلات",en:"Movies & Series"},"ألعاب الفيديو":{ar:"ألعاب الفيديو",en:"Video Games"},"الأبطال الخارقون":{ar:"الأبطال الخارقون",en:"Superheroes"},"المشاهير والشخصيات العامة":{ar:"المشاهير والشخصيات العامة",en:"Celebrities"},"الكيبوب والفرق الكورية":{ar:"الكيبوب والفرق الكورية",en:"K-Pop"},"السيارات الرياضية والفارهة":{ar:"السيارات الرياضية والفارهة",en:"Sports & Luxury Cars"},"السيارات الكلاسيكية":{ar:"السيارات الكلاسيكية",en:"Classic Cars"},"الدراجات النارية":{ar:"الدراجات النارية",en:"Motorcycles"},"الطائرات والطيران":{ar:"الطائرات والطيران",en:"Aviation"},"الحيوانات البرية":{ar:"الحيوانات البرية",en:"Wild Animals"},"الطيور":{ar:"الطيور",en:"Birds"},"الحيوانات الأليفة":{ar:"الحيوانات الأليفة",en:"Pets"},"الحياة البحرية":{ar:"الحياة البحرية",en:"Marine Life"},"الموضة والأناقة":{ar:"الموضة والأناقة",en:"Fashion & Style"},"القهوة والمشروبات":{ar:"القهوة والمشروبات",en:"Coffee & Drinks"},"الأطعمة والحلويات":{ar:"الأطعمة والحلويات",en:"Food & Sweets"},"السفر والمغامرة":{ar:"السفر والمغامرة",en:"Travel & Adventure"},"عبارات تحفيزية":{ar:"عبارات تحفيزية",en:"Motivational"},"حكم وأقوال":{ar:"حكم وأقوال",en:"Quotes & Wisdom"},"الأعياد والمناسبات":{ar:"الأعياد والمناسبات",en:"Holidays & Events"},"خلفيات إسلامية ودينية":{ar:"خلفيات إسلامية ودينية",en:"Islamic & Religious"},"فصول السنة":{ar:"فصول السنة",en:"Seasons"},"الخلفيات المتحركة":{ar:"الخلفيات المتحركة",en:"Live Wallpapers"},"الأكثر شعبية":{ar:"الأكثر شعبية",en:"Most Popular"},"المضاف حديثاً":{ar:"المضاف حديثاً",en:"Recently Added"}};
-const allCatsKeys=Object.keys(catsMap).filter(k=>k!=="الكل");
-const catIcons={"الكل":"⭐","الطبيعة والمناظر الطبيعية":"🏞️","الشواطئ والمحيطات":"🏖️","الفضاء وعلم الفلك":"🌌","الغابات والأشجار":"🌲","الشلالات والأنهار":"💧","الزهور والنباتات":"🌸","الفن التجريدي":"🎨","التدرجات اللونية":"🌈","الفن الرقمي":"💻","النيون والإضاءة":"💡","الأشكال الهندسية والأنماط":"🔷","البساطة المطلقة":"◻️","المظهر الداكن وشاشات أولييد":"🌙","أفق المدن":"🌃","الهندسة المعمارية":"🏛️","الشوارع والأزقة":"🛣️","الأنمي والمانغا":"🎌","الأفلام والمسلسلات":"🎬","ألعاب الفيديو":"🎮","الأبطال الخارقون":"🦸","المشاهير والشخصيات العامة":"⭐","الكيبوب والفرق الكورية":"🎤","السيارات الرياضية والفارهة":"🏎️","السيارات الكلاسيكية":"🚗","الدراجات النارية":"🏍️","الطائرات والطيران":"✈️","الحيوانات البرية":"🦁","الطيور":"🦅","الحيوانات الأليفة":"🐱","الحياة البحرية":"🐋","الموضة والأناقة":"👗","القهوة والمشروبات":"☕","الأطعمة والحلويات":"🍰","السفر والمغامرة":"🧭","عبارات تحفيزية":"💪","حكم وأقوال":"📜","الأعياد والمناسبات":"🎉","خلفيات إسلامية ودينية":"🕌","فصول السنة":"🍂","الخلفيات المتحركة":"✨","الأكثر شعبية":"🔥","المضاف حديثاً":"🆕"};
-function tCat(k){const o=catsMap[k]; if(!o) return k; return lang==='ar'?o.ar:o.en;}
-async function loadSettings(){
-  const params=new URLSearchParams(window.location.search);
-  if(params.has('preview')){
-    const s=localStorage.getItem('zg_preview');
-    if(s){try{settings=JSON.parse(s); applySettings(); await loadWalls(); return;}catch(e){}}
+// LANGUAGE - ISOLATED & PROTECTED
+window.currentLang = localStorage.getItem('zg_lang') || 'ar';
+const LANG_TEXT = {
+  ar: {
+    subtitle: 'مجموعة خلفيات فاخرة • 4K • 8K • مصمم',
+    hero: 'خلفيات <span class="lime">فاخرة</span> تعكس<br>ذوقك',
+    desc: 'كل خلفية مصممة بعناية فائقة لتمنح جهازك هوية فاخرة وتجربة بصرية لا تُنسى.',
+    search: 'ابحث عن خلفية 4K...',
+    lblUpdate: 'تحديث', lblRes: 'دقة قصوى', lblToday: 'تحميل اليوم', lblTotal: 'إجمالي الخلفيات',
+    valUpdate: 'يومي', valRes: '8K • 7680p',
+    btnAll: 'الكل', btnCats: 'جميع أقسام الخلفيات',
+    hintTry: 'جرب', hintWall: 'خلفية', hintSec: 'القسم',
+    noResults: 'لا توجد نتائج في',
+    close: 'إغلاق', download: 'تحميل 4K ↓',
+    footerDesc: 'مجموعة فاخرة من الخلفيات المتنوعة بدقة 4K و 8K مصممة للذواقة.',
+    badge1: 'تحديث يومي', badge2: 'تحميل مجاني', badge3: '4K • 8K • UHD',
+    contact: 'تواصل معنا',
+    rights: '© ZG 4K Wallpaper 2026 — جميع الخلفيات فاخرة ومجانية.',
+    catsModal: 'جميع أقسام الخلفيات'
+  },
+  en: {
+    subtitle: 'Luxury Collection • 4K • 8K • Designer',
+    hero: 'Luxury <span class="lime">4K</span> Wallpapers<br>For Your Taste',
+    desc: 'Every wallpaper carefully crafted to give your device a luxurious identity.',
+    search: 'Search 4K wallpaper...',
+    lblUpdate: 'Update', lblRes: 'Max Res', lblToday: 'Today', lblTotal: 'Total',
+    valUpdate: 'Daily', valRes: '8K • 7680p',
+    btnAll: 'All', btnCats: 'All Categories',
+    hintTry: 'Try', hintWall: 'wallpapers', hintSec: 'Section',
+    noResults: 'No results in',
+    close: 'Close', download: 'Download 4K ↓',
+    footerDesc: 'Premium collection of diverse 4K & 8K wallpapers designed for connoisseurs.',
+    badge1: 'Daily Updates', badge2: 'Free Download', badge3: '4K • 8K • UHD',
+    contact: 'Contact Us',
+    rights: '© ZG 4K Wallpaper 2026 — All wallpapers are premium and free.',
+    catsModal: 'All Categories'
   }
-  try{const r=await fetch('settings.json?v='+Date.now()); if(r.ok) settings=await r.json();}catch(e){}
-  applySettings();
-}
-function applySettings(){
-  const s=settings;
-  const has=(v)=> v!==undefined && v!==null && String(v).trim()!=='';
-  const D_AR={
-    siteSub:'مجموعة خلفيات فاخرة • 4K • 8K • مصمم',
-    heroTitle:'خلفيات <span class="accent">فاخرة</span> تعكس<br>ذوقك',
-    heroDesc:'كل خلفية مصممة بعناية فائقة لتمنح جهازك هوية فاخرة وتجربة بصرية لا تُنسى.',
-    search:'ابحث عن خلفية 4K...',
-    total:'إجمالي الخلفيات',
-    daily:'تحميل اليوم',
-    res:'دقة قصوى',
-    update:'تحديث',
-    resValue:'8K • 7680p',
-    updateValue:'يومي',
-    btnAll:'الكل',
-    btnCats:'☰ جميع أقسام الخلفيات',
-    footerDesc:'مجموعة فاخرة من الخلفيات المتنوعة بدقة 4K و 8K مصممة للذواقة.',
-    contact:'تواصل معنا',
-    rights:'© ZG 4K Wallpaper 2026 — جميع الخلفيات فاخرة ومجانية.',
-    badge1:'تحديث يومي',
-    badge2:'تحميل مجاني',
-    badge3:'4K • 8K • UHD',
-    close:'إغلاق',
-    dl:'تحميل 4K ↓',
-    noRes:'لا توجد نتائج في',
-    try:'جرب',
-    wall:'خلفية',
-    sec:'القسم'
-  };
-  const D_EN={
-    siteSub:'Luxury Collection • 4K • 8K • Designer',
-    heroTitle:'Luxury <span class="accent">4K</span> Wallpapers<br>For Your Taste',
-    heroDesc:'Every wallpaper carefully crafted to give your device a luxurious identity and unforgettable visual experience.',
-    search:'Search 4K wallpaper...',
-    total:'Total Wallpapers',
-    daily:'Today Downloads',
-    res:'Max Resolution',
-    update:'Update',
-    resValue:'8K • 7680p',
-    updateValue:'Daily',
-    btnAll:'All',
-    btnCats:'☰ All Wallpaper Categories',
-    footerDesc:'Premium collection of diverse 4K & 8K wallpapers designed for connoisseurs.',
-    contact:'Contact Us',
-    rights:'© ZG 4K Wallpaper 2026 — All wallpapers are premium and free.',
-    badge1:'Daily Updates',
-    badge2:'Free Download',
-    badge3:'4K • 8K • UHD',
-    close:'Close',
-    dl:'Download 4K ↓',
-    noRes:'No results in',
-    try:'Try',
-    wall:'wallpapers',
-    sec:'Section'
-  };
-  const D=lang==='ar'?D_AR:D_EN;
+};
 
-  // colors & sizes
-  const c=s.colors||{}; const fs=s.fontSizes||{}; let css='';
-  if(has(c.bg)) css+=`body{background:${c.bg}!important}\n`;
-  if(has(c.text)) css+=`body{color:${c.text}!important}\n`;
-  if(has(c.headerBg)) css+=`.header{background:${c.headerBg}!important}\n`;
-  if(has(c.heroTitle)) css+=`.h1{color:${c.heroTitle}!important}\n`;
-  if(has(c.heroAccent)) css+=`.h1 .accent{color:${c.heroAccent}!important; text-decoration-color:${c.heroAccent}!important}\n`;
-  if(has(c.heroDesc)) css+=`.sub{color:${c.heroDesc}!important}\n`;
-  if(has(c.logoBg)) css+=`.logo .z,.footer-top .z{background:${c.logoBg}!important}\n`;
-  if(has(c.logoChar)) css+=`.logo .z,.footer-top .z{color:${c.logoChar}!important}\n`;
-  if(has(c.searchBg)) css+=`.search{background:${c.searchBg}!important}\n`;
-  if(has(c.statBg)) css+=`.stat{background:${c.statBg}!important}\n`;
-  if(has(c.statLabel)) css+=`.stat .label{color:${c.statLabel}!important}\n`;
-  if(has(c.statValue)) css+=`.stat .value{color:${c.statValue}!important}\n`;
-  if(has(c.statAccent)) css+=`.stat .value.accent{color:${c.statAccent}!important}\n`;
-  if(has(c.cardBg)) css+=`.card,.card .info{background:${c.cardBg}!important}\n`;
-  if(has(c.catBg)) css+=`.cats button{background:${c.catBg}!important}\n`;
-  if(has(c.footerBg)) css+=`.footer{background:${c.footerBg}!important}\n`;
-  if(has(c.footerText)) css+=`.footer-desc,.footer-copy{color:${c.footerText}!important}\n`;
-  if(has(c.accent)) css+=`.btn-all,.btn-contact,.btn,.lang button.active,.cats button.active,.cat-square.active{background:${c.accent}!important; border-color:${c.accent}!important}\n`;
-  if(fs.heroTitle) css+=`.h1{font-size:${fs.heroTitle}px!important}\n`;
-  if(fs.heroDesc) css+=`.sub{font-size:${fs.heroDesc}px!important}\n`;
-  if(fs.siteName) css+=`#siteName{font-size:${fs.siteName}px!important}\n`;
-  if(fs.siteSub) css+=`#siteSub{font-size:${fs.siteSub}px!important}\n`;
-  if(fs.search) css+=`.search{font-size:${fs.search}px!important}\n`;
-  if(fs.statLabel) css+=`.stat .label{font-size:${fs.statLabel}px!important}\n`;
-  if(fs.statValue) css+=`.stat .value{font-size:${fs.statValue}px!important}\n`;
-  if(fs.cardTitle) css+=`.card .title{font-size:${fs.cardTitle}px!important}\n`;
-  if(fs.footerDesc) css+=`.footer-desc{font-size:${fs.footerDesc}px!important}\n`;
-  if(fs.contactBtn) css+=`.btn-contact{font-size:${fs.contactBtn}px!important}\n`;
-  document.getElementById('dynamicOverrides').textContent=css;
+const CATS_MAP = {
+  "الكل":{ar:"الكل",en:"All"},
+  "الطبيعة والمناظر الطبيعية":{ar:"الطبيعة والمناظر الطبيعية",en:"Nature & Landscapes"},
+  "الشواطئ والمحيطات":{ar:"الشواطئ والمحيطات",en:"Beaches & Oceans"},
+  "الفضاء وعلم الفلك":{ar:"الفضاء وعلم الفلك",en:"Space & Astronomy"},
+  "الغابات والأشجار":{ar:"الغابات والأشجار",en:"Forests & Trees"},
+  "الشلالات والأنهار":{ar:"الشلالات والأنهار",en:"Waterfalls & Rivers"},
+  "الزهور والنباتات":{ar:"الزهور والنباتات",en:"Flowers & Plants"},
+  "الفن التجريدي":{ar:"الفن التجريدي",en:"Abstract Art"},
+  "التدرجات اللونية":{ar:"التدرجات اللونية",en:"Color Gradients"},
+  "الفن الرقمي":{ar:"الفن الرقمي",en:"Digital Art"},
+  "النيون والإضاءة":{ar:"النيون والإضاءة",en:"Neon & Lighting"},
+  "الأشكال الهندسية والأنماط":{ar:"الأشكال الهندسية والأنماط",en:"Geometric"},
+  "البساطة المطلقة":{ar:"البساطة المطلقة",en:"Minimalism"},
+  "المظهر الداكن وشاشات أولييد":{ar:"المظهر الداكن وشاشات أولييد",en:"Dark & OLED"},
+  "أفق المدن":{ar:"أفق المدن",en:"City Skylines"},
+  "الهندسة المعمارية":{ar:"الهندسة المعمارية",en:"Architecture"},
+  "الشوارع والأزقة":{ar:"الشوارع والأزقة",en:"Streets"},
+  "الأنمي والمانغا":{ar:"الأنمي والمانغا",en:"Anime & Manga"},
+  "الأفلام والمسلسلات":{ar:"الأفلام والمسلسلات",en:"Movies & Series"},
+  "ألعاب الفيديو":{ar:"ألعاب الفيديو",en:"Video Games"},
+  "الأبطال الخارقون":{ar:"الأبطال الخارقون",en:"Superheroes"},
+  "المشاهير والشخصيات العامة":{ar:"المشاهير والشخصيات العامة",en:"Celebrities"},
+  "الكيبوب والفرق الكورية":{ar:"الكيبوب والفرق الكورية",en:"K-Pop"},
+  "السيارات الرياضية والفارهة":{ar:"السيارات الرياضية والفارهة",en:"Sports Cars"},
+  "السيارات الكلاسيكية":{ar:"السيارات الكلاسيكية",en:"Classic Cars"},
+  "الدراجات النارية":{ar:"الدراجات النارية",en:"Motorcycles"},
+  "الطائرات والطيران":{ar:"الطائرات والطيران",en:"Aviation"},
+  "الحيوانات البرية":{ar:"الحيوانات البرية",en:"Wild Animals"},
+  "الطيور":{ar:"الطيور",en:"Birds"},
+  "الحيوانات الأليفة":{ar:"الحيوانات الأليفة",en:"Pets"},
+  "الحياة البحرية":{ar:"الحياة البحرية",en:"Marine Life"},
+  "الموضة والأناقة":{ar:"الموضة والأناقة",en:"Fashion"},
+  "القهوة والمشروبات":{ar:"القهوة والمشروبات",en:"Coffee"},
+  "الأطعمة والحلويات":{ar:"الأطعمة والحلويات",en:"Food"},
+  "السفر والمغامرة":{ar:"السفر والمغامرة",en:"Travel"},
+  "عبارات تحفيزية":{ar:"عبارات تحفيزية",en:"Motivational"},
+  "حكم وأقوال":{ar:"حكم وأقوال",en:"Quotes"},
+  "الأعياد والمناسبات":{ar:"الأعياد والمناسبات",en:"Holidays"},
+  "خلفيات إسلامية ودينية":{ar:"خلفيات إسلامية ودينية",en:"Islamic"},
+  "فصول السنة":{ar:"فصول السنة",en:"Seasons"},
+  "الخلفيات المتحركة":{ar:"الخلفيات المتحركة",en:"Live Wallpapers"},
+  "الأكثر شعبية":{ar:"الأكثر شعبية",en:"Most Popular"},
+  "المضاف حديثاً":{ar:"المضاف حديثاً",en:"Recently Added"}
+};
 
-  // texts - ALWAYS translate with fallback
-  if(has(s.logoChar)){document.getElementById('logoZ').textContent=s.logoChar; document.getElementById('footerZ').textContent=s.logoChar;}
-  if(has(s.siteName)){document.getElementById('siteName').textContent=s.siteName; document.getElementById('footerBrand').textContent=s.siteName;}
+function tCat(k){ const o=CATS_MAP[k]; return o ? (window.currentLang==='ar'?o.ar:o.en) : k; }
 
-  document.getElementById('siteSub').textContent = lang==='ar' ? (has(s.siteSub_ar)?s.siteSub_ar:D_AR.siteSub) : (has(s.siteSub_en)?s.siteSub_en:D_EN.siteSub);
-  document.getElementById('heroTitle').innerHTML = lang==='ar' ? (has(s.heroTitle_ar)?s.heroTitle_ar:D_AR.heroTitle) : (has(s.heroTitle_en)?s.heroTitle_en:D_EN.heroTitle);
-  document.getElementById('heroDesc').textContent = lang==='ar' ? (has(s.heroDesc_ar)?s.heroDesc_ar:D_AR.heroDesc) : (has(s.heroDesc_en)?s.heroDesc_en:D_EN.heroDesc);
-  document.getElementById('search').placeholder = lang==='ar' ? (has(s.searchPlaceholder_ar)?s.searchPlaceholder_ar:D_AR.search) : (has(s.searchPlaceholder_en)?s.searchPlaceholder_en:D_EN.search);
-  document.getElementById('labelTotal').textContent = lang==='ar' ? (has(s.statTotal_ar)?s.statTotal_ar:D_AR.total) : (has(s.statTotal_en)?s.statTotal_en:D_EN.total);
-  document.getElementById('labelDaily').textContent = lang==='ar' ? (has(s.statDaily_ar)?s.statDaily_ar:D_AR.daily) : (has(s.statDaily_en)?s.statDaily_en:D_EN.daily);
-  document.getElementById('labelRes').textContent = lang==='ar' ? (has(s.statRes_ar)?s.statRes_ar:D_AR.res) : (has(s.statRes_en)?s.statRes_en:D_EN.res);
-  document.getElementById('labelUpdate').textContent = lang==='ar' ? (has(s.statUpdate_ar)?s.statUpdate_ar:D_AR.update) : (has(s.statUpdate_en)?s.statUpdate_en:D_EN.update);
-  document.getElementById('resValue').textContent = has(s.statResValue)?s.statResValue:D_AR.resValue;
-  document.getElementById('updateValue').textContent = lang==='ar' ? (has(s.statUpdateValue_ar)?s.statUpdateValue_ar:D_AR.updateValue) : (has(s.statUpdateValue_en)?s.statUpdateValue_en:D_EN.updateValue);
-  document.getElementById('btnAllTop').textContent = lang==='ar' ? (has(s.btnAll_ar)?s.btnAll_ar:D_AR.btnAll) : (has(s.btnAll_en)?s.btnAll_en:D_EN.btnAll);
-  const catsText = lang==='ar' ? (has(s.btnCats_ar)?s.btnCats_ar:D_AR.btnCats) : (has(s.btnCats_en)?s.btnCats_en:D_EN.btnCats);
-  document.getElementById('btnAllCats').textContent=catsText;
-  document.getElementById('catsModalTitle').textContent=catsText;
-  document.getElementById('footerDesc').textContent = lang==='ar' ? (has(s.footerDesc_ar)?s.footerDesc_ar:D_AR.footerDesc) : (has(s.footerDesc_en)?s.footerDesc_en:D_EN.footerDesc);
-  document.getElementById('btnContact').textContent = lang==='ar' ? (has(s.contactBtn_ar)?s.contactBtn_ar:D_AR.contact) : (has(s.contactBtn_en)?s.contactBtn_en:D_EN.contact);
-  document.getElementById('footerRights').textContent = lang==='ar' ? (has(s.footerRights_ar)?s.footerRights_ar:D_AR.rights) : (has(s.footerRights_en)?s.footerRights_en:D_EN.rights);
-  document.getElementById('badge1').textContent = lang==='ar' ? (has(s.badge1_ar)?s.badge1_ar:D_AR.badge1) : (has(s.badge1_en)?s.badge1_en:D_EN.badge1);
-  document.getElementById('badge2').textContent = lang==='ar' ? (has(s.badge2_ar)?s.badge2_ar:D_AR.badge2) : (has(s.badge2_en)?s.badge2_en:D_EN.badge2);
-  document.getElementById('badge3').textContent = has(s.badge3)?s.badge3:D_AR.badge3;
-  document.getElementById('btnClose').textContent = D.close;
-  document.getElementById('modalDl').textContent = D.dl;
+window.setLang = function(lang){
+  window.currentLang = lang;
+  localStorage.setItem('zg_lang', lang);
+  const T = LANG_TEXT[lang];
+  document.getElementById('btn-ar').classList.toggle('active', lang==='ar');
+  document.getElementById('btn-en').classList.toggle('active', lang==='en');
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang==='ar'?'rtl':'ltr';
+  document.getElementById('siteSubtitle').textContent = T.subtitle;
+  document.getElementById('heroTitle').innerHTML = T.hero;
+  document.getElementById('heroDesc').textContent = T.desc;
+  document.getElementById('searchInput').placeholder = T.search;
+  document.getElementById('lblUpdate').textContent = T.lblUpdate;
+  document.getElementById('lblRes').textContent = T.lblRes;
+  document.getElementById('lblToday').textContent = T.lblToday;
+  document.getElementById('lblTotal').textContent = T.lblTotal;
+  document.getElementById('valUpdate').textContent = T.valUpdate;
+  document.getElementById('valRes').textContent = T.valRes;
+  document.getElementById('btnAll').textContent = T.btnAll;
+  document.getElementById('btnCatsText').textContent = T.btnCats;
+  document.getElementById('btnCloseModal').textContent = T.close;
+  document.getElementById('modalDl').textContent = T.download;
+  document.getElementById('catsModalTitle').textContent = T.catsModal;
+  document.getElementById('footerDesc').textContent = T.footerDesc;
+  document.getElementById('badge1').textContent = T.badge1;
+  document.getElementById('badge2').textContent = T.badge2;
+  document.getElementById('badge3').textContent = T.badge3;
+  document.getElementById('btnContact').textContent = T.contact;
+  document.getElementById('footerCopy').textContent = T.rights;
+  document.getElementById('footerDesc').classList.toggle('ltr', lang!=='ar');
+  document.getElementById('footerCopy').classList.toggle('ltr', lang!=='ar');
+  document.getElementById('searchHint').classList.toggle('ltr', lang!=='ar');
+  renderCats(); renderGrid();
+};
 
-  if(has(s.instagram)) document.getElementById('icon-ig').href=`https://instagram.com/${s.instagram.replace('@','')}`;
-  if(has(s.facebook)) document.getElementById('icon-fb').href= s.facebook.includes('http')?s.facebook:`https://facebook.com/${s.facebook}`;
-  if(has(s.tiktok)) document.getElementById('icon-tt').href=`https://tiktok.com/@${s.tiktok.replace('@','')}`;
-  if(has(s.twitter)) document.getElementById('icon-x').href= s.twitter.includes('http')?s.twitter:`https://twitter.com/${s.twitter.replace('@','')}`;
-  if(has(s.telegram)) document.getElementById('icon-tg').href= s.telegram.includes('http')?s.telegram:`https://t.me/${s.telegram.replace('@','')}`;
+window.setCat = function(cat){ window.currentCat=cat; renderCats(); renderGrid(); renderCatsGrid(); };
+window.onSearch = function(){ renderGrid(); };
+window.openCatsModal = function(){ document.getElementById('catsModal').classList.add('active'); };
+window.closeCatsModal = function(){ document.getElementById('catsModal').classList.remove('active'); };
+window.closeModal = function(){ document.getElementById('modal').classList.remove('active'); };
+
+let walls=[]; window.currentCat='الكل';
+
+function renderCats(){
+  const el=document.getElementById('catsScroll');
+  const keys=Object.keys(CATS_MAP);
+  el.innerHTML=keys.map(k=>`<button class="cat-chip ${k===window.currentCat?'active':''}" onclick="setCat('${k.replace(/'/g,"\\'")}')">${tCat(k)}</button>`).join('');
 }
-async function loadWalls(){try{const r=await fetch('wallpapers.json?v='+Date.now()); if(r.ok) allWalls=await r.json(); else allWalls=JSON.parse(localStorage.getItem('zack_walls')||'[]');}catch(e){allWalls=JSON.parse(localStorage.getItem('zack_walls')||'[]');} updateStats(); renderCats(); renderGridCats(); render();}
-function updateStats(){const count=allWalls.length; document.getElementById('totalCount').textContent=count.toLocaleString('en-US'); document.getElementById('dailyCount').textContent= count>0 ? Math.max(1,Math.floor(count*1.8+12)).toLocaleString('en-US') : '0';}
-function renderCats(){const el=document.getElementById('cats'); const full=["الكل",...allCatsKeys]; el.innerHTML=full.map(k=>`<button class="${k===currentCat?'active':''}" onclick="filterCat('${k.replace(/'/g,"\\'")}')">${tCat(k)}</button>`).join('');}
-function renderGridCats(){const grid=document.getElementById('catsGrid'); const full=["الكل",...allCatsKeys]; grid.innerHTML=full.map(k=>{const icon=catIcons[k]||'🖼️'; return `<div class="cat-square ${k===currentCat?'active':''}" onclick="selectFromGrid('${k.replace(/'/g,"\\'")}')"><div class="ic">${icon}</div><div class="name">${tCat(k)}</div></div>`;}).join('');}
-function openCatsGrid(){document.getElementById('catsModal').classList.add('active');}
-function closeCatsGrid(){document.getElementById('catsModal').classList.remove('active');}
-function selectFromGrid(k){currentCat=k; closeCatsGrid(); renderCats(); renderGridCats(); render();}
-function filterCat(k){currentCat=k; renderCats(); renderGridCats(); render();}
-function render(){
-  const q=document.getElementById('search').value.toLowerCase();
-  const filtered=allWalls.filter(w=>{const t=(w.title_ar||w.title||'')+' '+(w.title_en||'')+' '+(w.category||''); const mq=!q||t.toLowerCase().includes(q); const mc=currentCat==='الكل'||w.category===currentCat; return mq&&mc;});
-  const D=lang==='ar'?{try:'جرب',wall:'خلفية',sec:'القسم',no:'لا توجد نتائج في'}:{try:'Try',wall:'wallpapers',sec:'Section',no:'No results in'};
-  const samples=allCatsKeys.slice(0,3).map(k=>tCat(k)).join(lang==='ar'?'، ':', ', ');
-  document.getElementById('hint').textContent=`${D.try}: ${samples} • ${filtered.length} ${D.wall} • ${D.sec}: ${tCat(currentCat)}`;
-  if(filtered.length===0){document.getElementById('grid').innerHTML=`<div class="no-results">${D.no} ${tCat(currentCat)}</div>`; return;}
-  document.getElementById('grid').innerHTML=filtered.map(w=>{const title=lang==='ar'?(w.title_ar||w.title):(w.title_en||w.title_ar||w.title); return `<div class="card" onclick="openModal(${w.id})"><div class="img"><img src="${w.url}" loading="lazy"><span class="tag">${tCat(w.category||'')||w.category}</span><span class="dl">↓</span></div><div class="info"><div><div class="title">${title||'wallpaper'}</div><div class="meta">4K • ${w.type||'حاسوب'}</div></div><div class="arrow">›</div></div></div>`;}).join('');
+function renderCatsGrid(){
+  const grid=document.getElementById('catsGrid');
+  const keys=Object.keys(CATS_MAP);
+  grid.innerHTML=keys.map(k=>`<div class="cat-square ${k===window.currentCat?'active':''}" onclick="setCat('${k.replace(/'/g,"\\'")}'); closeCatsModal();"><div>${k==='الكل'?'⭐':'🖼️'}</div><div style="font-size:13px;font-weight:600;text-align:center">${tCat(k)}</div></div>`).join('');
 }
-function openModal(id){const w=allWalls.find(x=>x.id===id); if(!w) return; const title=lang==='ar'?(w.title_ar||w.title):(w.title_en||w.title_ar||w.title); document.getElementById('modalImg').src=w.url; document.getElementById('modalTitle').textContent=title; document.getElementById('modalMeta').textContent=(tCat(w.category||'')||w.category||'')+' • '+(w.type||'')+' • 4K'; document.getElementById('modalDl').href=w.url; document.getElementById('modal').classList.add('active');}
-function closeModal(){document.getElementById('modal').classList.remove('active');}
-function setLang(l){
-  lang=l;
-  document.getElementById('btn-ar').classList.toggle('active',l==='ar');
-  document.getElementById('btn-en').classList.toggle('active',l==='en');
-  document.documentElement.lang=l;
-  document.documentElement.dir=l==='ar'?'rtl':'ltr';
-  ['hint','footerTop','footerDesc','footerBadges','footerContact','socialIcons','footerRights'].forEach(id=>{const el=document.getElementById(id); if(el) el.classList.toggle('ltr',l!=='ar');});
-  document.getElementById('logoText').style.textAlign=l==='ar'?'right':'left';
-  applySettings();
-  renderCats(); renderGridCats(); render();
+function renderGrid(){
+  const T=LANG_TEXT[window.currentLang];
+  const q=(document.getElementById('searchInput').value||'').toLowerCase();
+  const filtered=walls.filter(w=>{
+    const txt=(w.title_ar||'')+' '+(w.title_en||'')+' '+(w.category||'');
+    return (!q||txt.toLowerCase().includes(q)) && (window.currentCat==='الكل'||w.category===window.currentCat);
+  });
+  const hint=document.getElementById('searchHint');
+  if(hint){
+    const sample=[tCat("الطبيعة والمناظر الطبيعية"),tCat("الشواطئ والمحيطات"),tCat("الفضاء وعلم الفلك")].join('، ');
+    hint.textContent=`${T.hintTry}: ${sample} • ${filtered.length} ${T.hintWall} • ${T.hintSec}: ${tCat(window.currentCat)}`;
+  }
+  const grid=document.getElementById('grid');
+  if(filtered.length===0){
+    grid.innerHTML=`<div class="no-results">${T.noResults} ${tCat(window.currentCat)}</div>`;
+  }else{
+    grid.innerHTML=filtered.map(w=>{
+      const title=window.currentLang==='ar'?(w.title_ar||w.title):(w.title_en||w.title_ar||w.title);
+      return `<div class="card" onclick="openWall(${w.id})"><div class="img"><img src="${w.url}" loading="lazy"><span class="tag">${tCat(w.category)}</span><span class="dl">↓</span></div><div class="info"><div><div class="title">${title||'wallpaper'}</div><div style="font-size:10px;color:#555;margin-top:2px">4K • ${w.type||'حاسوب'}</div></div><div style="color:#555">›</div></div></div>`;
+    }).join('');
+  }
+  document.getElementById('valTotal').textContent=walls.length;
+  document.getElementById('valToday').textContent=walls.length>0?Math.max(1,Math.floor(walls.length*1.8+12)):0;
 }
-(async()=>{await loadSettings(); await loadWalls();})();
+window.openWall=function(id){
+  const w=walls.find(x=>x.id===id); if(!w) return;
+  const title=window.currentLang==='ar'?(w.title_ar||w.title):(w.title_en||w.title_ar||w.title);
+  document.getElementById('modalImg').src=w.url;
+  document.getElementById('modalTitle').textContent=title;
+  document.getElementById('modalMeta').textContent=tCat(w.category)+' • '+(w.type||'')+' • 4K';
+  document.getElementById('modalDl').href=w.url;
+  document.getElementById('modal').classList.add('active');
+};
+async function loadWalls(){
+  try{
+    const r=await fetch('wallpapers.json?v='+Date.now());
+    if(r.ok){ const j=await r.json(); if(Array.isArray(j)&&j.length>0){ walls=j; renderCats(); renderCatsGrid(); renderGrid(); return; } }
+  }catch(e){}
+  try{
+    const local=JSON.parse(localStorage.getItem('zack_walls')||'[]');
+    if(local.length>0){ walls=local; renderCats(); renderCatsGrid(); renderGrid(); return; }
+  }catch(e){}
+  walls=[]; renderCats(); renderCatsGrid(); renderGrid();
+}
+document.addEventListener('DOMContentLoaded', ()=>{ setLang(window.currentLang); loadWalls(); });
 </script>
 <script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body>
 </html>
