@@ -24,147 +24,440 @@
 </style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>لوحة تحكم كاملة - ZG 4K</title>
+<title>ZG Admin - Full CMS 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+:root{--lime:#D4FF32;--bg:#0a0a0a;--card:#121212;--border:#1e1e1e}
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
-body{background:#0a0a0a;color:#fff;min-height:100vh;padding:16px}
-.card{background:#151515;border:1px solid #222;border-radius:20px;padding:20px;width:100%;max-width:440px;margin:0 auto}
-input,select,textarea{width:100%;background:#0f0f0f;border:1px solid #2a2a2a;border-radius:12px;padding:12px;color:#fff;margin-bottom:10px;outline:none;font-size:13px}
+body{background:#080808;color:#fff;min-height:100vh;padding:14px}
+.header{display:flex;justify-content:space-between;align-items:center;background:#0f0f0f;border:1px solid var(--border);border-radius:16px;padding:14px 18px;margin-bottom:14px}
+.header b{font-size:18px}
+.header .actions{display:flex;gap:8px}
+.btn-sm{background:#1a1a1a;border:1px solid #222;color:#fff;padding:8px 14px;border-radius:22px;font-size:12px;font-weight:700;cursor:pointer;text-decoration:none}
+.btn-lime{background:var(--lime);color:#000;border:none;padding:10px 18px;border-radius:22px;font-size:13px;font-weight:900;cursor:pointer}
+.tabs{display:flex;gap:8px;overflow-x:auto;white-space:nowrap;padding:6px 2px 12px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{background:#141414;border:1px solid var(--border);color:#777;padding:12px 20px;border-radius:30px;font-size:13px;font-weight:800;cursor:pointer;flex-shrink:0}
+.tab.active{background:var(--lime);color:#000;border-color:var(--lime)}
+.panel{display:none}
+.panel.active{display:block}
+.box{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;margin-bottom:14px}
+.box h3{font-size:15px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.box h4{font-size:13px;color:#999;margin:16px 0 8px;border-top:1px solid #1a1a1a;padding-top:12px}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.col{flex:1;min-width:220px}
+label{font-size:11px;color:#666;margin-bottom:6px;display:block;font-weight:700}
+input, textarea, select{width:100%;background:#0f0f0f;border:1px solid #222;border-radius:14px;padding:12px 14px;color:#fff;font-size:13px;outline:none;margin-bottom:10px}
 textarea{min-height:80px;resize:vertical}
-button{width:100%;background:#D4FF32;color:#000;border:none;border-radius:12px;padding:12px;font-weight:700;cursor:pointer;margin-bottom:8px}
-.ghost{background:#1e1e1e;color:#fff;border:1px solid #333}
-.danger{background:#2a1212;color:#ff6b6b;border:1px solid #5a1a1a}
-.dashboard{display:none;width:100%;max-width:1000px;margin:0 auto}
-.dashboard.active{display:block}
-.login.active{display:none}
-.badge{background:#1e1e1e;border:1px solid #333;padding:6px 12px;border-radius:20px;font-size:11px;color:#aaa}
-.panel{background:#151515;border:1px solid #222;border-radius:16px;padding:16px;margin-bottom:12px}
-.list{display:grid;gap:8px;max-height:350px;overflow:auto;margin-top:10px}
-.item{background:#0f0f0f;border:1px solid #222;border-radius:10px;padding:10px;display:flex;gap:10px;align-items:center}
-.item img{width:52px;height:52px;border-radius:10px;object-fit:cover}
-.row{display:flex;gap:8px}
-.tabs{display:flex;gap:8px;margin-bottom:16px;overflow:auto}
-.tabs button{width:auto;padding:10px 18px;white-space:nowrap}
-.tabs button.active{background:#D4FF32;color:#000}
-.tab{display:none}
-.tab.active{display:block}
-.color-row{display:flex;gap:10px;align-items:center;margin-bottom:10px}
-.color-row input[type="color"]{width:60px;height:44px;padding:2px}
+input[type=color]{padding:2px;height:44px;border-radius:12px;cursor:pointer}
+input[type=range]{padding:0;background:transparent;border:none}
+.range-wrap{display:flex;align-items:center;gap:10px;margin-bottom:12px;background:#0f0f0f;border:1px solid #222;border-radius:14px;padding:10px 14px}
+.range-wrap span{font-size:12px;color:#888;min-width:36px;text-align:left}
+.range-wrap input{margin:0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:640px){.grid2{grid-template-columns:1fr}}
+.actions-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.save-btn{width:100%;background:var(--lime);color:#000;border:none;padding:14px;border-radius:16px;font-size:14px;font-weight:900;cursor:pointer;margin-top:10px}
+.save-btn:disabled{opacity:.6;cursor:not-allowed}
+.preview-btn{width:100%;background:#1a1a1a;border:1px solid #2a2a2a;color:#fff;padding:12px;border-radius:16px;font-size:13px;font-weight:800;cursor:pointer;margin-top:8px}
+.note{font-size:11px;color:#555;line-height:1.8;margin-top:8px}
+.wall-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-top:14px}
+.w-card{background:#0f0f0f;border:1px solid #222;border-radius:14px;overflow:hidden}
+.w-card img{width:100%;height:110px;object-fit:cover;display:block}
+.w-card .info{padding:8px}
+.w-card .t{font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.w-card .btns{display:flex;gap:6px;margin-top:6px}
+.w-card .btns button{flex:1;padding:6px;border-radius:20px;border:none;font-size:10px;font-weight:800;cursor:pointer}
+.login-wrap{max-width:400px;margin:60px auto;background:#111;border:1px solid #222;border-radius:20px;padding:24px;text-align:center}
+.login-wrap input{margin-top:12px}
+.login-wrap button{width:100%;margin-top:12px}
 </style>
 </head>
 <body>
-<div class="card login" id="loginCard">
-<h2>دخول الإدارة - ZG 4K Full CMS</h2>
-<input id="user" placeholder="ZakariaZG27">
-<input id="pass" type="password" placeholder="ZakariaZG27">
-<button onclick="login()">دخول</button>
-<a href="index.html" style="color:#666;font-size:12px;display:block;text-align:center;margin-top:10px">← الموقع</a>
+<div id="loginBox" class="login-wrap">
+<h2 style="color:var(--lime)">ZG Admin تسجيل دخول</h2>
+<input type="password" id="pass" placeholder="كلمة السر">
+<input type="text" id="user" placeholder="اسم المستخدم" value="ZakariaZG27">
+<button class="btn-lime" onclick="doLogin()">دخول</button>
+<div id="loginMsg" style="font-size:12px;color:#666;margin-top:10px"></div>
 </div>
-<div class="dashboard" id="dash">
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:10px">
-<h2>⚙️ لوحة تحكم كاملة - ZG 4K</h2>
-<div><span class="badge" id="count">0</span> <button class="ghost" style="width:auto;padding:6px 12px" onclick="logout()">خروج</button></div>
+
+<div id="app" style="display:none">
+<div class="header">
+<b>ZG 4K - لوحة التحكم الكاملة V2</b>
+<div class="actions">
+<a class="btn-sm" href="index.html?preview=1" target="_blank">👁️ معاينة</a>
+<button class="btn-sm" onclick="logout()">خروج</button>
 </div>
+</div>
+
 <div class="tabs">
-<button class="active" onclick="showTab('walls',event)">🖼️ الخلفيات</button>
-<button onclick="showTab('design',event)">🎨 الألوان</button>
-<button onclick="showTab('content',event)">📝 الوصف</button>
-<button onclick="showTab('contact',event)">📞 التواصل</button>
-</div>
-<div class="panel" style="border-color:#D4FF32;background:#1a1a0e">
-<h3 style="color:#D4FF32">🔑 توكن GitHub (مرة واحدة)</h3>
-<input id="ghToken" placeholder="ghp_xxxxxxxxxx" type="password">
-<button class="ghost" onclick="saveToken()">حفظ التوكن</button>
-<p id="tokenStatus" style="font-size:11px;color:#D4FF32;margin-top:6px"></p>
+<button class="tab active" data-tab="walls" onclick="switchTab('walls')">🖼️ الخلفيات</button>
+<button class="tab" data-tab="content" onclick="switchTab('content')">📝 المحتوى</button>
+<button class="tab" data-tab="colors" onclick="switchTab('colors')">🎨 الألوان</button>
+<button class="tab" data-tab="sizes" onclick="switchTab('sizes')">📏 الأحجام</button>
+<button class="tab" data-tab="contact" onclick="switchTab('contact')">📞 التواصل</button>
+<button class="tab" data-tab="token" onclick="switchTab('token')">🔑 GitHub</button>
 </div>
 
-<div class="tab active" id="tab-walls">
-<div class="panel">
-<h3>➕ إضافة خلفية بعنوانين (عربي + إنجليزي)</h3>
-<div class="row"><button class="ghost" onclick="document.getElementById('filePick').click()" style="flex:1;border-style:dashed">📁 من الهاتف</button><input type="file" id="filePick" accept="image/*" style="display:none"></div>
-<input id="wUrl" placeholder="رابط الصورة">
-<div id="imgPreview" style="display:none"><img id="previewImg" style="width:100%;max-height:160px;object-fit:cover;border-radius:12px;margin-bottom:10px"></div>
-<div class="row"><select id="wCat"><option>طبيعة</option><option>سيارات</option><option>أنمي</option><option>فضاء</option><option>مدن</option><option>ألعاب</option><option>حيوانات</option></select><select id="wType"><option>حاسوب</option><option>هاتف</option><option>الكل</option></select></div>
-<input id="wTitleAr" placeholder="عنوان عربي - مثال: جبال الأطلس الفاخرة">
-<input id="wTitleEn" placeholder="English Title - e.g: Luxury Atlas Mountains">
-<p style="font-size:11px;color:#888;margin-bottom:8px">💡 اكتب عنوانين، زر اللغة في الموقع سيبدل بينهم تلقائياً</p>
-<button onclick="addWall()">إضافة للقائمة المحلية</button>
+<div class="panel active" id="panel-walls">
+<div class="box">
+<h3>➕ إضافة خلفية جديدة</h3>
+<div class="grid2">
+<div><label>رابط الصورة</label><input id="w_url" placeholder="https://..."></div>
+<div><label>القسم</label><select id="w_cat"></select></div>
 </div>
-<div class="panel">
-<h3>📋 خلفياتك (<span id="count2">0</span>) - مع تعديل</h3>
-<input id="search" placeholder="بحث..." oninput="renderWalls()">
-<div class="list" id="list"></div>
-<button onclick="publishWalls()" style="background:#D4FF32;margin-top:12px">🚀 نشر الخلفيات الآن</button>
-<div id="publishWallsStatus" style="font-size:12px;margin-top:8px"></div>
+<div class="grid2">
+<div><label>عنوان عربي</label><input id="w_title_ar" placeholder="طبيعة خلابة"></div>
+<div><label>English Title</label><input id="w_title_en" placeholder="Beautiful Nature"></div>
+</div>
+<div class="grid2">
+<div><label>النوع</label><select id="w_type"><option>حاسوب</option><option>هاتف</option><option>الكل</option></select></div>
+<div><label>معاينة</label><input id="w_preview" disabled></div>
+</div>
+<button class="save-btn" onclick="addWall()">➕ إضافة ونشر</button>
+</div>
+<div class="box">
+<h3>🖼️ الحالية (<span id="wallCount">0</span>)</h3>
+<div class="wall-list" id="wallList"></div>
 </div>
 </div>
 
-<div class="tab" id="tab-design">
-<div class="panel">
-<h3>🎨 ألوان الموقع</h3>
-<div class="color-row"><label style="flex:1;font-size:12px">لون الخلفية</label><input type="color" id="bgColor" value="#0a0a0a"><input id="bgColorText" placeholder="#0a0a0a"></div>
-<div class="color-row"><label style="flex:1;font-size:12px">لون الكتابة</label><input type="color" id="textColor" value="#ffffff"><input id="textColorText" placeholder="#ffffff"></div>
-<div class="color-row"><label style="flex:1;font-size:12px">لون الأزرار (النيون)</label><input type="color" id="accentColor" value="#D4FF32"><input id="accentColorText" placeholder="#D4FF32"></div>
-<button onclick="previewColors()">👁️ معاينة الألوان</button>
-<div id="colorPreview" style="height:60px;border-radius:12px;margin-top:10px;border:1px solid #333;display:flex;align-items:center;justify-content:center">معاينة</div>
+<div class="panel" id="panel-content">
+<div class="box">
+<h3>📝 التحكم الكامل بكل نصوص الصفحة</h3>
+<div class="note">يمكنك ترك أي حقل فارغ لإخفائه. الحفظ الفارغ الآن يعمل ✅</div>
+
+<h4>الشعار</h4>
+<div class="grid2">
+<div><label>حرف الشعار Z</label><input id="c_logoChar" placeholder="Z"></div>
+<div><label>اسم الموقع</label><input id="c_siteName" placeholder="ZG 4K Wallpaper"></div>
 </div>
-<div class="panel">
-<button onclick="publishSettings()" style="background:#D4FF32">💾 حفظ ونشر الألوان</button>
-<div id="publishDesignStatus" style="font-size:12px;margin-top:8px"></div>
+<div class="grid2">
+<div><label>الوصف تحت الاسم عربي</label><input id="c_siteSub_ar"></div>
+<div><label>Sub English</label><input id="c_siteSub_en"></div>
+</div>
+
+<h4>Hero</h4>
+<div class="grid2">
+<div><label>عنوان عربي</label><textarea id="c_heroTitle_ar"></textarea></div>
+<div><label>Title English</label><textarea id="c_heroTitle_en"></textarea></div>
+</div>
+<div class="grid2">
+<div><label>وصف عربي</label><textarea id="c_heroDesc_ar"></textarea></div>
+<div><label>Desc English</label><textarea id="c_heroDesc_en"></textarea></div>
+</div>
+
+<h4>البحث والإحصائيات</h4>
+<div class="grid2">
+<div><label>Placeholder بحث عربي</label><input id="c_search_ar"></div>
+<div><label>Search Placeholder EN</label><input id="c_search_en"></div>
+</div>
+<div class="grid2">
+<div><label>إجمالي الخلفيات عربي</label><input id="c_statTotal_ar"></div>
+<div><label>Total EN</label><input id="c_statTotal_en"></div>
+</div>
+<div class="grid2">
+<div><label>تحميل اليوم عربي</label><input id="c_statDaily_ar"></div>
+<div><label>Today EN</label><input id="c_statDaily_en"></div>
+</div>
+<div class="grid2">
+<div><label>دقة قصوى عربي</label><input id="c_statRes_ar"></div>
+<div><label>Resolution EN</label><input id="c_statRes_en"></div>
+</div>
+<div><label>قيمة الدقة</label><input id="c_statResValue"></div>
+<div class="grid2">
+<div><label>تحديث عربي</label><input id="c_statUpdate_ar"></div>
+<div><label>Update EN</label><input id="c_statUpdate_en"></div>
+</div>
+<div class="grid2">
+<div><label>قيمة التحديث عربي</label><input id="c_statUpdateValue_ar"></div>
+<div><label>Update Value EN</label><input id="c_statUpdateValue_en"></div>
+</div>
+
+<h4>الأزرار والفوتر</h4>
+<div class="grid2">
+<div><label>زر الكل عربي</label><input id="c_btnAll_ar"></div>
+<div><label>All Button EN</label><input id="c_btnAll_en"></div>
+</div>
+<div class="grid2">
+<div><label>زر جميع الأقسام عربي</label><input id="c_btnCats_ar"></div>
+<div><label>All Cats EN</label><input id="c_btnCats_en"></div>
+</div>
+<div class="grid2">
+<div><label>وصف الفوتر عربي</label><textarea id="c_footerDesc_ar"></textarea></div>
+<div><label>Footer Desc EN</label><textarea id="c_footerDesc_en"></textarea></div>
+</div>
+<div class="grid2">
+<div><label>زر تواصل عربي</label><input id="c_contactBtn_ar"></div>
+<div><label>Contact EN</label><input id="c_contactBtn_en"></div>
+</div>
+<div class="grid2">
+<div><label>حقوق عربي</label><input id="c_footerRights_ar"></div>
+<div><label>Rights EN</label><input id="c_footerRights_en"></div>
+</div>
+<div class="grid2">
+<div><label>شارة 1 عربي</label><input id="c_badge1_ar"></div>
+<div><label>Badge1 EN</label><input id="c_badge1_en"></div>
+</div>
+<div class="grid2">
+<div><label>شارة 2 عربي</label><input id="c_badge2_ar"></div>
+<div><label>Badge2 EN</label><input id="c_badge2_en"></div>
+</div>
+<div><label>شارة 3</label><input id="c_badge3"></div>
+
+<button class="preview-btn" onclick="previewChanges()">👁️ معاينة قبل الحفظ</button>
+<button class="save-btn" onclick="saveContent()">💾 حفظ ونشر المحتوى</button>
 </div>
 </div>
 
-<div class="tab" id="tab-content">
-<div class="panel">
-<h3>📝 اسم ووصف الموقع</h3>
-<input id="siteName" placeholder="اسم الموقع - ZG 4K Wallpaper">
-<input id="siteName_ar" placeholder="اسم عربي - ZG 4K خلفيات">
-<textarea id="desc_ar" placeholder="وصف عربي احترافي - مثال: مجموعة فاخرة من الخلفيات المتنوعة..."></textarea>
-<textarea id="desc_en" placeholder="English description - Premium collection..."></textarea>
-<input id="footerRights_ar" placeholder="حقوق عربية - © 2026 ZG 4K">
-<input id="footerRights_en" placeholder="Rights English">
-<button onclick="publishSettings()" style="background:#D4FF32">💾 حفظ ونشر المحتوى</button>
-<div id="publishContentStatus" style="font-size:12px;margin-top:8px"></div>
+<div class="panel" id="panel-colors">
+<div class="box">
+<h3>🎨 التحكم الكامل بألوان كل كلمة</h3>
+<div class="grid2">
+<div><label>خلفية الموقع</label><input type="color" id="col_bg"></div>
+<div><label>لون النص</label><input type="color" id="col_text"></div>
+</div>
+<div class="grid2">
+<div><label>اللون المميز الأصفر</label><input type="color" id="col_accent"></div>
+<div><label>خلفية الهيدر</label><input type="color" id="col_headerBg"></div>
+</div>
+<div class="grid2">
+<div><label>عنوان الهيرو</label><input type="color" id="col_heroTitle"></div>
+<div><label>كلمة فاخرة</label><input type="color" id="col_heroAccent"></div>
+</div>
+<div class="grid2">
+<div><label>وصف الهيرو</label><input type="color" id="col_heroDesc"></div>
+<div><label>خلفية شعار Z</label><input type="color" id="col_logoBg"></div>
+</div>
+<div class="grid2">
+<div><label>حرف Z</label><input type="color" id="col_logoChar"></div>
+<div><label>خلفية البحث</label><input type="color" id="col_searchBg"></div>
+</div>
+<div class="grid2">
+<div><label>خلفية الإحصائيات</label><input type="color" id="col_statBg"></div>
+<div><label>عنوان الإحصائية</label><input type="color" id="col_statLabel"></div>
+</div>
+<div class="grid2">
+<div><label>رقم الإحصائية</label><input type="color" id="col_statValue"></div>
+<div><label>رقم مميز</label><input type="color" id="col_statAccent"></div>
+</div>
+<div class="grid2">
+<div><label>خلفية الكروت</label><input type="color" id="col_cardBg"></div>
+<div><label>خلفية الأقسام</label><input type="color" id="col_catBg"></div>
+</div>
+<div class="grid2">
+<div><label>خلفية الفوتر</label><input type="color" id="col_footerBg"></div>
+<div><label>نص الفوتر</label><input type="color" id="col_footerText"></div>
+</div>
+<button class="preview-btn" onclick="previewChanges()">👁️ معاينة الألوان</button>
+<button class="save-btn" onclick="saveColors()">💾 حفظ الألوان</button>
 </div>
 </div>
 
-<div class="tab" id="tab-contact">
-<div class="panel">
-<h3>📞 معلومات التواصل</h3>
-<input id="email" placeholder="البريد - zakariazg27@gmail.com">
-<input id="whatsapp" placeholder="واتساب مع رمز البلد - +212600000000">
-<input id="instagram" placeholder="انستغرام - zack.zg.25">
-<input id="tiktok" placeholder="تيك توك">
-<button onclick="publishSettings()" style="background:#D4FF32">💾 حفظ ونشر التواصل</button>
-<div id="publishContactStatus" style="font-size:12px;margin-top:8px"></div>
-<p style="font-size:11px;color:#888;margin-top:8px">💡 زر واتساب سيظهر عائم في الموقع تلقائياً إذا وضعت رقمك<br>💡 انستغرام سيظهر في الفوتر</p>
+<div class="panel" id="panel-sizes">
+<div class="box">
+<h3>📏 أحجام الخط لكل عنصر</h3>
+<div class="range-wrap"><label style="min-width:140px">عنوان الهيرو</label><input type="range" id="size_heroTitle" min="18" max="72" value="32"><span id="val_heroTitle">32px</span></div>
+<div class="range-wrap"><label style="min-width:140px">وصف الهيرو</label><input type="range" id="size_heroDesc" min="10" max="24" value="12"><span id="val_heroDesc">12px</span></div>
+<div class="range-wrap"><label style="min-width:140px">اسم الموقع</label><input type="range" id="size_siteName" min="12" max="32" value="17"><span id="val_siteName">17px</span></div>
+<div class="range-wrap"><label style="min-width:140px">تحت الاسم</label><input type="range" id="size_siteSub" min="8" max="18" value="10"><span id="val_siteSub">10px</span></div>
+<div class="range-wrap"><label style="min-width:140px">البحث</label><input type="range" id="size_search" min="10" max="20" value="13"><span id="val_search">13px</span></div>
+<div class="range-wrap"><label style="min-width:140px">عنوان إحصائية</label><input type="range" id="size_statLabel" min="8" max="16" value="9"><span id="val_statLabel">9px</span></div>
+<div class="range-wrap"><label style="min-width:140px">رقم إحصائية</label><input type="range" id="size_statValue" min="10" max="24" value="13"><span id="val_statValue">13px</span></div>
+<div class="range-wrap"><label style="min-width:140px">عنوان الكارت</label><input type="range" id="size_cardTitle" min="10" max="20" value="13"><span id="val_cardTitle">13px</span></div>
+<div class="range-wrap"><label style="min-width:140px">وصف الفوتر</label><input type="range" id="size_footerDesc" min="10" max="18" value="13"><span id="val_footerDesc">13px</span></div>
+<div class="range-wrap"><label style="min-width:140px">زر تواصل</label><input type="range" id="size_contactBtn" min="10" max="20" value="14"><span id="val_contactBtn">14px</span></div>
+<button class="preview-btn" onclick="previewChanges()">👁️ معاينة الأحجام</button>
+<button class="save-btn" onclick="saveSizes()">💾 حفظ الأحجام</button>
+</div>
+</div>
+
+<div class="panel" id="panel-contact">
+<div class="box">
+<h3>📞 التواصل - يسمح بالفراغ ✅</h3>
+<div class="note">تم إصلاح Bug عدم حفظ الفراغ. الآن يمكنك ترك أي حقل فارغ ولن يعود.</div>
+<h4>اختياري</h4>
+<div><label>البريد (فارغ = إخفاء)</label><input id="contact_email" placeholder="اتركه فارغاً لإخفائه"></div>
+<div><label>واتساب (فارغ = إخفاء)</label><input id="contact_whatsapp" placeholder="+212... أو فارغ"></div>
+<h4>شعارات السوشيال الجديدة</h4>
+<div><label>📷 Instagram بدون @</label><input id="contact_instagram" placeholder="zack.zg.25 أو فارغ"></div>
+<div><label>📘 Facebook رابط أو اسم</label><input id="contact_facebook" placeholder="facebook.com/... أو فارغ"></div>
+<div><label>🎵 TikTok بدون @</label><input id="contact_tiktok" placeholder="zack.zg.25 أو فارغ"></div>
+<div><label>𝕏 Twitter / X بدون @</label><input id="contact_twitter" placeholder="username أو رابط أو فارغ"></div>
+<div><label>✈️ Telegram بدون @</label><input id="contact_telegram" placeholder="username أو t.me/... أو فارغ"></div>
+<button class="preview-btn" onclick="previewChanges()">👁️ معاينة التواصل</button>
+<button class="save-btn" onclick="saveContact()">💾 حفظ التواصل (يسمح بالفراغ)</button>
+</div>
+</div>
+
+<div class="panel" id="panel-token">
+<div class="box">
+<h3>🔑 توكن GitHub</h3>
+<input type="password" id="gh_token" placeholder="ghp_...">
+<button class="save-btn" onclick="saveToken()">حفظ التوكن</button>
+<div id="tokenStatus" style="font-size:12px;color:#666;margin-top:10px"></div>
 </div>
 </div>
 
 </div>
+
 <script>
-const USERNAME="ZakariaZG27"; const PASSWORD="ZakariaZG27";
-let walls=JSON.parse(localStorage.getItem('zack_walls')||'[]');
-let settings=JSON.parse(localStorage.getItem('zack_settings')||'null')||{siteName:"ZG 4K Wallpaper", siteName_ar:"ZG 4K خلفيات", description_ar:"مجموعة فاخرة من الخلفيات المتنوعة بدقة 4K و 8K مصممة للذواقة.", description_en:"Premium collection of diverse 4K & 8K wallpapers.", bgColor:"#0a0a0a", textColor:"#ffffff", accentColor:"#D4FF32", email:"zakariazg27@gmail.com", whatsapp:"+212600000000", instagram:"zack.zg.25", tiktok:"", footerRights_ar:"© 2026 ZG 4K Wallpaper", footerRights_en:"© 2026 ZG 4K Wallpaper", adCode:""};
 const REPO="ZakariaZG27/my-website";
-function login(){if(document.getElementById('user').value.trim()===USERNAME && document.getElementById('pass').value===PASSWORD){document.getElementById('loginCard').classList.add('active'); document.getElementById('dash').classList.add('active'); localStorage.setItem('zack_admin','1'); localStorage.setItem('zack_admin_time', Date.now().toString()); init();}else alert('كلمة السر خاطئة');}
-function logout(){localStorage.removeItem('zack_admin'); localStorage.removeItem('zack_admin_time'); location.reload();}
-function isLoginValid(){const t=localStorage.getItem('zack_admin_time'); return t && (Date.now()-parseInt(t))<3600000;}
-if(localStorage.getItem('zack_admin') && isLoginValid()){document.getElementById('loginCard').classList.add('active'); document.getElementById('dash').classList.add('active'); setTimeout(init,200);}
-function showTab(name,e){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active')); document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active')); document.getElementById('tab-'+name).classList.add('active'); if(e) e.target.classList.add('active'); if(name!=='walls') loadSettingsToForm();}
-function init(){document.getElementById('ghToken').value=localStorage.getItem('gh_token')||''; updateTokenStatus(); renderWalls(); loadSettingsToForm(); document.getElementById('filePick').addEventListener('change',e=>{const f=e.target.files[0]; if(!f)return; if(f.size>2*1024*1024){alert('صورة كبيرة - استخدم رابط');return;} const r=new FileReader(); r.onload=ev=>{document.getElementById('wUrl').value=ev.target.result; document.getElementById('previewImg').src=ev.target.result; document.getElementById('imgPreview').style.display='block';}; r.readAsDataURL(f);}); ['bgColor','textColor','accentColor'].forEach(id=>{const el=document.getElementById(id); const txt=document.getElementById(id+'Text'); if(el&&txt){el.addEventListener('input',e=>{txt.value=e.target.value; previewColors();}); txt.addEventListener('input',e=>{el.value=e.target.value; previewColors();});}});}
-function saveToken(){const t=document.getElementById('ghToken').value.trim(); if(!t){alert('ضع التوكن');return;} localStorage.setItem('gh_token',t); updateTokenStatus(); alert('تم حفظ التوكن');}
-function updateTokenStatus(){const t=localStorage.getItem('gh_token'); const el=document.getElementById('tokenStatus'); if(el) el.textContent=t?'✅ التوكن محفوظ - جاهز':'❌ لم تحفظ التوكن بعد';}
-function loadSettingsToForm(){document.getElementById('siteName').value=settings.siteName||''; const elAr=document.getElementById('siteName_ar'); if(elAr) elAr.value=settings.siteName_ar||''; document.getElementById('desc_ar').value=settings.description_ar||''; document.getElementById('desc_en').value=settings.description_en||''; document.getElementById('footerRights_ar').value=settings.footerRights_ar||''; document.getElementById('footerRights_en').value=settings.footerRights_en||''; document.getElementById('bgColor').value=settings.bgColor||'#0a0a0a'; document.getElementById('bgColorText').value=settings.bgColor||'#0a0a0a'; document.getElementById('textColor').value=settings.textColor||'#ffffff'; document.getElementById('textColorText').value=settings.textColor||'#ffffff'; document.getElementById('accentColor').value=settings.accentColor||'#D4FF32'; document.getElementById('accentColorText').value=settings.accentColor||'#D4FF32'; document.getElementById('email').value=settings.email||''; document.getElementById('whatsapp').value=settings.whatsapp||''; document.getElementById('instagram').value=settings.instagram||''; const tik=document.getElementById('tiktok'); if(tik) tik.value=settings.tiktok||''; previewColors();}
-function previewColors(){const bg=document.getElementById('bgColor').value; const txt=document.getElementById('textColor').value; const acc=document.getElementById('accentColor').value; const p=document.getElementById('colorPreview'); if(p){p.style.background=bg; p.style.color=txt; p.style.borderColor=acc; p.innerHTML=`<span style="background:${acc};color:#000;padding:4px 12px;border-radius:20px;font-size:12px">معاينة ${acc}</span>`;} settings.bgColor=document.getElementById('bgColorText').value||bg; settings.textColor=document.getElementById('textColorText').value||txt; settings.accentColor=document.getElementById('accentColorText').value||acc;}
-function collectSettings(){previewColors(); settings.siteName=document.getElementById('siteName').value||settings.siteName; const arName=document.getElementById('siteName_ar'); if(arName) settings.siteName_ar=arName.value||settings.siteName_ar; settings.description_ar=document.getElementById('desc_ar').value||settings.description_ar; settings.description_en=document.getElementById('desc_en').value||settings.description_en; settings.footerRights_ar=document.getElementById('footerRights_ar').value||settings.footerRights_ar; settings.footerRights_en=document.getElementById('footerRights_en').value||settings.footerRights_en; settings.email=document.getElementById('email').value||settings.email; settings.whatsapp=document.getElementById('whatsapp').value||settings.whatsapp; settings.instagram=document.getElementById('instagram').value||settings.instagram; const tik=document.getElementById('tiktok'); if(tik) settings.tiktok=tik.value||''; localStorage.setItem('zack_settings',JSON.stringify(settings)); return settings;}
-function addWall(){const url=document.getElementById('wUrl').value.trim(); const cat=document.getElementById('wCat').value; const type=document.getElementById('wType').value; const titleAr=document.getElementById('wTitleAr').value.trim()||'خلفية'; const titleEn=document.getElementById('wTitleEn').value.trim()||titleAr; if(!url){alert('ضع رابط أو اختر صورة');return;} walls.unshift({id:Date.now(),url,category:cat,type,title:titleAr,title_ar:titleAr,title_en:titleEn}); localStorage.setItem('zack_walls',JSON.stringify(walls)); renderWalls(); document.getElementById('wUrl').value=''; document.getElementById('wTitleAr').value=''; document.getElementById('wTitleEn').value=''; document.getElementById('imgPreview').style.display='none';}
-function deleteWall(id){if(!confirm('حذف هذه الخلفية؟'))return; walls=walls.filter(w=>w.id!==id); localStorage.setItem('zack_walls',JSON.stringify(walls)); renderWalls();}
-function editWall(id){const w=walls.find(x=>x.id===id); if(!w)return; const newAr=prompt('تعديل عنوان عربي:', w.title_ar||w.title); if(newAr===null) return; const newEn=prompt('تعديل عنوان إنجليزي:', w.title_en||w.title); if(newEn===null) return; const newCat=prompt('تعديل القسم:', w.category); if(newAr.trim()){w.title=newAr.trim(); w.title_ar=newAr.trim();} if(newEn.trim()) w.title_en=newEn.trim(); if(newCat && newCat.trim()) w.category=newCat.trim(); localStorage.setItem('zack_walls',JSON.stringify(walls)); renderWalls(); alert('تم التعديل محليا - اضغط نشر مباشر');}
-function renderWalls(){const q=(document.getElementById('search').value||'').toLowerCase(); const f=walls.filter(w=>((w.title_ar||w.title||'')+(w.title_en||'')+w.category).toLowerCase().includes(q)); document.getElementById('list').innerHTML=f.length?f.map(w=>`<div class="item"><img src="${w.url}"><div style="flex:1"><div style="font-size:12px;font-weight:600">${w.title_ar||w.title}</div><div style="font-size:10px;color:#D4FF32">${w.title_en||''}</div><div style="font-size:10px;color:#666">${w.category} - ${w.type}</div></div><div style="display:flex;flex-direction:column;gap:4px"><button class="ghost" style="width:auto;padding:4px 8px;font-size:10px" onclick="editWall(${w.id})">✏️ تعديل</button><button class="danger" style="width:auto;padding:4px 8px" onclick="deleteWall(${w.id})">🗑️ حذف</button></div></div>`).join(''):'<p style="color:#666;text-align:center;padding:20px;font-size:12px">لا توجد خلفيات</p>'; document.getElementById('count').textContent=walls.length; document.getElementById('count2').textContent=walls.length;}
-async function publishWalls(){const token=localStorage.getItem('gh_token'); if(!token){alert('احفظ التوكن أولا في الأعلى');return;} if(!walls.length){alert('لا توجد خلفيات');return;} const status=document.getElementById('publishWallsStatus'); status.innerHTML='⏳ جاري نشر الخلفيات...'; try{let sha=null; const getRes=await fetch(`https://api.github.com/repos/${REPO}/contents/wallpapers.json`,{headers:{Authorization:`token ${token}`}}); if(getRes.ok){const j=await getRes.json(); sha=j.sha;} const contentB64=btoa(unescape(encodeURIComponent(JSON.stringify(walls,null,2)))); const putRes=await fetch(`https://api.github.com/repos/${REPO}/contents/wallpapers.json`,{method:'PUT',headers:{Authorization:`token ${token}`,'Content-Type':'application/json'},body:JSON.stringify({message:`ZG - Update ${walls.length} wallpapers`, content:contentB64, sha})}); if(!putRes.ok){const err=await putRes.text(); throw new Error(err);} status.innerHTML='✅ تم نشر الخلفيات! انتظر دقيقة وافتح موقعك';}catch(e){status.innerHTML='❌ فشل: '+e.message.substring(0,200);}}
-async function publishSettings(){const token=localStorage.getItem('gh_token'); if(!token){alert('احفظ التوكن أولا');return;} const s=collectSettings(); const activeTab=document.querySelector('.tab.active'); let statusEl=document.getElementById('publishDesignStatus'); if(activeTab){statusEl=activeTab.querySelector('[id^=publish]')||statusEl;} statusEl.textContent='⏳ جاري نشر الإعدادات...'; try{let sha=null; const getRes=await fetch(`https://api.github.com/repos/${REPO}/contents/settings.json`,{headers:{Authorization:`token ${token}`}}); if(getRes.ok){const j=await getRes.json(); sha=j.sha;} const contentB64=btoa(unescape(encodeURIComponent(JSON.stringify(s,null,2)))); const putRes=await fetch(`https://api.github.com/repos/${REPO}/contents/settings.json`,{method:'PUT',headers:{Authorization:`token ${token}`,'Content-Type':'application/json'},body:JSON.stringify({message:`Update settings - ${s.siteName}`, content:contentB64, sha})}); if(!putRes.ok){const err=await putRes.text(); throw new Error(err);} statusEl.textContent='✅ تم نشر الإعدادات! افتح موقعك بعد دقيقة لترى التغييرات'; alert('تم حفظ ونشر الإعدادات بنجاح!');}catch(e){statusEl.textContent='❌ فشل: '+e.message.substring(0,200);}}
+const FILE_WALLS="wallpapers.json";
+const FILE_SETTINGS="settings.json";
+const PASS="ZakariaZG27";
+const USER="ZakariaZG27";
+let allWalls=[]; let settings={};
+
+function doLogin(){const p=document.getElementById('pass').value; const u=document.getElementById('user').value; if(p===PASS&&u===USER){localStorage.setItem('zg_admin_login','1'); localStorage.setItem('zg_admin_exp',Date.now()+3600000); document.getElementById('loginBox').style.display='none'; document.getElementById('app').style.display='block'; init();} else document.getElementById('loginMsg').textContent='❌ خطأ';}
+function checkLogin(){const l=localStorage.getItem('zg_admin_login'); const e=localStorage.getItem('zg_admin_exp'); if(l&&e&&Date.now()<parseInt(e)){document.getElementById('loginBox').style.display='none'; document.getElementById('app').style.display='block'; init();}}
+function logout(){localStorage.removeItem('zg_admin_login'); location.reload();}
+function switchTab(t){document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===t)); document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id==='panel-'+t));}
+
+async function init(){await loadSettings(); await loadWalls(); fillForms(); setupRanges(); const token=localStorage.getItem('gh_token'); if(token) document.getElementById('tokenStatus').textContent='✅ التوكن محفوظ';}
+async function loadSettings(){try{const r=await fetch(FILE_SETTINGS+'?v='+Date.now()); if(r.ok) settings=await r.json();}catch(e){} if(!settings.siteName) settings.siteName="ZG 4K Wallpaper";}
+async function loadWalls(){try{const r=await fetch(FILE_WALLS+'?v='+Date.now()); if(r.ok) allWalls=await r.json(); else allWalls=[];}catch(e){allWalls=[];} document.getElementById('wallCount').textContent=allWalls.length; const cats=["الطبيعة والمناظر الطبيعية","الشواطئ والمحيطات","الفضاء وعلم الفلك","الغابات والأشجار","الشلالات والأنهار","الزهور والنباتات","الفن التجريدي","التدرجات اللونية","الفن الرقمي","النيون والإضاءة","الأشكال الهندسية والأنماط","البساطة المطلقة","المظهر الداكن وشاشات أولييد","أفق المدن","الهندسة المعمارية","الشوارع والأزقة","الأنمي والمانغا","الأفلام والمسلسلات","ألعاب الفيديو","الأبطال الخارقون","المشاهير والشخصيات العامة","الكيبوب والفرق الكورية","السيارات الرياضية والفارهة","السيارات الكلاسيكية","الدراجات النارية","الطائرات والطيران","الحيوانات البرية","الطيور","الحيوانات الأليفة","الحياة البحرية","الموضة والأناقة","القهوة والمشروبات","الأطعمة والحلويات","السفر والمغامرة","عبارات تحفيزية","حكم وأقوال","الأعياد والمناسبات","خلفيات إسلامية ودينية","فصول السنة","الخلفيات المتحركة","الأكثر شعبية","المضاف حديثاً"]; const sel=document.getElementById('w_cat'); sel.innerHTML=cats.map(c=>`<option value="${c}">${c}</option>`).join(''); renderWalls();}
+function renderWalls(){const list=document.getElementById('wallList'); list.innerHTML=allWalls.slice().reverse().map(w=>`<div class="w-card"><img src="${w.url}"><div class="info"><div class="t">${w.title_ar||w.title}</div><div class="btns"><button style="background:#1a1a1a;color:#fff" onclick="editWall(${w.id})">تعديل</button><button style="background:#ff2a2a;color:#fff" onclick="delWall(${w.id})">حذف</button></div></div></div>`).join('');}
+function fillForms(){
+document.getElementById('c_logoChar').value=settings.logoChar||'Z';
+document.getElementById('c_siteName').value=settings.siteName||'';
+document.getElementById('c_siteSub_ar').value=settings.siteSub_ar||settings.siteSub||'';
+document.getElementById('c_siteSub_en').value=settings.siteSub_en||'';
+document.getElementById('c_heroTitle_ar').value=settings.heroTitle_ar||'خلفيات <span class="accent">فاخرة</span> تعكس<br>ذوقك';
+document.getElementById('c_heroTitle_en').value=settings.heroTitle_en||'Luxury <span class="accent">4K</span><br>Wallpapers';
+document.getElementById('c_heroDesc_ar').value=settings.heroDesc_ar||settings.description_ar||'';
+document.getElementById('c_heroDesc_en').value=settings.heroDesc_en||settings.description_en||'';
+document.getElementById('c_search_ar').value=settings.searchPlaceholder_ar||'ابحث عن خلفية 4K...';
+document.getElementById('c_search_en').value=settings.searchPlaceholder_en||'Search wallpaper...';
+document.getElementById('c_statTotal_ar').value=settings.statTotal_ar||'إجمالي الخلفيات';
+document.getElementById('c_statTotal_en').value=settings.statTotal_en||'Total Wallpapers';
+document.getElementById('c_statDaily_ar').value=settings.statDaily_ar||'تحميل اليوم';
+document.getElementById('c_statDaily_en').value=settings.statDaily_en||'Today Downloads';
+document.getElementById('c_statRes_ar').value=settings.statRes_ar||'دقة قصوى';
+document.getElementById('c_statRes_en').value=settings.statRes_en||'Max Resolution';
+document.getElementById('c_statResValue').value=settings.statResValue||'8K • 7680p';
+document.getElementById('c_statUpdate_ar').value=settings.statUpdate_ar||'تحديث';
+document.getElementById('c_statUpdate_en').value=settings.statUpdate_en||'Update';
+document.getElementById('c_statUpdateValue_ar').value=settings.statUpdateValue_ar||'يومي';
+document.getElementById('c_statUpdateValue_en').value=settings.statUpdateValue_en||'Daily';
+document.getElementById('c_btnAll_ar').value=settings.btnAll_ar||'الكل';
+document.getElementById('c_btnAll_en').value=settings.btnAll_en||'All';
+document.getElementById('c_btnCats_ar').value=settings.btnCats_ar||'☰ جميع أقسام الخلفيات';
+document.getElementById('c_btnCats_en').value=settings.btnCats_en||'☰ All Categories';
+document.getElementById('c_footerDesc_ar').value=settings.footerDesc_ar||settings.description_ar||'';
+document.getElementById('c_footerDesc_en').value=settings.footerDesc_en||settings.description_en||'';
+document.getElementById('c_contactBtn_ar').value=settings.contactBtn_ar||'تواصل معنا';
+document.getElementById('c_contactBtn_en').value=settings.contactBtn_en||'Contact Us';
+document.getElementById('c_footerRights_ar').value=settings.footerRights_ar||'';
+document.getElementById('c_footerRights_en').value=settings.footerRights_en||'';
+document.getElementById('c_badge1_ar').value=settings.badge1_ar||'تحديث يومي';
+document.getElementById('c_badge1_en').value=settings.badge1_en||'Daily Updates';
+document.getElementById('c_badge2_ar').value=settings.badge2_ar||'تحميل مجاني';
+document.getElementById('c_badge2_en').value=settings.badge2_en||'Free Download';
+document.getElementById('c_badge3').value=settings.badge3||'4K • 8K • UHD';
+document.getElementById('col_bg').value=settings.colors?.bg||'#0a0a0a';
+document.getElementById('col_text').value=settings.colors?.text||'#ffffff';
+document.getElementById('col_accent').value=settings.colors?.accent||'#D4FF32';
+document.getElementById('col_headerBg').value=settings.colors?.headerBg||'#0a0a0a';
+document.getElementById('col_heroTitle').value=settings.colors?.heroTitle||'#ffffff';
+document.getElementById('col_heroAccent').value=settings.colors?.heroAccent||'#D4FF32';
+document.getElementById('col_heroDesc').value=settings.colors?.heroDesc||'#666666';
+document.getElementById('col_logoBg').value=settings.colors?.logoBg||'#D4FF32';
+document.getElementById('col_logoChar').value=settings.colors?.logoChar||'#000000';
+document.getElementById('col_searchBg').value=settings.colors?.searchBg||'#121212';
+document.getElementById('col_statBg').value=settings.colors?.statBg||'#121212';
+document.getElementById('col_statLabel').value=settings.colors?.statLabel||'#5a5a5a';
+document.getElementById('col_statValue').value=settings.colors?.statValue||'#ffffff';
+document.getElementById('col_statAccent').value=settings.colors?.statAccent||'#D4FF32';
+document.getElementById('col_cardBg').value=settings.colors?.cardBg||'#111111';
+document.getElementById('col_catBg').value=settings.colors?.catBg||'#141414';
+document.getElementById('col_footerBg').value=settings.colors?.footerBg||'#080808';
+document.getElementById('col_footerText').value=settings.colors?.footerText||'#666666';
+const fs=settings.fontSizes||{};
+document.getElementById('size_heroTitle').value=fs.heroTitle||32;
+document.getElementById('size_heroDesc').value=fs.heroDesc||12;
+document.getElementById('size_siteName').value=fs.siteName||17;
+document.getElementById('size_siteSub').value=fs.siteSub||10;
+document.getElementById('size_search').value=fs.search||13;
+document.getElementById('size_statLabel').value=fs.statLabel||9;
+document.getElementById('size_statValue').value=fs.statValue||13;
+document.getElementById('size_cardTitle').value=fs.cardTitle||13;
+document.getElementById('size_footerDesc').value=fs.footerDesc||13;
+document.getElementById('size_contactBtn').value=fs.contactBtn||14;
+document.getElementById('contact_email').value=settings.email||'';
+document.getElementById('contact_whatsapp').value=settings.whatsapp||'';
+document.getElementById('contact_instagram').value=settings.instagram||'';
+document.getElementById('contact_facebook').value=settings.facebook||'';
+document.getElementById('contact_tiktok').value=settings.tiktok||'';
+document.getElementById('contact_twitter').value=settings.twitter||'';
+document.getElementById('contact_telegram').value=settings.telegram||'';
+}
+function setupRanges(){['heroTitle','heroDesc','siteName','siteSub','search','statLabel','statValue','cardTitle','footerDesc','contactBtn'].forEach(id=>{const el=document.getElementById('size_'+id); if(el) el.addEventListener('input',()=>{document.getElementById('val_'+id).textContent=el.value+'px'});});}
+function collectAllSettings(){
+const newSettings={...settings};
+newSettings.logoChar=document.getElementById('c_logoChar').value;
+newSettings.siteName=document.getElementById('c_siteName').value;
+newSettings.siteSub_ar=document.getElementById('c_siteSub_ar').value;
+newSettings.siteSub_en=document.getElementById('c_siteSub_en').value;
+newSettings.heroTitle_ar=document.getElementById('c_heroTitle_ar').value;
+newSettings.heroTitle_en=document.getElementById('c_heroTitle_en').value;
+newSettings.heroDesc_ar=document.getElementById('c_heroDesc_ar').value;
+newSettings.heroDesc_en=document.getElementById('c_heroDesc_en').value;
+newSettings.searchPlaceholder_ar=document.getElementById('c_search_ar').value;
+newSettings.searchPlaceholder_en=document.getElementById('c_search_en').value;
+newSettings.statTotal_ar=document.getElementById('c_statTotal_ar').value;
+newSettings.statTotal_en=document.getElementById('c_statTotal_en').value;
+newSettings.statDaily_ar=document.getElementById('c_statDaily_ar').value;
+newSettings.statDaily_en=document.getElementById('c_statDaily_en').value;
+newSettings.statRes_ar=document.getElementById('c_statRes_ar').value;
+newSettings.statRes_en=document.getElementById('c_statRes_en').value;
+newSettings.statResValue=document.getElementById('c_statResValue').value;
+newSettings.statUpdate_ar=document.getElementById('c_statUpdate_ar').value;
+newSettings.statUpdate_en=document.getElementById('c_statUpdate_en').value;
+newSettings.statUpdateValue_ar=document.getElementById('c_statUpdateValue_ar').value;
+newSettings.statUpdateValue_en=document.getElementById('c_statUpdateValue_en').value;
+newSettings.btnAll_ar=document.getElementById('c_btnAll_ar').value;
+newSettings.btnAll_en=document.getElementById('c_btnAll_en').value;
+newSettings.btnCats_ar=document.getElementById('c_btnCats_ar').value;
+newSettings.btnCats_en=document.getElementById('c_btnCats_en').value;
+newSettings.footerDesc_ar=document.getElementById('c_footerDesc_ar').value;
+newSettings.footerDesc_en=document.getElementById('c_footerDesc_en').value;
+newSettings.contactBtn_ar=document.getElementById('c_contactBtn_ar').value;
+newSettings.contactBtn_en=document.getElementById('c_contactBtn_en').value;
+newSettings.footerRights_ar=document.getElementById('c_footerRights_ar').value;
+newSettings.footerRights_en=document.getElementById('c_footerRights_en').value;
+newSettings.badge1_ar=document.getElementById('c_badge1_ar').value;
+newSettings.badge1_en=document.getElementById('c_badge1_en').value;
+newSettings.badge2_ar=document.getElementById('c_badge2_ar').value;
+newSettings.badge2_en=document.getElementById('c_badge2_en').value;
+newSettings.badge3=document.getElementById('c_badge3').value;
+newSettings.description_ar=newSettings.heroDesc_ar;
+newSettings.description_en=newSettings.heroDesc_en;
+newSettings.colors={bg:document.getElementById('col_bg').value,text:document.getElementById('col_text').value,accent:document.getElementById('col_accent').value,headerBg:document.getElementById('col_headerBg').value,heroTitle:document.getElementById('col_heroTitle').value,heroAccent:document.getElementById('col_heroAccent').value,heroDesc:document.getElementById('col_heroDesc').value,logoBg:document.getElementById('col_logoBg').value,logoChar:document.getElementById('col_logoChar').value,searchBg:document.getElementById('col_searchBg').value,statBg:document.getElementById('col_statBg').value,statLabel:document.getElementById('col_statLabel').value,statValue:document.getElementById('col_statValue').value,statAccent:document.getElementById('col_statAccent').value,cardBg:document.getElementById('col_cardBg').value,catBg:document.getElementById('col_catBg').value,footerBg:document.getElementById('col_footerBg').value,footerText:document.getElementById('col_footerText').value};
+newSettings.fontSizes={heroTitle:parseInt(document.getElementById('size_heroTitle').value),heroDesc:parseInt(document.getElementById('size_heroDesc').value),siteName:parseInt(document.getElementById('size_siteName').value),siteSub:parseInt(document.getElementById('size_siteSub').value),search:parseInt(document.getElementById('size_search').value),statLabel:parseInt(document.getElementById('size_statLabel').value),statValue:parseInt(document.getElementById('size_statValue').value),cardTitle:parseInt(document.getElementById('size_cardTitle').value),footerDesc:parseInt(document.getElementById('size_footerDesc').value),contactBtn:parseInt(document.getElementById('size_contactBtn').value)};
+// CONTACT FIX - trim but allow empty
+newSettings.email=document.getElementById('contact_email').value.trim();
+newSettings.whatsapp=document.getElementById('contact_whatsapp').value.trim();
+newSettings.instagram=document.getElementById('contact_instagram').value.trim();
+newSettings.facebook=document.getElementById('contact_facebook').value.trim();
+newSettings.tiktok=document.getElementById('contact_tiktok').value.trim();
+newSettings.twitter=document.getElementById('contact_twitter').value.trim();
+newSettings.telegram=document.getElementById('contact_telegram').value.trim();
+return newSettings;
+}
+function previewChanges(){const preview=collectAllSettings(); localStorage.setItem('zg_preview',JSON.stringify(preview)); window.open('index.html?preview=1','_blank');}
+async function pushToGitHub(file,content,msg){const token=localStorage.getItem('gh_token'); if(!token){alert('ضع توكن GitHub'); switchTab('token'); return false;} try{const getUrl=`https://api.github.com/repos/${REPO}/contents/${file}`; const getRes=await fetch(getUrl,{headers:{Authorization:`token ${token}`}}); let sha=null; if(getRes.ok){const j=await getRes.json(); sha=j.sha;} const putRes=await fetch(getUrl,{method:'PUT',headers:{Authorization:`token ${token}`,'Content-Type':'application/json'},body:JSON.stringify({message:msg,content:btoa(unescape(encodeURIComponent(content))),sha})}); if(!putRes.ok){const e=await putRes.text(); alert('خطأ GitHub: '+e); return false;} return true;}catch(e){alert('خطأ: '+e.message); return false;}}
+async function saveContent(){const s=collectAllSettings(); const ok=await pushToGitHub(FILE_SETTINGS,JSON.stringify(s,null,2),'Update content CMS'); if(ok){alert('✅ تم حفظ المحتوى'); settings=s;}}
+async function saveColors(){const s=collectAllSettings(); const ok=await pushToGitHub(FILE_SETTINGS,JSON.stringify(s,null,2),'Update colors'); if(ok){alert('✅ تم حفظ الألوان'); settings=s;}}
+async function saveSizes(){const s=collectAllSettings(); const ok=await pushToGitHub(FILE_SETTINGS,JSON.stringify(s,null,2),'Update sizes'); if(ok){alert('✅ تم حفظ الأحجام'); settings=s;}}
+async function saveContact(){const s=collectAllSettings(); console.log('Contact save - empty allowed:', s.email, s.whatsapp, s.instagram, s.facebook, s.tiktok, s.twitter, s.telegram); const ok=await pushToGitHub(FILE_SETTINGS,JSON.stringify(s,null,2),'Update contact - allow empty + 5 socials'); if(ok){alert('✅ تم حفظ التواصل - الفارغ سيبقى فارغاً ✅\nتمت إضافة: Facebook, Instagram, TikTok, Twitter, Telegram'); settings=s; fillForms();}}
+function saveToken(){const t=document.getElementById('gh_token').value.trim(); if(!t){alert('ضع التوكن'); return;} localStorage.setItem('gh_token',t); document.getElementById('tokenStatus').textContent='✅ تم حفظ التوكن'; alert('✅ تم حفظ التوكن');}
+async function addWall(){const url=document.getElementById('w_url').value.trim(); const cat=document.getElementById('w_cat').value; const ta=document.getElementById('w_title_ar').value.trim(); const te=document.getElementById('w_title_en').value.trim(); const type=document.getElementById('w_type').value; if(!url){alert('ضع رابط الصورة'); return;} const newId=allWalls.length>0?Math.max(...allWalls.map(w=>w.id))+1:1; const newWall={id:newId,url,category:cat,title:ta,title_ar:ta,title_en:te,type}; allWalls.push(newWall); const ok=await pushToGitHub(FILE_WALLS,JSON.stringify(allWalls,null,2),'Add wallpaper '+newId); if(ok){alert('✅ تمت الإضافة'); renderWalls(); document.getElementById('w_url').value='';} else allWalls.pop();}
+async function delWall(id){if(!confirm('حذف؟')) return; const old=[...allWalls]; allWalls=allWalls.filter(w=>w.id!==id); const ok=await pushToGitHub(FILE_WALLS,JSON.stringify(allWalls,null,2),'Delete '+id); if(ok) renderWalls(); else allWalls=old;}
+function editWall(id){const w=allWalls.find(x=>x.id===id); if(!w) return; const na=prompt('عنوان عربي:',w.title_ar||w.title); if(na===null) return; const ne=prompt('English:',w.title_en||''); if(ne===null) return; w.title_ar=na; w.title=na; w.title_en=ne; pushToGitHub(FILE_WALLS,JSON.stringify(allWalls,null,2),'Edit '+id).then(ok=>{if(ok) renderWalls();});}
+checkLogin();
+document.getElementById('w_url').addEventListener('input',e=>{document.getElementById('w_preview').value=e.target.value});
 </script>
 <script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body>
 </html>
