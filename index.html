@@ -49,12 +49,12 @@ body{background:#000;color:#fff;min-height:100vh}
 .search-hint{max-width:760px;margin:18px auto 0;color:#aaa;font-size:12.5px;line-height:1.8;text-align:right;padding:0 6px}
 .search-hint.ltr{text-align:left}
 .stats-outer{padding:14px 12px}
-.stats-box{max-width:860px;margin:0 auto;background:#0f0f0f;border:1px solid #2a2a2a;border-radius:22px;display:grid;grid-template-columns:repeat(5,1fr);overflow:hidden}
-@media(max-width:640px){.stats-box{grid-template-columns:repeat(3,1fr)}.stats-box .stat:nth-child(4),.stats-box .stat:nth-child(5){border-top:1px solid #1e1e1e}}
-.stat{padding:14px 6px;text-align:center;background:#0f0f0f;display:flex;flex-direction:column;gap:8px;align-items:center;justify-content:center;border-left:1px solid #1e1e1e}
+.stats-box{max-width:760px;margin:0 auto;background:#0f0f0f;border:1px solid #2a2a2a;border-radius:18px;display:grid;grid-template-columns:repeat(5,1fr);overflow:hidden}
+@media(max-width:768px){.stats-box{grid-template-columns:repeat(5,1fr);overflow-x:auto}}
+.stat{padding:10px 4px;text-align:center;background:#0f0f0f;display:flex;flex-direction:column;gap:6px;align-items:center;justify-content:center;border-left:1px solid #1e1e1e}
 .stat:last-child{border-left:none}
-.stat .lbl{font-size:11.5px;color:#aaa;font-weight:600}
-.stat .val{font-size:17px;font-weight:900;color:#fff}
+.stat .lbl{font-size:10px;color:#aaa;font-weight:600}
+.stat .val{font-size:13px;font-weight:900;color:#fff}
 .stat .val.lime{color:#D4FF32}
 .actions-row{display:flex;gap:10px;justify-content:center;align-items:center;padding:18px 14px;flex-wrap:wrap}
 .btn-all{background:#1e3a00;color:#fff;border:none;padding:12px 32px;border-radius:28px;font-size:15px;font-weight:900;cursor:pointer;min-width:88px}
@@ -427,7 +427,7 @@ grid.innerHTML=html;
 
 function openModal(url,title){
 document.getElementById('modalImg').src=url;
-document.getElementById('modalTitle সিরিজের').textContent=title;
+document.getElementById('modalTitle').textContent=title;
 document.getElementById('modalDownload').href=url;
 document.getElementById('modal').classList.add('active');
 }
