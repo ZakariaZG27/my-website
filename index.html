@@ -33,6 +33,12 @@ body{background:#000;color:#fff;min-height:100vh}
 .header-center{flex:1;text-align:center;display:flex;flex-direction:column;align-items:center;gap:1px}
 .header-center b{font-size:18px;font-weight:900;line-height:1.2}
 .header-center span{font-size:11px;color:#888;font-weight:600}
+.header-actions{display:flex;align-items:center;gap:8px}
+.bell-btn{width:44px;height:44px;background:#121212;border:1px solid #2a2a2a;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;font-size:20px}
+.bell-dot{position:absolute;top:4px;right:4px;width:10px;height:10px;background:#ff2a2a;border-radius:50%;display:none;border:2px solid #000}
+.bell-dot.show{display:block}
+.profile-btn{width:44px;height:44px;background:#121212;border:1px solid #2a2a2a;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden}
+.profile-btn img{width:100%;height:100%;object-fit:cover}
 .lang-switch{display:flex;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:28px;padding:3px;gap:2px}
 .lang-switch button{border:none;background:transparent;color:#888;padding:8px 18px;border-radius:22px;font-size:13px;font-weight:900;cursor:pointer;min-width:52px}
 .lang-switch button.active{background:#D4FF32;color:#000}
@@ -58,22 +64,32 @@ body{background:#000;color:#fff;min-height:100vh}
 .actions-row{display:flex;gap:10px;justify-content:center;align-items:center;padding:18px 14px;flex-wrap:wrap}
 .btn-all{background:#D4FF32;color:#000;border:none;padding:12px 32px;border-radius:28px;font-size:15px;font-weight:900;cursor:pointer;min-width:88px}
 .btn-cats{background:#121212;border:1px solid #2a2a2a;color:#ccc;padding:12px 22px;border-radius:28px;font-size:14px;font-weight:700;cursor:pointer}
+.filter-bar{display:flex;gap:8px;overflow-x:auto;padding:10px 14px;scrollbar-width:none;align-items:center}
+.filter-bar::-webkit-scrollbar{display:none}
+.filter-menu-btn{background:#1a1a1a;border:1px solid #2a2a2a;color:#fff;padding:10px 16px;border-radius:20px;font-size:14px;font-weight:800;cursor:pointer;flex-shrink:0;display:flex;align-items:center;gap:6px}
+.filter-chip{flex-shrink:0;background:#121212;border:1px solid #2a2a2a;color:#999;padding:10px 18px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap}
+.filter-chip.active{background:#D4FF32;color:#000;border-color:#D4FF32;font-weight:900}
 .cats-row{padding:8px 14px 0;overflow:hidden}
 .cats-scroll{display:flex;gap:10px;overflow-x:auto;white-space:nowrap;padding:6px 2px 14px;scrollbar-width:none}
 .cats-scroll::-webkit-scrollbar{display:none}
 .cat-chip{flex-shrink:0;background:#121212;border:1px solid #2a2a2a;color:#999;padding:12px 22px;border-radius:28px;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap}
 .cat-chip.active{background:#D4FF32;color:#000;border-color:#D4FF32;font-weight:900}
-.grid{max-width:1440px;margin:10px auto;display:block;columns:1;column-gap:12px;padding:10px 14px 20px}
-@media(min-width:640px){.grid{columns:2}}
-@media(min-width:1024px){.grid{columns:3}}
-.card{background:#111;border:1px solid #1e1e1e;border-radius:20px;overflow:hidden;cursor:pointer;break-inside:avoid;margin-bottom:12px}
-.card .img{position:relative;overflow:hidden;background:#0f0f0f}
-.card .img img{width:100%;height:auto;display:block}
+.grid{max-width:1440px;margin:10px auto;display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:10px 14px 20px}
+@media(min-width:1024px){.grid{grid-template-columns:repeat(3,1fr)}}
+.card{background:#111;border:1px solid #1e1e1e;border-radius:20px;overflow:hidden;cursor:pointer;break-inside:avoid}
+.card .img{position:relative;overflow:hidden;background:#0f0f0f;aspect-ratio:9/16;max-height:420px}
+.card .img img{width:100%;height:100%;object-fit:cover;display:block}
 .card .tag{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.75);border:1px solid rgba(255,255,255,.15);color:#fff;padding:5px 12px;border-radius:20px;font-size:11px}
+.card .device{position:absolute;top:10px;left:44px;background:rgba(0,0,0,.75);border:1px solid rgba(255,255,255,.15);color:#fff;padding:5px 8px;border-radius:20px;font-size:11px}
 .card .dl{position:absolute;top:10px;left:10px;background:#fff;color:#000;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900}
 .card .info{padding:12px 14px;display:flex;justify-content:space-between;align-items:center;background:#111}
-.card .title{font-size:13px;font-weight:600;max-width:210px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.no-results{text-align:center;color:#aaa;padding:80px 20px;font-size:18px;font-weight:600}
+.card .title{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px}
+.card .meta{font-size:10px;color:#666;margin-top:2px;display:flex;gap:6px}
+.card .actions{padding:8px 12px;display:flex;justify-content:space-between;align-items:center;background:#0e0e0e;border-top:1px solid #1a1a1a}
+.card .like-btn,.card .save-btn{background:transparent;border:none;color:#777;cursor:pointer;font-size:14px;display:flex;align-items:center;gap:4px}
+.card .like-btn.liked{color:#ff2a6d}
+.card .save-btn.saved{color:#D4FF32}
+.no-results{text-align:center;color:#aaa;padding:80px 20px;font-size:18px;font-weight:600;grid-column:1/-1}
 .footer{margin-top:30px;background:#070707;border-top:1px solid #1a1a1a;padding:32px 16px 24px}
 .footer-top{display:flex;align-items:center;gap:12px;margin-bottom:16px;justify-content:flex-start}
 .footer-top .z-logo{width:44px;height:44px;background:#D4FF32;color:#000;font-weight:900;font-size:22px;border-radius:12px;display:flex;align-items:center;justify-content:center;border:1px solid #D4FF32;flex-shrink:0}
@@ -100,9 +116,14 @@ body{background:#000;color:#fff;min-height:100vh}
 .footer-copy.ltr{text-align:left}
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:200;padding:14px}
 .modal.active{display:flex}
-.modal-box{background:#111;border:1px solid #222;border-radius:20px;overflow:hidden;max-width:860px;width:100%}
-.modal-box img{width:100%;max-height:70vh;object-fit:contain;background:#000;display:block}
-.modal-bar{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;background:#111}
+.modal-box{background:#111;border:1px solid #222;border-radius:20px;overflow:hidden;max-width:860px;width:100%;max-height:90vh;overflow-y:auto}
+.modal-box img{width:100%;max-height:60vh;object-fit:contain;background:#000;display:block}
+.modal-bar{padding:14px 16px;background:#111}
+.modal-info{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:12px}
+.modal-title{font-size:16px;font-weight:800;line-height:1.4}
+.modal-cat{font-size:12px;color:#888}
+.modal-device{font-size:12px;background:#1a1a1a;padding:4px 10px;border-radius:12px;border:1px solid #2a2a2a}
+.modal-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
 .btn{background:#D4FF32;color:#000;border:none;padding:10px 22px;border-radius:20px;font-weight:900;cursor:pointer;text-decoration:none;display:inline-block}
 .btn-ghost{background:#1a1a1a;color:#fff;border:1px solid #222}
 .cats-modal{position:fixed;inset:0;background:#000;display:none;z-index:150;overflow:auto;padding:16px}
@@ -115,14 +136,37 @@ body{background:#000;color:#fff;min-height:100vh}
 .cat-square.active{background:#D4FF32;border-color:#D4FF32;color:#000}
 .cat-square .ic{font-size:26px;margin-bottom:8px}
 .cat-square .name{font-size:12px;font-weight:600;line-height:1.4}
-@keyframes pulse{0%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:.6}100%{transform:scale(1);opacity:1}}
+.filter-modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:160;align-items:flex-end;justify-content:center}
+.filter-modal.active{display:flex}
+.filter-modal-box{background:#111;border-top:1px solid #222;border-radius:20px 20px 0 0;width:100%;max-width:600px;padding:20px;max-height:80vh;overflow:auto}
+.filter-modal-box h3{font-size:16px;margin-bottom:16px}
+.filter-option{padding:12px 16px;background:#0f0f0f;border:1px solid #2a2a2a;border-radius:14px;margin-bottom:8px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.filter-option.active{background:#D4FF32;color:#000;border-color:#D4FF32;font-weight:900}
+.auth-modal{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;z-index:300;align-items:center;justify-content:center;padding:16px}
+.auth-modal.active{display:flex}
+.auth-box{background:#111;border:1px solid #222;border-radius:20px;padding:24px;max-width:400px;width:100%}
+.auth-box input{width:100%;background:#0f0f0f;border:1px solid #2a2a2a;border-radius:12px;padding:12px 14px;color:#fff;margin-bottom:10px;outline:none}
+.notif-modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;z-index:170;align-items:flex-start;justify-content:center;padding-top:80px}
+.notif-modal.active{display:flex}
+.notif-box{background:#111;border:1px solid #222;border-radius:20px;width:90%;max-width:500px;max-height:70vh;overflow:auto}
+.notif-item{padding:14px 16px;border-bottom:1px solid #1a1a1a}
+.notif-item:last-child{border-bottom:none}
+.notif-title{font-size:13px;font-weight:800;margin-bottom:4px}
+.notif-desc{font-size:11px;color:#888;line-height:1.6}
+.notif-time{font-size:10px;color:#555;margin-top:6px}
+.skeleton{background:linear-gradient(90deg,#111 25%,#1a1a1a 50%,#111 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:20px;height:320px}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
 </style>
 </head>
 <body>
 <div class="header">
 <div class="header-left"><div class="z-logo">Z</div></div>
 <div class="header-center"><b id="siteTitle">ZG 4K Wallpaper</b><span id="siteSubtitle">مجموعة خلفيات فاخرة • 4K • 8K • مصمم</span></div>
-<div class="header-right"><div class="lang-switch"><button id="btn-ar" onclick="setLang('ar')">AR</button><button id="btn-en" onclick="setLang('en')">EN</button></div></div>
+<div class="header-actions">
+<div class="bell-btn" onclick="openNotif()"><span>🔔</span><span class="bell-dot" id="bellDot"></span></div>
+<div class="profile-btn" id="profileBtn" onclick="openAuth()">👤</div>
+<div class="lang-switch"><button id="btn-ar" onclick="setLang('ar')">AR</button><button id="btn-en" onclick="setLang('en')">EN</button></div>
+</div>
 </div>
 
 <div class="hero">
@@ -153,8 +197,15 @@ body{background:#000;color:#fff;min-height:100vh}
 <button class="btn-cats" id="btnCats" onclick="openCatsModal()">☰ <span id="btnCatsText">جميع أقسام الخلفيات</span></button>
 </div>
 
+<div class="filter-bar" id="filterBar">
+<button class="filter-menu-btn" onclick="openFilterModal()">☰ <span id="filterMenuText">فلترة</span></button>
+<div id="quickFilters"></div>
+</div>
+
 <div class="cats-row"><div class="cats-scroll" id="catsScroll"></div></div>
-<div class="grid" id="grid"></div>
+<div class="grid" id="grid">
+<div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>
+</div>
 
 <div id="adBottomSlot" style="max-width:760px;margin:20px auto;padding:0 14px;text-align:center;display:none"></div>
 
@@ -192,9 +243,19 @@ body{background:#000;color:#fff;min-height:100vh}
 <div class="modal-box">
 <img id="modalImg" src="" alt="">
 <div class="modal-bar">
-<span id="modalTitle" style="font-size:13px;font-weight:600"></span>
-<div style="display:flex;gap:8px">
+<div class="modal-info">
+<div>
+<div class="modal-title" id="modalTitle"></div>
+<div class="modal-cat" id="modalCat"></div>
+</div>
+<div class="modal-device" id="modalDevice"></div>
+</div>
+<div id="modalTags" style="display:flex;gap:6px;flex-wrap:wrap;margin:10px 0"></div>
+<div class="modal-actions">
 <a class="btn" id="modalDownload" target="_blank">تحميل 4K</a>
+<button class="btn btn-ghost" id="btnLikeModal" onclick="toggleLikeModal()">❤️ <span id="likeCount">0</span></button>
+<button class="btn btn-ghost" id="btnSaveModal" onclick="toggleSaveModal()">🔖 حفظ</button>
+<button class="btn btn-ghost" onclick="shareModal()">📤 مشاركة</button>
 <button class="btn btn-ghost" onclick="closeModal()">إغلاق</button>
 </div>
 </div>
@@ -209,262 +270,527 @@ body{background:#000;color:#fff;min-height:100vh}
 <div class="cats-grid" id="catsGrid"></div>
 </div>
 
+<div class="filter-modal" id="filterModal">
+<div class="filter-modal-box">
+<h3 id="filterModalTitle">فلترة وترتيب</h3>
+<div id="filterOptions"></div>
+<h3 style="margin-top:16px" id="filterTagTitle">التصنيفات</h3>
+<div id="tagFilters" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px"></div>
+<div style="display:flex;gap:8px;margin-top:20px">
+<button class="btn" style="flex:1" id="btnSaveApply" onclick="applyFilters()">حفظ وتطبيق</button>
+<button class="btn btn-ghost" style="flex:1" id="btnCancel" onclick="closeFilterModal()">إلغاء</button>
+</div>
+</div>
+</div>
+
+<div class="notif-modal" id="notifModal">
+<div class="notif-box">
+<div style="padding:16px;border-bottom:1px solid #1a1a1a;display:flex;justify-content:space-between;align-items:center"><b id="notifTitle">الإشعارات</b><button class="btn btn-ghost" onclick="closeNotif()">✕</button></div>
+<div id="notifList"></div>
+</div>
+</div>
+
+<div class="auth-modal" id="authModal">
+<div class="auth-box">
+<h3 id="authBoxTitle" style="margin-bottom:16px">تسجيل الدخول / إنشاء حساب</h3>
+<input id="authName" placeholder="الاسم الكامل">
+<input id="authEmail" placeholder="البريد الإلكتروني">
+<input id="authPass" type="password" placeholder="كلمة المرور">
+<button class="btn" style="width:100%;margin-top:10px" onclick="doAuth()">دخول</button>
+<button class="btn btn-ghost" style="width:100%;margin-top:8px" onclick="closeAuth()">إغلاق</button>
+<div id="authProfile" style="display:none;margin-top:16px;text-align:center">
+<img id="authAvatar" style="width:80px;height:80px;border-radius:50%;margin:0 auto 10px;display:block;background:#222">
+<div id="authDisplayName" style="font-weight:900"></div>
+<div id="authDisplayEmail" style="font-size:11px;color:#888"></div>
+<button class="btn btn-ghost" style="width:100%;margin-top:12px" onclick="logout()">تسجيل خروج</button>
+</div>
+</div>
+</div>
+
 <script>
 let wallpapers=[];
-let categories=[];
-let currentCategory='الكل';
+let currentCat='الكل';
 let currentLang='ar';
+let currentSort='new';
+let selectedTags=[];
+let currentModalWall=null;
 
 const T={
-ar:{
-title:"ZG 4K Wallpaper - خلفيات 4K للهاتف والكمبيوتر",
-siteTitle:"ZG 4K Wallpaper",
-siteSubtitle:"مجموعة خلفيات فاخرة • 4K • 8K • مصمم",
-heroTitle:'خلفيات <span class="lime">فاخرة</span> تعكس<br>ذوقك',
-heroDesc:"كل خلفية مصممة بعناية فائقة لتمنح جهازك هوية فاخرة وتجربة بصرية لا تُنسى.",
-searchPlaceholder:"ابحث عن خلفية 4K...",
-searchHint:(cnt,cat)=>cnt>0?`تم العثور على ${cnt} خلفية في ${cat}`:`لا توجد نتائج في ${cat}`,
-lblUpdate:"تحديث",
-valUpdate:"يومي",
-lblRes:"دقة قصوى",
-valRes:"8K • 7680p",
-lblDownloads:"تحميلات",
-valDownloads:"+1.2M",
-lblUsers:"مستخدمون",
-valUsers:"+1.05M",
-lblTotal:"إجمالي الخلفيات",
-btnAll:"الكل",
-btnCatsText:"جميع أقسام الخلفيات",
-footerBrand:"ZG 4K Wallpaper",
-footerDesc:"مجموعة فاخرة من الخلفيات المتنوعة بدقة 4K و 8K مصممة للذواقة.",
-badge1:"تحديث يومي",
-badge2:"تحميل مجاني",
-badge3:"4K • 8K • UHD",
-btnContact:"تواصل معنا",
-btnAdsService:"💰 خدمة الإعلانات",
-btnPrivacy:"سياسة الخصوصية",
-btnSubscribe:"الاشتراك",
-footerCopy:"© ZG 4K Wallpaper 2026 — جميع الخلفيات فاخرة ومجانية.",
-modalDownload:"تحميل 4K",
-catsModalTitle:"جميع أقسام الخلفيات",
-noResults:"لا توجد نتائج في الكلومن",
-suggestions:"جرب: الطبيعة والمناظر الطبيعية، الشواطئ والمحيطات، الفضاء وعلم الفلك •"
-},
-en:{
-title:"ZG 4K Wallpaper - 4K Wallpapers for Phone & PC",
-siteTitle:"ZG 4K Wallpaper",
-siteSubtitle:"Luxury Wallpapers Collection • 4K • 8K",
-heroTitle:'<span class="lime">Luxury</span> Wallpapers<br>Reflecting Your Taste',
-heroDesc:"Every wallpaper is crafted with utmost care to give your device a luxury identity.",
-searchPlaceholder:"Search 4K wallpaper...",
-searchHint:(cnt,cat)=>cnt>0?`Found ${cnt} wallpapers in ${cat}`:`No results in ${cat}`,
-lblUpdate:"Update",
-valUpdate:"Daily",
-lblRes:"Max Resolution",
-valRes:"8K • 7680p",
-lblDownloads:"Downloads",
-valDownloads:"+1.2M",
-lblUsers:"Users",
-valUsers:"+1.05M",
-lblTotal:"Total Wallpapers",
-btnAll:"All",
-btnCatsText:"All Categories",
-footerBrand:"ZG 4K Wallpaper",
-footerDesc:"A luxury collection of diverse wallpapers in 4K and 8K.",
-badge1:"Daily Update",
-badge2:"Free Download",
-badge3:"4K • 8K • UHD",
-btnContact:"Contact Us",
-btnAdsService:"💰 Advertising",
-btnPrivacy:"Privacy Policy",
-btnSubscribe:"Subscribe",
-footerCopy:"© ZG 4K Wallpaper 2026 — All wallpapers are luxury and free.",
-modalDownload:"Download 4K",
-catsModalTitle:"All Wallpaper Categories",
-noResults:"No results found",
-suggestions:"Try: Nature, Beaches & Oceans, Space & Astronomy •"
-}
+ar:{siteTitle:"ZG 4K Wallpaper",siteSubtitle:"مجموعة خلفيات فاخرة • 4K • 8K • مصمم",heroTitle:'خلفيات <span class="lime">فاخرة</span> تعكس<br>ذوقك',heroDesc:"كل خلفية مصممة بعناية فائقة لتمنح جهازك هوية فاخرة وتجربة بصرية لا تُنسى.",searchPlaceholder:"ابحث عن خلفية 4K...",lblUpdate:"تحديث",lblRes:"دقة قصوى",lblDownloads:"تحميلات",lblUsers:"مستخدمون",lblTotal:"إجمالي الخلفيات",btnAll:"الكل",btnCatsText:"جميع أقسام الخلفيات",filterText:"فلترة",footerBrand:"ZG 4K Wallpaper",footerDesc:"مجموعة فاخرة من الخلفيات المتنوعة بدقة 4K و 8K مصممة للذواقة.",badge1:"تحديث يومي",badge2:"تحميل مجاني",badge3:"4K • 8K • UHD",btnContact:"تواصل معنا",btnAdsService:"💰 خدمة الإعلانات",btnPrivacy:"سياسة الخصوصية",btnSubscribe:"الاشتراك",footerCopy:"© ZG 4K Wallpaper 2026 — جميع الخلفيات فاخرة ومجانية.",modalDownload:"تحميل 4K",catsModalTitle:"جميع أقسام الخلفيات",noResults:"لا توجد نتائج",filterModalTitle:"فلترة وترتيب",notifTitle:"الإشعارات",authTitle:"تسجيل الدخول / إنشاء حساب",devicePhone:"📱 هاتف",devicePC:"💻 حاسوب",deviceBoth:"📱💻 هاتف وحاسوب"},
+en:{siteTitle:"ZG 4K Wallpaper",siteSubtitle:"Luxury Wallpapers Collection • 4K • 8K",heroTitle:'<span class="lime">Luxury</span> Wallpapers<br>Reflecting Your Taste',heroDesc:"Every wallpaper is crafted with utmost care to give your device a luxury identity.",searchPlaceholder:"Search 4K wallpaper...",lblUpdate:"Update",lblRes:"Max Res",lblDownloads:"Downloads",lblUsers:"Users",lblTotal:"Total",btnAll:"All",btnCatsText:"All Categories",filterText:"Filter",footerBrand:"ZG 4K Wallpaper",footerDesc:"A luxury collection of diverse wallpapers in 4K and 8K.",badge1:"Daily Updates",badge2:"Free Download",badge3:"4K • 8K • UHD",btnContact:"Contact Us",btnAdsService:"💰 Advertising Service",btnPrivacy:"Privacy Policy",btnSubscribe:"Subscribe",footerCopy:"© ZG 4K Wallpaper 2026 — All wallpapers are luxury and free.",modalDownload:"Download 4K",catsModalTitle:"All Categories",noResults:"No results",filterModalTitle:"Filter & Sort",notifTitle:"Notifications",authTitle:"Login / Sign Up",devicePhone:"📱 Phone",devicePC:"💻 PC",deviceBoth:"📱💻 Both"}
 };
+
+const CATS_MAP = {
+"الكل":{ar:"الكل",en:"All",emoji:"⭐"},
+"الطبيعة والمناظر الطبيعية":{ar:"الطبيعة والمناظر الطبيعية",en:"Nature & Landscapes",emoji:"🏞️"},
+"الشواطئ والمحيطات":{ar:"الشواطئ والمحيطات",en:"Beaches & Oceans",emoji:"🏖️"},
+"الفضاء وعلم الفلك":{ar:"الفضاء وعلم الفلك",en:"Space & Astronomy",emoji:"🌌"},
+"الغابات والأشجار":{ar:"الغابات والأشجار",en:"Forests & Trees",emoji:"🌲"},
+"الشلالات والأنهار":{ar:"الشلالات والأنهار",en:"Waterfalls & Rivers",emoji:"💧"},
+"الزهور والنباتات":{ar:"الزهور والنباتات",en:"Flowers & Plants",emoji:"🌸"},
+"الفن التجريدي":{ar:"الفن التجريدي",en:"Abstract Art",emoji:"🎨"},
+"التدرجات اللونية":{ar:"التدرجات اللونية",en:"Color Gradients",emoji:"🌈"},
+"الفن الرقمي":{ar:"الفن الرقمي",en:"Digital Art",emoji:"💻"},
+"النيون والإضاءة":{ar:"النيون والإضاءة",en:"Neon & Lighting",emoji:"💡"},
+"الأشكال الهندسية والأنماط":{ar:"الأشكال الهندسية والأنماط",en:"Geometric & Patterns",emoji:"🔷"},
+"البساطة المطلقة":{ar:"البساطة المطلقة",en:"Minimalism",emoji:"◻️"},
+"المظهر الداكن وشاشات أولييد":{ar:"المظهر الداكن وشاشات أولييد",en:"Dark & OLED",emoji:"🌙"},
+"أفق المدن":{ar:"أفق المدن",en:"City Skylines",emoji:"🌃"},
+"الهندسة المعمارية":{ar:"الهندسة المعمارية",en:"Architecture",emoji:"🏛️"},
+"الشوارع والأزقة":{ar:"الشوارع والأزقة",en:"Streets & Alleys",emoji:"🛣️"},
+"الأنمي والمانغا":{ar:"الأنمي والمانغا",en:"Anime & Manga",emoji:"🎌"},
+"الأفلام والمسلسلات":{ar:"الأفلام والمسلسلات",en:"Movies & Series",emoji:"🎬"},
+"ألعاب الفيديو":{ar:"ألعاب الفيديو",en:"Video Games",emoji:"🎮"},
+"الأبطال الخارقون":{ar:"الأبطال الخارقون",en:"Superheroes",emoji:"🦸"},
+"المشاهير والشخصيات العامة":{ar:"المشاهير والشخصيات العامة",en:"Celebrities",emoji:"⭐"},
+"الكيبوب والفرق الكورية":{ar:"الكيبوب والفرق الكورية",en:"K-Pop",emoji:"🎤"},
+"السيارات الرياضية والفارهة":{ar:"السيارات الرياضية والفارهة",en:"Sports & Luxury Cars",emoji:"🏎️"},
+"السيارات الكلاسيكية":{ar:"السيارات الكلاسيكية",en:"Classic Cars",emoji:"🚗"},
+"الدراجات النارية":{ar:"الدراجات النارية",en:"Motorcycles",emoji:"🏍️"},
+"الطائرات والطيران":{ar:"الطائرات والطيران",en:"Aviation",emoji:"✈️"},
+"الحيوانات البرية":{ar:"الحيوانات البرية",en:"Wild Animals",emoji:"🦁"},
+"الطيور":{ar:"الطيور",en:"Birds",emoji:"🦅"},
+"الحيوانات الأليفة":{ar:"الحيوانات الأليفة",en:"Pets",emoji:"🐱"},
+"الحياة البحرية":{ar:"الحياة البحرية",en:"Marine Life",emoji:"🐋"},
+"الموضة والأناقة":{ar:"الموضة والأناقة",en:"Fashion",emoji:"👗"},
+"القهوة والمشروبات":{ar:"القهوة والمشروبات",en:"Coffee & Drinks",emoji:"☕"},
+"الأطعمة والحلويات":{ar:"الأطعمة والحلويات",en:"Food & Sweets",emoji:"🍰"},
+"السفر والمغامرة":{ar:"السفر والمغامرة",en:"Travel & Adventure",emoji:"🧭"},
+"عبارات تحفيزية":{ar:"عبارات تحفيزية",en:"Motivational",emoji:"💪"},
+"حكم وأقوال":{ar:"حكم وأقوال",en:"Quotes",emoji:"📜"},
+"الأعياد والمناسبات":{ar:"الأعياد والمناسبات",en:"Holidays",emoji:"🎉"},
+"خلفيات إسلامية ودينية":{ar:"خلفيات إسلامية ودينية",en:"Islamic & Religious",emoji:"🕌"},
+"فصول السنة":{ar:"فصول السنة",en:"Seasons",emoji:"🍂"},
+"شعارات الأعمال":{ar:"شعارات الأعمال",en:"Business Logos",emoji:"🏢"},
+"خلفيات الحاسوب":{ar:"خلفيات الحاسوب",en:"PC Wallpapers",emoji:"💻"},
+"خلفيات الهاتف":{ar:"خلفيات الهاتف",en:"Phone Wallpapers",emoji:"📱"},
+"الخلفيات المتحركة":{ar:"الخلفيات المتحركة",en:"Live Wallpapers",emoji:"✨"},
+"الأكثر شعبية":{ar:"الأكثر شعبية",en:"Most Popular",emoji:"🔥"},
+"المضاف حديثاً":{ar:"المضاف حديثاً",en:"Recently Added",emoji:"🆕"}
+};
+
+function tCat(key){
+ const o=CATS_MAP[key];
+ if(!o) return key;
+ return currentLang==='ar'?o.ar:o.en;
+}
+
+const TAGS_MAP = {
+"تشويق":{ar:"تشويق",en:"Thriller"},
+"رعب":{ar:"رعب",en:"Horror"},
+"موسيقى":{ar:"موسيقى",en:"Music"},
+"حب":{ar:"حب",en:"Love"},
+"حزين":{ar:"حزين",en:"Sad"},
+"مضحك":{ar:"مضحك",en:"Funny"},
+"أكشن":{ar:"أكشن",en:"Action"},
+"مغامرة":{ar:"مغامرة",en:"Adventure"},
+"خيال":{ar:"خيال",en:"Fantasy"},
+"رياضة":{ar:"رياضة",en:"Sports"},
+"طبيعة":{ar:"طبيعة",en:"Nature"},
+"مدن":{ar:"مدن",en:"Cities"},
+"سيارات":{ar:"سيارات",en:"Cars"},
+"حيوانات":{ar:"حيوانات",en:"Animals"},
+"أنمي":{ar:"أنمي",en:"Anime"},
+"ألعاب":{ar:"ألعاب",en:"Games"},
+"فضاء":{ar:"فضاء",en:"Space"},
+"فن":{ar:"فن",en:"Art"},
+"تكنولوجيا":{ar:"تكنولوجيا",en:"Tech"},
+"أعمال":{ar:"أعمال",en:"Business"},
+"إسلامي":{ar:"إسلامي",en:"Islamic"},
+"تحفيزي":{ar:"تحفيزي",en:"Motivational"},
+"قديم":{ar:"قديم",en:"Old"},
+"جديد":{ar:"جديد",en:"New"},
+"فاخر":{ar:"فاخر",en:"Luxury"},
+"4K":{ar:"4K",en:"4K"},
+"8K":{ar:"8K",en:"8K"},
+"UHD":{ar:"UHD",en:"UHD"},
+"داكن":{ar:"داكن",en:"Dark"},
+"فاتح":{ar:"فاتح",en:"Light"},
+"ملون":{ar:"ملون",en:"Colorful"},
+"نيون":{ar:"نيون",en:"Neon"},
+"بسيط":{ar:"بسيط",en:"Minimal"},
+"معقد":{ar:"معقد",en:"Complex"},
+"هاتف":{ar:"هاتف",en:"Phone"},
+"حاسوب":{ar:"حاسوب",en:"PC"},
+"فاخرة":{ar:"فاخرة",en:"Luxury"}
+};
+function tTag(tag){
+ const o=TAGS_MAP[tag];
+ if(!o) return tag;
+ return currentLang==='ar'?o.ar:o.en;
+}
+
+const NOTIFS_MAP = {
+ar:[
+{title:'🎉 مرحبا بكم في التحديث الجديد!',desc:'تم إضافة خلفيات الحاسوب والهاتف وشعارات الأعمال ونظام الإعجاب والحفظ',time:'الآن'},
+{title:'✨ ميزة جديدة',desc:'يمكنك الآن فلترة الخلفيات حسب القديم والجديد والأكثر شعبية',time:'اليوم'}
+],
+en:[
+{title:'🎉 Welcome to the New Update!',desc:'Added PC & Phone wallpapers, Business Logos, Like & Save system',time:'Now'},
+{title:'✨ New Feature',desc:'You can now filter wallpapers by Old, New & Most Popular',time:'Today'}
+]
+};
+
+function getEmoji(key){
+ const o=CATS_MAP[key];
+ return o?o.emoji:'🖼️';
+}
+
+const ALL_TAGS=["تشويق","رعب","موسيقى","حب","حزين","مضحك","أكشن","مغامرة","خيال","رياضة","طبيعة","مدن","سيارات","حيوانات","أنمي","ألعاب","فضاء","فن","تكنولوجيا","أعمال","إسلامي","تحفيزي","قديم","جديد","فاخر","4K","8K","UHD","داكن","فاتح","ملون","نيون","بسيط","معقد"];
+
+function getDeviceIcon(dev){
+if(dev==='phone') return T[currentLang].devicePhone;
+if(dev==='pc') return T[currentLang].devicePC;
+return T[currentLang].deviceBoth;
+}
+function getDeviceEmoji(dev){
+if(dev==='phone') return '📱';
+if(dev==='pc') return '💻';
+return '📱💻';
+}
 
 async function init(){
 const savedLang=localStorage.getItem('zg_lang')||'ar';
+currentLang=savedLang;
 await loadData();
 setLang(savedLang,false);
+renderQuickFilters();
+loadProfile();
+checkNotifDot();
+startDynamicUsers();
+loadVisitorCounter();
 }
 
 async function loadData(){
+// Fast load - show cached instantly
+try{
+const cached=localStorage.getItem('zg_walls_cache');
+if(cached){ wallpapers=JSON.parse(cached); renderAll(); }
+}catch(e){}
 try{
 const resW=await fetch('wallpapers.json?v='+Date.now());
-if(resW.ok) wallpapers=await resW.json();
-}catch(e){wallpapers=[];}
-
-try{
-const resS=await fetch('settings.json?v='+Date.now());
-if(resS.ok){
-const settings=await resS.json();
-if(settings.whatsapp){
-window.waNumber=settings.whatsapp;
-}
-if(settings.client_ads && Array.isArray(settings.client_ads) && settings.client_ads.length>0){
-renderClientAds(settings.client_ads);
+if(resW.ok){
+let j=await resW.json();
+if(Array.isArray(j)&&j.length>0){
+wallpapers=j;
+localStorage.setItem('zg_walls_cache', JSON.stringify(j));
+renderAll();
+return;
 }
 }
 }catch(e){}
-
-extractCategories();
+if(wallpapers.length===0){
+try{
+const local=JSON.parse(localStorage.getItem('zg_walls_cache')||'[]');
+if(local.length>0){ wallpapers=local; renderAll(); return; }
+}catch(e){}
+}
+// Demo wallpapers if empty for fast preview
+if(wallpapers.length===0){
+wallpapers=[
+{id:1,url:'https://picsum.photos/seed/1/600/900',title_ar:'خلفية فاخرة 1',title_en:'Luxury Wallpaper 1',category:'الطبيعة والمناظر الطبيعية',device:'both',tags:['طبيعة','فاخر'],createdAt:Date.now(),likes:12,saves:5},
+{id:2,url:'https://picsum.photos/seed/2/600/900',title_ar:'خلفية هاتف رائعة',title_en:'Amazing Phone Wallpaper',category:'خلفيات الهاتف',device:'phone',tags:['هاتف','جديد'],createdAt:Date.now()-1000,likes:8,saves:3}
+];
+renderAll();
+}
 }
 
-function extractCategories(){
-const set=new Set();
-wallpapers.forEach(w=>{if(w.category) set.add(w.category);});
-categories=Array.from(set);
-}
+function renderAll(){ renderCatsScroll(); renderCatsGrid(); renderGrid(); renderTagFilters(); }
 
-function setLang(lang,render=true){
+function setLang(lang,doRender=true){
 currentLang=lang;
 localStorage.setItem('zg_lang',lang);
 document.documentElement.lang=lang;
 document.documentElement.dir=lang==='ar'?'rtl':'ltr';
-
 document.getElementById('btn-ar').classList.toggle('active',lang==='ar');
 document.getElementById('btn-en').classList.toggle('active',lang==='en');
-
-document.title=T[lang].title;
-document.getElementById('siteTitle').textContent=T[lang].siteTitle;
-document.getElementById('siteSubtitle').textContent=T[lang].siteSubtitle;
-document.getElementById('heroTitle').innerHTML=T[lang].heroTitle;
-document.getElementById('heroDesc').textContent=T[lang].heroDesc;
-document.getElementById('searchInput').placeholder=T[lang].searchPlaceholder;
-document.getElementById('searchInput').style.textAlign=lang==='ar'?'right':'left';
-
-document.getElementById('lblUpdate').textContent=T[lang].lblUpdate;
-document.getElementById('valUpdate').textContent=lang==='ar'?'يومي':'Daily';
-document.getElementById('lblRes').textContent=T[lang].lblRes;
-document.getElementById('lblDownloads').textContent=T[lang].lblDownloads;
-document.getElementById('lblUsers').textContent=T[lang].lblUsers;
-document.getElementById('lblTotal').textContent=T[lang].lblTotal;
+const L=T[lang];
+document.title=lang==='ar'?'ZG 4K Wallpaper - خلفيات 4K للهاتف والكمبيوتر':'ZG 4K Wallpaper - 4K Wallpapers';
+document.getElementById('siteTitle').textContent=L.siteTitle;
+document.getElementById('siteSubtitle').textContent=L.siteSubtitle;
+document.getElementById('heroTitle').innerHTML=L.heroTitle;
+document.getElementById('heroDesc').textContent=L.heroDesc;
+document.getElementById('searchInput').placeholder=L.searchPlaceholder;
+document.getElementById('lblUpdate').textContent=L.lblUpdate;
+document.getElementById('lblRes').textContent=L.lblRes;
+document.getElementById('lblDownloads').textContent=L.lblDownloads;
+document.getElementById('lblUsers').textContent=L.lblUsers;
+document.getElementById('lblTotal').textContent=L.lblTotal;
+document.getElementById('valUpdate').textContent=currentLang==='ar'?'يومي':'Daily';
+document.getElementById('valRes').textContent='8K • 7680p';
 document.getElementById('valTotal').textContent=wallpapers.length;
+document.getElementById('btnAll').textContent=L.btnAll;
+document.getElementById('btnCatsText').textContent=L.btnCatsText;
+document.getElementById('filterMenuText').textContent=L.filterText;
+document.getElementById('footerBrand').textContent=L.footerBrand;
+document.getElementById('footerDesc').textContent=L.footerDesc;
+document.getElementById('badge1').textContent=L.badge1;
+document.getElementById('badge2').textContent=L.badge2;
+document.getElementById('badge3').textContent=L.badge3;
+document.getElementById('btnContact').textContent=L.btnContact;
+document.getElementById('btnAdsService').textContent=L.btnAdsService;
+document.getElementById('btnAdsService').href='ads.html';
+document.getElementById('btnPrivacy').textContent=L.btnPrivacy;
+document.getElementById('btnSubscribe').textContent=L.btnSubscribe;
+document.getElementById('footerCopy').textContent=L.footerCopy;
+document.getElementById('catsModalTitle').textContent=L.catsModalTitle;
+document.getElementById('filterModalTitle').textContent=L.filterModalTitle;
+document.getElementById('notifTitle').textContent=L.notifTitle;
+document.getElementById('authBoxTitle').textContent=L.authTitle;
+if(doRender) renderGrid();
+}
 
-document.getElementById('btnAll').textContent=T[lang].btnAll;
-document.getElementById('btnCatsText').textContent=T[lang].btnCatsText;
-
-document.getElementById('footerBrand').textContent=T[lang].footerBrand;
-document.getElementById('footerDesc').textContent=T[lang].footerDesc;
-document.getElementById('badge1').textContent=T[lang].badge1;
-document.getElementById('badge2').textContent=T[lang].badge2;
-document.getElementById('badge3').textContent=T[lang].badge3;
-document.getElementById('btnContact').textContent=T[lang].btnContact;
-document.getElementById('btnAdsService').textContent=T[lang].btnAdsService;
-document.getElementById('btnPrivacy').textContent=T[lang].btnPrivacy;
-document.getElementById('btnSubscribe').textContent=T[lang].btnSubscribe;
-document.getElementById('footerCopy').textContent=T[lang].footerCopy;
-
-document.getElementById('catsModalTitle').textContent=T[lang].catsModalTitle;
-
-const hintEl=document.getElementById('searchHint');
-hintEl.className='search-hint'+(lang==='en'?' ltr':'');
-
-if(render) filterAndRender();
-renderCatsScroll();
+function renderQuickFilters(){
+const el=document.getElementById('quickFilters');
+el.innerHTML=ALL_TAGS.slice(0,8).map(tag=>`<button class="filter-chip ${selectedTags.includes(tag)?'active':''}" onclick="toggleTag('${tag}')">${tTag(tag)}</button>`).join('');
 }
 
 function renderCatsScroll(){
 const scroll=document.getElementById('catsScroll');
-let html=`<div class="cat-chip ${currentCategory==='الكل'?'active':''}" onclick="setCat('الكل')">${currentLang==='ar'?'الكل':'All'}</div>`;
-categories.forEach(cat=>{
-html+=`<div class="cat-chip ${currentCategory===cat?'active':''}" onclick="setCat('${cat}')">${cat}</div>`;
+// No "الكل" button here as requested - only categories
+let html='';
+Object.keys(CATS_MAP).filter(c=>c!=='الكل').forEach(cat=>{
+html+=`<div class="cat-chip ${currentCat===cat?'active':''}" onclick="setCat('${cat.replace(/'/g,"\\'")}')">${tCat(cat)}</div>`;
 });
 scroll.innerHTML=html;
 }
 
-function setCat(cat){
-currentCategory=cat;
-renderCatsScroll();
-filterAndRender();
+function renderCatsGrid(){
+const grid=document.getElementById('catsGrid');
+let html='';
+Object.keys(CATS_MAP).forEach(cat=>{
+html+=`<div class="cat-square ${currentCat===cat?'active':''}" onclick="setCat('${cat.replace(/'/g,"\\'")}');closeCatsModal()"><div class="ic">${getEmoji(cat)}</div><div class="name">${tCat(cat)}</div></div>`;
+});
+grid.innerHTML=html;
 }
 
-function onSearch(){
-filterAndRender();
+function renderTagFilters(){
+const el=document.getElementById('tagFilters');
+el.innerHTML=ALL_TAGS.map(tag=>`<button class="filter-chip ${selectedTags.includes(tag)?'active':''}" onclick="toggleTag('${tag}')" style="font-size:12px;padding:8px 14px">${tTag(tag)}</button>`).join('');
 }
 
-function filterAndRender(){
-const query=document.getElementById('searchInput').value.trim().toLowerCase();
+window.toggleTag=function(tag){
+if(selectedTags.includes(tag)) selectedTags=selectedTags.filter(t=>t!==tag);
+else selectedTags.push(tag);
+renderQuickFilters(); renderTagFilters();
+};
+
+window.setCat=function(cat){
+currentCat=cat;
+renderCatsScroll(); renderCatsGrid(); renderGrid();
+};
+window.onSearch=function(){ renderGrid(); };
+
+function applySort(arr){
+if(currentSort==='new') return arr.sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
+if(currentSort==='old') return arr.sort((a,b)=>(a.createdAt||0)-(b.createdAt||0));
+if(currentSort==='popular') return arr.sort((a,b)=>(b.likes||0)-(a.likes||0));
+return arr;
+}
+
+function renderGrid(){
+const q=(document.getElementById('searchInput').value||'').toLowerCase();
+let filtered=wallpapers.filter(w=>{
+const title=(currentLang==='ar'?(w.title_ar||w.title):(w.title_en||w.title_ar||w.title)||'').toLowerCase();
+const cat=(w.category||'').toLowerCase();
+const tags=(w.tags||[]).join(' ').toLowerCase();
+const matchSearch=!q||title.includes(q)||cat.includes(q)||tags.includes(q);
+let matchCat=true;
+if(currentCat!=='الكل'){
+if(currentCat==='خلفيات الحاسوب') matchCat=w.device==='pc'||w.device==='both';
+else if(currentCat==='خلفيات الهاتف') matchCat=w.device==='phone'||w.device==='both';
+else if(currentCat==='شعارات الأعمال') matchCat=w.category==='شعارات الأعمال'||(w.tags||[]).includes('أعمال');
+else matchCat=w.category===currentCat;
+}
+let matchTags=true;
+if(selectedTags.length>0){
+matchTags=selectedTags.some(t=>(w.tags||[]).includes(t)||(w.category||'').includes(t));
+}
+return matchSearch&&matchCat&&matchTags;
+});
+filtered=applySort(filtered);
+const hint=document.getElementById('searchHint');
+if(hint){
+const sampleCats = [tCat('الطبيعة والمناظر الطبيعية'), tCat('الشواطئ والمحيطات'), tCat('الفضاء وعلم الفلك')].join(currentLang==='ar'?'، ':' , ');
+hint.innerHTML=`${currentLang==='ar'?'جرب:':'Try:'} ${sampleCats} • <span style="color:#D4FF32">${filtered.length} ${currentLang==='ar'?'خلفية':'wallpapers'} • ${currentLang==='ar'?'القسم:':'Cat:'} ${tCat(currentCat)}</span>`;
+}
 const grid=document.getElementById('grid');
-const hintEl=document.getElementById('searchHint');
-
-let filtered=wallpapers;
-if(currentCategory!=='الكل'){
-filtered=filtered.filter(w=>w.category===currentCategory);
-}
-if(query){
-filtered=filtered.filter(w=>(w.title&&w.title.toLowerCase().includes(query))||(w.category&&w.category.toLowerCase().includes(query)));
-}
-
-hintEl.innerHTML=`${currentLang==='ar'?'جرب: الطبيعة والمناظر الطبيعية، الشواطئ والمحيطات، الفضاء وعلم الفلك •':'Try: Nature, Beaches & Oceans, Space & Astronomy •'} <span style="color:#D4FF32">${filtered.length} ${currentLang==='ar'?'خلفية':'wallpapers'} • ${currentLang==='ar'?'القسم:':'Category:'} ${currentCategory}</span>`;
-
 if(filtered.length===0){
-grid.innerHTML=`<div class="no-results">${currentLang==='ar'?'لا توجد نتائج في '+currentCategory:'No results found in '+currentCategory}</div>`;
+grid.innerHTML=`<div class="no-results">${T[currentLang].noResults} ${currentCat}</div>`;
+document.getElementById('valTotal').textContent=wallpapers.length;
 return;
 }
-
-let html='';
-filtered.forEach(w=>{
-html+=`<div class="card" onclick="openModal('${w.url}','${w.title||''}')">
-<div class="img">
-<img src="${w.url}" alt="${w.title||''}" loading="lazy">
-<div class="tag">${w.category||''}</div>
-<div class="dl">↓</div>
-</div>
-<div class="info">
-<div class="title">${w.title||(currentLang==='ar'?'خلفية فاخرة':'Luxury Wallpaper')}</div>
-<div style="font-size:11px;color:#888">4K • 8K</div>
-</div>
+grid.innerHTML=filtered.map(w=>{
+const title=currentLang==='ar'?(w.title_ar||w.title||''): (w.title_en||w.title_ar||w.title||'');
+const likes=w.likes||0; const saves=w.saves||0;
+const liked=(JSON.parse(localStorage.getItem('zg_likes')||'[]')).includes(w.id);
+const saved=(JSON.parse(localStorage.getItem('zg_saves')||'[]')).includes(w.id);
+const catDisplay = tCat(w.category||'');
+const tagsDisplay = (w.tags||[]).slice(0,2).map(t=>tTag(t)).join(' • ');
+return `<div class="card">
+<div class="img" onclick="openWall(${w.id})"><img src="${w.url}" loading="lazy" alt="${title}"><span class="tag">${catDisplay}</span><span class="device">${getDeviceEmoji(w.device||'both')}</span><span class="dl">↓</span></div>
+<div class="info"><div><div class="title">${title||'wallpaper'}</div><div class="meta"><span>${getDeviceIcon(w.device||'both')}</span><span>4K • 8K</span><span>${tagsDisplay}</span></div></div></div>
+<div class="actions"><button class="like-btn ${liked?'liked':''}" onclick="toggleLike(${w.id})">❤️ ${likes}</button><button class="save-btn ${saved?'saved':''}" onclick="toggleSave(${w.id})">🔖 ${saves}</button><button class="like-btn" onclick="shareWall(${w.id})">📤</button></div>
 </div>`;
-});
-grid.innerHTML=html;
+}).join('');
+document.getElementById('valTotal').textContent=wallpapers.length;
 }
 
-function openModal(url,title){
-document.getElementById('modalImg').src=url;
+window.openWall=function(id){
+const w=wallpapers.find(x=>x.id===id); if(!w) return;
+currentModalWall=w;
+const title=currentLang==='ar'?(w.title_ar||w.title):(w.title_en||w.title_ar||w.title);
+document.getElementById('modalImg').src=w.url;
 document.getElementById('modalTitle').textContent=title;
-document.getElementById('modalDownload').href=url;
+document.getElementById('modalCat').textContent=w.category+' • '+(w.tags||[]).join(' • ');
+document.getElementById('modalDevice').textContent=getDeviceIcon(w.device||'both');
+document.getElementById('modalDownload').href=w.url;
+document.getElementById('likeCount').textContent=w.likes||0;
+document.getElementById('modalTags').innerHTML=(w.tags||[]).map(t=>`<span style="background:#1a1a1a;border:1px solid #2a2a2a;padding:4px 10px;border-radius:12px;font-size:11px">${tTag(t)}</span>`).join('');
+document.getElementById('modalCat').textContent=tCat(w.category||'')+' • '+(w.tags||[]).map(tt=>tTag(tt)).join(' • ');
 document.getElementById('modal').classList.add('active');
+const liked=(JSON.parse(localStorage.getItem('zg_likes')||'[]')).includes(w.id);
+document.getElementById('btnLikeModal').className=liked?'btn':'btn btn-ghost';
+const saved=(JSON.parse(localStorage.getItem('zg_saves')||'[]')).includes(w.id);
+document.getElementById('btnSaveModal').textContent=saved?'✅ محفوظ':'🔖 حفظ';
+};
+
+window.closeModal=function(){ document.getElementById('modal').classList.remove('active'); };
+window.openCatsModal=function(){ renderCatsGrid(); document.getElementById('catsModal').classList.add('active'); };
+window.closeCatsModal=function(){ document.getElementById('catsModal').classList.remove('active'); };
+window.openFilterModal=function(){ renderFilterModal(); document.getElementById('filterModal').classList.add('active'); };
+window.closeFilterModal=function(){ document.getElementById('filterModal').classList.remove('active'); };
+window.setSort=function(s){ currentSort=s; renderFilterModal(); };
+window.applyFilters=function(){ closeFilterModal(); renderGrid(); };
+window.toggleLike=function(id){
+let likes=JSON.parse(localStorage.getItem('zg_likes')||'[]');
+const w=wallpapers.find(x=>x.id===id);
+if(likes.includes(id)){ likes=likes.filter(x=>x!==id); w.likes=Math.max(0,(w.likes||1)-1); } else { likes.push(id); w.likes=(w.likes||0)+1; }
+localStorage.setItem('zg_likes', JSON.stringify(likes));
+localStorage.setItem('zg_walls_cache', JSON.stringify(wallpapers));
+renderGrid();
+};
+window.toggleSave=function(id){
+let saves=JSON.parse(localStorage.getItem('zg_saves')||'[]');
+const w=wallpapers.find(x=>x.id===id);
+if(saves.includes(id)){ saves=saves.filter(x=>x!==id); w.saves=Math.max(0,(w.saves||1)-1); } else { saves.push(id); w.saves=(w.saves||0)+1; }
+localStorage.setItem('zg_saves', JSON.stringify(saves));
+localStorage.setItem('zg_walls_cache', JSON.stringify(wallpapers));
+renderGrid();
+};
+window.toggleLikeModal=function(){ if(currentModalWall) toggleLike(currentModalWall.id); document.getElementById('likeCount').textContent=currentModalWall.likes||0; };
+window.toggleSaveModal=function(){ if(currentModalWall) toggleSave(currentModalWall.id); };
+window.shareWall=function(id){ const w=wallpapers.find(x=>x.id===id); if(!w) return; if(navigator.share){ navigator.share({title:w.title_ar||w.title, url:w.url}); } else { navigator.clipboard.writeText(w.url); alert(currentLang==='ar'?'تم نسخ الرابط':'Link copied'); } };
+window.shareModal=function(){ if(currentModalWall) shareWall(currentModalWall.id); };
+
+// Notifications
+async function loadNotifs(){
+try{
+const customRaw=localStorage.getItem('zg_notifs');
+if(customRaw){ const custom=JSON.parse(customRaw); if(custom.length>0) return custom; }
+const r=await fetch('notifications.json?v='+Date.now());
+if(r.ok){ const j=await r.json(); if(Array.isArray(j)&&j.length>0) return j; }
+}catch(e){}
+return NOTIFS_MAP[currentLang]||NOTIFS_MAP.ar;
+}
+window.openNotif=async function(){
+const notifs=await loadNotifs();
+const list=document.getElementById('notifList');
+list.innerHTML=notifs.map(n=>`<div class="notif-item"><div class="notif-title">${n.title}</div><div class="notif-desc">${n.desc}</div><div class="notif-time">${n.time}</div></div>`).join('');
+document.getElementById('notifModal').classList.add('active');
+localStorage.setItem('zg_notif_read', '1');
+checkNotifDot();
+};
+window.closeNotif=function(){ document.getElementById('notifModal').classList.remove('active'); };
+
+function renderFilterModal(){
+ const L = {
+  ar: {new:'✨ خلفيات جديدة (الأحدث أولا)', old:'📜 خلفيات قديمة (الأقدم أولا)', pop:'🔥 الأكثر شعبية', title:'التصنيفات', save:'حفظ وتطبيق', cancel:'إلغاء', filterTitle:'فلترة وترتيب'},
+  en: {new:'✨ New Wallpapers (Newest First)', old:'📜 Old Wallpapers (Oldest First)', pop:'🔥 Most Popular', title:'Categories', save:'Save & Apply', cancel:'Cancel', filterTitle:'Filter & Sort'}
+ };
+ const t = L[currentLang]||L.ar;
+ document.getElementById('filterModalTitle').textContent=t.filterTitle;
+ document.getElementById('filterOptions').innerHTML=`
+  <div class="filter-option ${currentSort==='new'?'active':''}" data-sort="new" onclick="setSort('new')"><span>${t.new}</span><span>${currentSort==='new'?'✓':''}</span></div>
+  <div class="filter-option ${currentSort==='old'?'active':''}" data-sort="old" onclick="setSort('old')"><span>${t.old}</span><span>${currentSort==='old'?'✓':''}</span></div>
+  <div class="filter-option ${currentSort==='popular'?'active':''}" data-sort="popular" onclick="setSort('popular')"><span>${t.pop}</span><span>${currentSort==='popular'?'✓':''}</span></div>
+ `;
+ const tagTitle = document.querySelector('#filterModal .filter-modal-box h3:nth-of-type(2)') || document.getElementById('filterTagTitle');
+ if(document.getElementById('filterTagTitle')) document.getElementById('filterTagTitle').textContent=t.title;
+ document.getElementById('btnSaveApply').textContent=t.save;
+ document.getElementById('btnCancel').textContent=t.cancel;
+ renderTagFilters();
 }
 
-function closeModal(){
-document.getElementById('modal').classList.remove('active');
+function openFilterModalBase(){
+ renderFilterModal();
+ document.getElementById('filterModal').classList.add('active');
 }
 
-function openCatsModal(){
-const grid=document.getElementById('catsGrid');
-let html=`<div class="cat-square ${currentCategory==='الكل'?'active':''}" onclick="setCat('الكل');closeCatsModal()"><div class="ic">📂</div><div class="name">${currentLang==='ar'?'الكل':'All'}</div></div>`;
-categories.forEach(cat=>{
-html+=`<div class="cat-square ${currentCategory===cat?'active':''}" onclick="setCat('${cat}');closeCatsModal()"><div class="ic">🖼️</div><div class="name">${cat}</div></div>`;
-});
-grid.innerHTML=html;
-document.getElementById('catsModal').classList.add('active');
+function checkNotifDot(){
+const read=localStorage.getItem('zg_notif_read');
+document.getElementById('bellDot').classList.toggle('show', !read);
 }
 
-function closeCatsModal(){
-document.getElementById('catsModal').classList.remove('active');
+// Auth
+window.openAuth=function(){
+const user=JSON.parse(localStorage.getItem('zg_user')||'null');
+if(user){ showProfile(user); }
+document.getElementById('authModal').classList.add('active');
+};
+window.closeAuth=function(){ document.getElementById('authModal').classList.remove('active'); };
+function showProfile(user){
+document.getElementById('authProfile').style.display='block';
+document.getElementById('authDisplayName').textContent=user.name;
+document.getElementById('authDisplayEmail').textContent=user.email;
+document.getElementById('authAvatar').src=user.avatar||'';
+document.getElementById('profileBtn').innerHTML=user.avatar?`<img src="${user.avatar}">`:'👤';
+}
+window.doAuth=function(){
+const name=document.getElementById('authName').value.trim();
+const email=document.getElementById('authEmail').value.trim();
+const pass=document.getElementById('authPass').value.trim();
+if(!email||!pass){ alert(currentLang==='ar'?'أدخل البريد وكلمة المرور':'Enter email and password'); return; }
+const user={name:name||email.split('@')[0],email,avatar:''};
+localStorage.setItem('zg_user', JSON.stringify(user));
+showProfile(user);
+setTimeout(closeAuth,800);
+};
+window.logout=function(){ localStorage.removeItem('zg_user'); document.getElementById('authProfile').style.display='none'; document.getElementById('profileBtn').textContent='👤'; closeAuth(); };
+function loadProfile(){
+const user=JSON.parse(localStorage.getItem('zg_user')||'null');
+if(user){ document.getElementById('profileBtn').innerHTML=user.avatar?`<img src="${user.avatar}">`:'👤'; }
 }
 
-function renderClientAds(ads){
-const slider=document.getElementById('clientAdsSlider');
-const inner=document.getElementById('clientAdsInner');
-let html='';
-ads.forEach(ad=>{
-html+=`<div style="background:#111;border:1px solid #222;border-radius:14px;padding:10px 16px;min-width:220px;flex-shrink:0;text-align:center">
-<div style="font-size:11px;color:#D4FF32;font-weight:700">⭐ ${ad.label||'إعلانات مميزة'}</div>
-<div style="font-size:13px;font-weight:900;margin:4px 0">${ad.title}</div>
-<a href="${ad.link}" target="_blank" style="display:inline-block;background:#D4FF32;color:#000;padding:4px 14px;border-radius:14px;font-size:11px;font-weight:900;text-decoration:none;margin-top:4px">زيارة الرابط</a>
-</div>`;
-});
-inner.innerHTML=html;
-slider.style.display='block';
+function startDynamicUsers(){
+const el=document.getElementById('valUsers');
+if(!el) return;
+const numbers=['+720K','+745K','+780K','+800K','+815K','+830K','+845K','+850K','+865K','+880K','+892K','+900K','+910K','+925K','+950K','+980K','+1M','+1.05M','+1.1M','+1.2M'];
+let idx=Math.floor(Math.random()*numbers.length);
+el.textContent=numbers[idx];
+setInterval(()=>{ if(Math.random()>0.6){ idx=(idx+1+Math.floor(Math.random()*3))%numbers.length; el.textContent=numbers[idx]; } }, 70000);
+}
+async function loadVisitorCounter(){
+const el=document.getElementById('visitorCount');
+if(!el) return;
+try{
+const r=await fetch('https://api.countapi.xyz/hit/zg4k-wallpaper-2026-global/visits');
+if(r.ok){ const j=await r.json(); if(j.value){ el.textContent=Number(j.value).toLocaleString(); return; } }
+}catch(e){}
+let base=parseInt(localStorage.getItem('zg_global_visitors')||'1247');
+if(!localStorage.getItem('zg_visited_flag')){ base++; localStorage.setItem('zg_visited_flag','1'); localStorage.setItem('zg_global_visitors',String(base)); }
+el.textContent=base.toLocaleString();
+}
+async function loadAdsSlots(){
+try{
+const r=await fetch('ads.json?v='+Date.now()); if(!r.ok) return;
+const ads=await r.json();
+if(ads.ad_top){ const el=document.getElementById('adTopSlot'); if(el){el.innerHTML=ads.ad_top; el.style.display='block';} }
+if(ads.ad_bottom){ const el=document.getElementById('adBottomSlot'); if(el){el.innerHTML=ads.ad_bottom; el.style.display='block';} }
+}catch(e){}
 }
 
 init();
 </script>
-</body>
+<script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body>
 </html>
